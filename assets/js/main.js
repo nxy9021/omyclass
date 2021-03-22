@@ -50,7 +50,6 @@ function preload() {
   // attention bubbles
   this.load.image('blueBubble', 'assets/img/bubbles/bblue.png');
 
-
   //   this.load.spritesheet('dude', 'assets/img/dude.png', {
   //     frameWidth: 32,
   //     frameHeight: 48,
@@ -58,7 +57,6 @@ function preload() {
 
   // cursor
   this.load.image('cursorDefault', 'assets/img/cursors/cdefault.png');
-
 }
 
 function create() {
@@ -69,6 +67,7 @@ function create() {
   // lxcx: line (sequence from top) column (sequece from left)
   // write a function for handling positioning the repeated background later, so that I don't have to manually calculate it each time
   let l1c1 = this.add.image(150, 186, 'bgBeige').setScale(0.6, 0.6);
+
   let l1c2 = this.add.image(400, 186, 'bgBeige').setScale(0.6, 0.6);
   let l1c3 = this.add.image(650, 186, 'bgBeige').setScale(0.6, 0.6);
 
@@ -120,7 +119,7 @@ function create() {
   this.add.image(400, 413, 'girl3').setScale(0.6, 0.6);
   this.add.image(650, 413, 'girl4').setScale(0.6, 0.6);
 
-  //curser
+  //cursor
   this.input.setDefaultCursor('url(assets/img/cursors/cdefault.png), pointer');
 
   //interactive bubbles
@@ -128,18 +127,33 @@ function create() {
 
   let sprite = this.add
     .sprite(150, 570, 'blueBubble')
-    .setInteractive({ cursor: 'url(assets/img/cursors/cblue.png), pointer' });
-
+    .setInteractive({ cursor: 'url(assets/img/cursors/cblue.png), pointer' })
+    .on('pointerdown', () => actionOnClick(sprite), this);
 
   // doesn't work yet need to figure out why
-  // sprite.on('pointerover', function () {
-  //   this.setTint(0xff0000);
+  // sprite.on('pointerin', function (event) {
+  //   this.setTint(0xffffff);
   // });
-  // sprite.on('pointerup', function () {
+  // sprite.on('pointerout', function (event) {
   //   this.clearTint();
   // });
+
+  // trying another method of changing color
+  // nvm this does not work either
+  //   this.game.input.onDown.add(changeTint(event), this);
+  // }
+
+  // function changeTint(event) {
+  //   debugger;
+  //   sprite.tint = Math.random() * 0xffffff;
+
+  // for some reason setTint is just NOT WORKING!!!!
 }
 
+function actionOnClick(sprite) {
+  sprite.setScale(0.8);
+  sprite.setTint(0xffffff);
+}
 
 function update() {}
 
