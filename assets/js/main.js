@@ -47,10 +47,18 @@ function preload() {
   this.load.image('girl3', 'assets/img/charactors/girl3.png');
   this.load.image('girl4', 'assets/img/charactors/girl4.png');
 
+  // attention bubbles
+  this.load.image('blueBubble', 'assets/img/bubbles/bblue.png');
+
+
   //   this.load.spritesheet('dude', 'assets/img/dude.png', {
   //     frameWidth: 32,
   //     frameHeight: 48,
   //   });
+
+  // cursor
+  this.load.image('cursorDefault', 'assets/img/cursors/cdefault.png');
+
 }
 
 function create() {
@@ -67,9 +75,6 @@ function create() {
   let l2c1 = this.add.image(150, 400, 'bgBeige').setScale(0.6, 0.6);
   let l2c2 = this.add.image(400, 400, 'bgBeige').setScale(0.6, 0.6);
   let l2c3 = this.add.image(650, 400, 'bgBeige').setScale(0.6, 0.6);
-
-
-
 
   // book background for animation
   this.books = this.add.sprite(400, 200, 'books').setScale(0.95, 0.95);
@@ -114,7 +119,27 @@ function create() {
   this.add.image(150, 413, 'girl2').setScale(0.6, 0.6);
   this.add.image(400, 413, 'girl3').setScale(0.6, 0.6);
   this.add.image(650, 413, 'girl4').setScale(0.6, 0.6);
+
+  //curser
+  this.input.setDefaultCursor('url(assets/img/cursors/cdefault.png), pointer');
+
+  //interactive bubbles
+  // this.add.image(150, 570, 'blueBubble');
+
+  let sprite = this.add
+    .sprite(150, 570, 'blueBubble')
+    .setInteractive({ cursor: 'url(assets/img/cursors/cblue.png), pointer' });
+
+
+  // doesn't work yet need to figure out why
+  // sprite.on('pointerover', function () {
+  //   this.setTint(0xff0000);
+  // });
+  // sprite.on('pointerup', function () {
+  //   this.clearTint();
+  // });
 }
+
 
 function update() {}
 
