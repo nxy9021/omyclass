@@ -1,4 +1,4 @@
-// the following 2 lines are for modulize later
+// the following 2 lines are for modulize references later
 // import Preloader from './scenes/preloader.js';
 // import Lvl1 from './scenes/lvl1.js';
 
@@ -28,8 +28,9 @@ function preload() {
   this.load.image('bgRed', 'assets/img/solidbg/bg_red.png');
   this.load.image('bgYellow', 'assets/img/solidbg/bg_yellow.png');
 
-
   // animation background
+  // frame naming in json is messed up because I'm stupid and it won't work, don't forget to change other json file frame names from 1_book.png to 01_book.png
+  // and don't forget to sort those frames by name
   this.load.animation('booksData', 'assets/img/books/books.json');
 
   this.load.atlas(
@@ -54,9 +55,21 @@ function preload() {
 
 function create() {
   // background reference
-  this.add.image(460, 320, 'ref').setScale(0.6, 0.6);
+  // this.add.image(460, 320, 'ref').setScale(0.6, 0.6);
 
-  // default yellow background
+  // default beige background
+  // lxcx: line (sequence from top) column (sequece from left)
+  // write a function for handling positioning the repeated background later, so that I don't have to manually calculate it each time
+  let l1c1 = this.add.image(150, 186, 'bgBeige').setScale(0.6, 0.6);
+  let l1c2 = this.add.image(400, 186, 'bgBeige').setScale(0.6, 0.6);
+  let l1c3 = this.add.image(650, 186, 'bgBeige').setScale(0.6, 0.6);
+
+  let l2c1 = this.add.image(150, 400, 'bgBeige').setScale(0.6, 0.6);
+  let l2c2 = this.add.image(400, 400, 'bgBeige').setScale(0.6, 0.6);
+  let l2c3 = this.add.image(650, 400, 'bgBeige').setScale(0.6, 0.6);
+
+
+
 
   // book background for animation
   this.books = this.add.sprite(400, 200, 'books').setScale(0.95, 0.95);
@@ -95,12 +108,12 @@ function create() {
   // console.log(animationFrames);
 
   // charactors
-  this.add.image(155, 200, 'boy1').setScale(0.6, 0.6);
-  this.add.image(397, 200, 'boy2').setScale(0.6, 0.6);
-  this.add.image(642, 200, 'girl1').setScale(0.6, 0.6);
-  this.add.image(155, 413, 'girl2').setScale(0.6, 0.6);
-  this.add.image(397, 413, 'girl3').setScale(0.6, 0.6);
-  this.add.image(642, 413, 'girl4').setScale(0.6, 0.6);
+  this.add.image(150, 200, 'boy1').setScale(0.6, 0.6);
+  this.add.image(400, 200, 'boy2').setScale(0.6, 0.6);
+  this.add.image(650, 200, 'girl1').setScale(0.6, 0.6);
+  this.add.image(150, 413, 'girl2').setScale(0.6, 0.6);
+  this.add.image(400, 413, 'girl3').setScale(0.6, 0.6);
+  this.add.image(650, 413, 'girl4').setScale(0.6, 0.6);
 }
 
 function update() {}
