@@ -3,7 +3,7 @@
 // import Lvl1 from './scenes/lvl1.js';
 
 const config = {
-  type: Phaser.CANVAS,
+  type: Phaser.AUTO,
   width: 900,
   height: 640,
   scene: {
@@ -125,10 +125,11 @@ function create() {
   //interactive bubbles
   // this.add.image(150, 570, 'blueBubble');
 
-  let sprite = this.add
+  let conversationButton = this.add
     .sprite(150, 570, 'blueBubble')
     .setInteractive({ cursor: 'url(assets/img/cursors/cblue.png), pointer' })
-    .on('pointerdown', () => actionOnClick(sprite), this);
+    // .on('pointerdown', conversationButtonOnClick)
+    ;
 
   // doesn't work yet need to figure out why
   // sprite.on('pointerin', function (event) {
@@ -150,9 +151,9 @@ function create() {
   // for some reason setTint is just NOT WORKING!!!!
 }
 
-function actionOnClick(sprite) {
-  sprite.setScale(0.8);
-  sprite.setTint(0xffffff);
+function conversationButtonOnClick(pointer) {
+  // sprite.setScale(0.8);
+  // this.setTint(0xff0000);
 }
 
 function update() {}
