@@ -22,7 +22,7 @@ let mainTimer;
 
 function preload() {
   // background reference
-  // this.load.image('ref', 'assets/img/lvl1layout.png');
+  this.load.image('ref', 'assets/img/lvl1layout.png');
 
   // solid background
   this.load.image('bgBeige', 'assets/img/solidbg/bg_beige.png');
@@ -64,7 +64,7 @@ function preload() {
 
 function create() {
   // background reference
-  this.add.image(460, 320, 'ref').setScale(0.6, 0.6);
+  // this.add.image(460, 320, 'ref').setScale(0.6, 0.6);
 
   // default beige background
   // lxcx: line (sequence from top) column (sequece from left)
@@ -142,7 +142,14 @@ function create() {
   // });
 
   //timer
-  text = this.add.text(40, 40);
+  text = this.add.text(
+    40,
+    40,
+    '',
+    {
+    fontFamily: 'Roboto'
+    })
+    .setFontSize(20);
   mainTimer = this.time.delayedCall(
     60000,
     onGameTimeOver,
@@ -159,12 +166,12 @@ function conversationButtonOnClick(pointer) {
 
 function update() {
   text.setText(
-    'Time: ' + mainTimer.getProgress().toString().substr(0, 4)
+  'Time: '+ mainTimer.getProgress().toString().substr(0, 4)
   );
 }
 
 function onGameTimeOver() {
-  // image.setScale(0.5);
+  // load tryagain screen
 }
 
 const game = new Phaser.Game(config);
