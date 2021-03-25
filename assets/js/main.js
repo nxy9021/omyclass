@@ -17,9 +17,12 @@ const config = {
   // load background
 };
 
+let text;
+let mainTimer;
+
 function preload() {
   // background reference
-  this.load.image('ref', 'assets/img/lvl1layout.png');
+  // this.load.image('ref', 'assets/img/lvl1layout.png');
 
   // solid background
   this.load.image('bgBeige', 'assets/img/solidbg/bg_beige.png');
@@ -61,7 +64,7 @@ function preload() {
 
 function create() {
   // background reference
-  // this.add.image(460, 320, 'ref').setScale(0.6, 0.6);
+  this.add.image(460, 320, 'ref').setScale(0.6, 0.6);
 
   // default beige background
   // lxcx: line (sequence from top) column (sequece from left)
@@ -128,10 +131,9 @@ function create() {
   let conversationButton = this.add
     .sprite(150, 570, 'blueBubble')
     .setInteractive({ cursor: 'url(assets/img/cursors/cblue.png), pointer' })
-    // .on('pointerdown', conversationButtonOnClick)
-    ;
+    .on('pointerdown', conversationButtonOnClick);
 
-  // doesn't work yet need to figure out why
+  // canvas auto was the solution
   // sprite.on('pointerin', function (event) {
   //   this.setTint(0xffffff);
   // });
@@ -139,23 +141,30 @@ function create() {
   //   this.clearTint();
   // });
 
-  // trying another method of changing color
-  // nvm this does not work either
-  //   this.game.input.onDown.add(changeTint(event), this);
-  // }
-
-  // function changeTint(event) {
-  //   debugger;
-  //   sprite.tint = Math.random() * 0xffffff;
-
-  // for some reason setTint is just NOT WORKING!!!!
+  //timer
+  text = this.add.text(40, 40);
+  mainTimer = this.time.delayedCall(
+    60000,
+    onGameTimeOver,
+    [],
+    this
+  );
 }
 
 function conversationButtonOnClick(pointer) {
-  // sprite.setScale(0.8);
-  // this.setTint(0xff0000);
+  this.setTint(0xfff000);
 }
 
-function update() {}
+
+
+function update() {
+  text.setText(
+    'Time: ' + mainTimer.getProgress().toString().substr(0, 4)
+  );
+}
+
+function onGameTimeOver() {
+  // image.setScale(0.5);
+}
 
 const game = new Phaser.Game(config);
