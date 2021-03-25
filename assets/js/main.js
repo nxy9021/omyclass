@@ -19,6 +19,7 @@ const config = {
 
 let text;
 let mainTimer;
+let heatGaugeBg;
 
 function preload() {
   // background reference
@@ -150,12 +151,25 @@ function create() {
     fontFamily: 'Roboto'
     })
     .setFontSize(20);
+
   mainTimer = this.time.delayedCall(
     60000,
     onGameTimeOver,
     [],
     this
   );
+
+  //Heat Gauge bg
+  heatGaugeBg = this.add.graphics();
+
+  //location and size of heat gauge bg
+  heatGaugeBg.fillRect(810, 95, 34, 395);
+
+  //gradient and alpha of heat gauge bg
+  heatGaugeBg.
+  fillGradientStyle(0xff0000, 0xff0000, 0xffff00, 0xffff00, 0.3);
+
+
 }
 
 function conversationButtonOnClick(pointer) {
