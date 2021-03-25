@@ -20,6 +20,7 @@ const config = {
 let text;
 let mainTimer;
 let heatGaugeBg;
+let heatGaugeBgLightBorder;
 
 function preload() {
   // background reference
@@ -143,45 +144,35 @@ function create() {
   // });
 
   //timer
-  text = this.add.text(
-    40,
-    40,
-    '',
-    {
-    fontFamily: 'Roboto'
+  text = this.add
+    .text(40, 40, '', {
+      fontFamily: 'Roboto',
     })
     .setFontSize(20);
 
-  mainTimer = this.time.delayedCall(
-    60000,
-    onGameTimeOver,
-    [],
-    this
-  );
+  mainTimer = this.time.delayedCall(60000, onGameTimeOver, [], this);
 
   //Heat Gauge bg
   heatGaugeBg = this.add.graphics();
 
-  //location and size of heat gauge bg
-  heatGaugeBg.fillRect(810, 95, 34, 395);
+  //locationsize, linestyle, rect and fill style of heat gauge bg
+  heatGaugeBg.fillRect(810, 95, 34, 397)
+  .lineStyle(8, 0x000000, 1)
+  .strokeRoundedRect(810, 95, 34, 397, 8)
+  .fillGradientStyle(0xff0000, 0xff0000, 0xffff00, 0xffff00, 0.3);
 
-  //gradient and alpha of heat gauge bg
-  heatGaugeBg.
-  fillGradientStyle(0xff0000, 0xff0000, 0xffff00, 0xffff00, 0.3);
-
-
+  //Heat Gauge bg light border
+  heatGaugeBgLightBorder = this.add.graphics()
+  .lineStyle(2, 0xffffff, 1)
+  .strokeRoundedRect(805, 88, 44, 410, 10);
 }
 
 function conversationButtonOnClick(pointer) {
   this.setTint(0xfff000);
 }
 
-
-
 function update() {
-  text.setText(
-  'Time: '+ mainTimer.getProgress().toString().substr(0, 4)
-  );
+  text.setText('Time: ' + mainTimer.getProgress().toString().substr(0, 4));
 }
 
 function onGameTimeOver() {
