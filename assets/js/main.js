@@ -152,19 +152,21 @@ function create() {
 
   mainTimer = this.time.delayedCall(60000, onGameTimeOver, [], this);
 
-  //Heat Gauge bg
-  heatGaugeBg = this.add.graphics();
-
-  //locationsize, linestyle, rect and fill style of heat gauge bg
-  heatGaugeBg.fillRect(810, 95, 34, 397)
-  .lineStyle(8, 0x000000, 1)
-  .strokeRoundedRect(810, 95, 34, 397, 8)
-  .fillGradientStyle(0xff0000, 0xff0000, 0xffff00, 0xffff00, 0.3);
+  //Heat Gauge bg, locationsize, linestyle, rect and fill style of heat gauge bg
+  heatGaugeBg =
+    this.add
+    .graphics()
+    .fillRect(810, 95, 34, 397)
+    .lineStyle(8, 0x000000, 1)
+    .strokeRoundedRect(810, 95, 34, 397, 8)
+    .fillGradientStyle(0xff0000, 0xff0000, 0xffff00, 0xffff00, 0.3);
 
   //Heat Gauge bg light border
-  heatGaugeBgLightBorder = this.add.graphics()
-  .lineStyle(2, 0xffffff, 1)
-  .strokeRoundedRect(805, 88, 44, 410, 10);
+  heatGaugeBgLightBorder =
+    this.add
+    .graphics()
+    .lineStyle(2, 0xffffff, 1)
+    .strokeRoundedRect(805, 88, 44, 410, 10);
 }
 
 function conversationButtonOnClick(pointer) {
