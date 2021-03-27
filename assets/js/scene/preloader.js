@@ -1,5 +1,4 @@
 export default class Preloader extends Phaser.Scene {
-
   constructor() {
     super('preloader');
   }
@@ -18,7 +17,7 @@ export default class Preloader extends Phaser.Scene {
     // animation background
     // frame naming in json is messed up because I'm stupid and it won't work, don't forget to change other json file frame names from 1_book.png to 01_book.png
     // and don't forget to sort those frames by name
-    
+
     this.load.animation('booksData', 'assets/img/books/books.json');
 
     this.load.atlas(
@@ -36,7 +35,7 @@ export default class Preloader extends Phaser.Scene {
     this.load.image('girl4', 'assets/img/charactors/girl4.png');
 
     // attention bubbles
-    this.load.image('blueBubble', 'assets/img/bubbles/bblue.png');
+    this.load.image('conversationButton', 'assets/img/bubbles/bblue.png');
 
     // cursor
     this.load.image('cursorDefault', 'assets/img/cursors/cdefault.png');

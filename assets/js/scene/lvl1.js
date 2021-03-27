@@ -73,9 +73,6 @@ export default class Lvl1 extends Phaser.Scene {
       'url(assets/img/cursors/cdefault.png), pointer'
     );
 
-    //interactive bubbles
-    // this.add.image(150, 570, 'blueBubble');
-
     let conversationButton = this.add
       .sprite(150, 570, 'blueBubble')
       .setInteractive({ cursor: 'url(assets/img/cursors/cblue.png), pointer' })
