@@ -1,9 +1,9 @@
 import Phaser from 'phaser';
 export default class Lvl1 extends Phaser.Scene {
-  text;
-  mainTimer;
-  heatGaugeBg;
-  heatGaugeBgLightBorder;
+  text: Phaser.GameObjects.Text;
+  mainTimer: Phaser.Time.TimerEvent;
+  heatGaugeBg: Phaser.GameObjects.Graphics;
+  heatGaugeBgLightBorder: Phaser.GameObjects.Graphics;
   books: Phaser.GameObjects.Sprite;
 
   constructor() {
@@ -25,14 +25,23 @@ export default class Lvl1 extends Phaser.Scene {
     // default beige background
     // lxcx: line (sequence from top) column (sequece from left)
     // write a function for handling positioning the repeated background later, so that I don't have to manually calculate it each time
-    let l1c1 = this.add.image(150, 186, 'bgBeige').setScale(0.6, 0.6);
+    // let l1c1 =
+    this.add.image(150, 186, 'bgBeige').setScale(0.6, 0.6);
 
-    let l1c2 = this.add.image(400, 186, 'bgBeige').setScale(0.6, 0.6);
-    let l1c3 = this.add.image(650, 186, 'bgBeige').setScale(0.6, 0.6);
+    // let l1c2 =
+    this.add.image(400, 186, 'bgBeige').setScale(0.6, 0.6);
 
-    let l2c1 = this.add.image(150, 400, 'bgBeige').setScale(0.6, 0.6);
-    let l2c2 = this.add.image(400, 400, 'bgBeige').setScale(0.6, 0.6);
-    let l2c3 = this.add.image(650, 400, 'bgBeige').setScale(0.6, 0.6);
+    // let l1c3 =
+    this.add.image(650, 186, 'bgBeige').setScale(0.6, 0.6);
+
+    // let l2c1 =
+    this.add.image(150, 400, 'bgBeige').setScale(0.6, 0.6);
+
+    // let l2c2 =
+    this.add.image(400, 400, 'bgBeige').setScale(0.6, 0.6);
+
+    // let l2c3 =
+    this.add.image(650, 400, 'bgBeige').setScale(0.6, 0.6);
 
     // book background for animation
     this.books = this.add.sprite(400, 200, 'books').setScale(0.95, 0.95);
