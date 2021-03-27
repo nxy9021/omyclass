@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
 
-import Preloader from './scene/preloader.js';
-import Lvl1 from './scene/lvl1.js';
+import Preloader from './scene/preloader';
+import Lvl1 from './scene/lvl1';
 
 const config = {
   type: Phaser.AUTO,

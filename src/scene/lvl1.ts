@@ -4,6 +4,7 @@ export default class Lvl1 extends Phaser.Scene {
   mainTimer;
   heatGaugeBg;
   heatGaugeBgLightBorder;
+  books: Phaser.GameObjects.Sprite;
 
   constructor() {
     super('lvl1');
