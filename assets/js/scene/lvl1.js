@@ -8,6 +8,14 @@ export default class Lvl1 extends Phaser.Scene {
     super('lvl1');
   }
 
+  conversationButtonOnClick(pointer) {
+    pointer.setTint(0xfff000);
+  }
+
+  onGameTimeOver() {
+    // load tryagain screen
+  }
+
   create() {
     // background reference
     // this.add.image(460, 320, 'ref').setScale(0.6, 0.6);
@@ -74,9 +82,11 @@ export default class Lvl1 extends Phaser.Scene {
     );
 
     let conversationButton = this.add
-      .sprite(150, 570, 'blueBubble')
+      .sprite(150, 570, 'conversationButton')
       .setInteractive({ cursor: 'url(assets/img/cursors/cblue.png), pointer' })
-      .on('pointerdown', conversationButtonOnClick);
+      .on('pointerdown', () =>
+        this.conversationButtonOnClick(conversationButton)
+      );
 
     // canvas auto was the solution
     // sprite.on('pointerin', function (event) {
@@ -87,16 +97,21 @@ export default class Lvl1 extends Phaser.Scene {
     // });
 
     //timer
-    text = this.add
+    this.text = this.add
       .text(40, 40, '', {
         fontFamily: 'Roboto',
       })
       .setFontSize(20);
 
-    mainTimer = this.time.delayedCall(60000, onGameTimeOver, [], this);
+    this.mainTimer = this.time.delayedCall(
+      60000,
+      this.onGameTimeOver,
+      [],
+      this
+    );
 
     //Heat Gauge bg, locationsize, linestyle, rect and fill style of heat gauge bg
-    heatGaugeBg = this.add
+    this.heatGaugeBg = this.add
       .graphics()
       .fillRect(810, 95, 34, 397)
       .lineStyle(8, 0x000000, 1)
@@ -104,17 +119,15 @@ export default class Lvl1 extends Phaser.Scene {
       .fillGradientStyle(0xff0000, 0xff0000, 0xffff00, 0xffff00, 0.3);
 
     //Heat Gauge bg light border
-    heatGaugeBgLightBorder = this.add
+    this.heatGaugeBgLightBorder = this.add
       .graphics()
       .lineStyle(2, 0xffffff, 1)
       .strokeRoundedRect(805, 88, 44, 410, 10);
   }
 
   update() {
-    text.setText('Time: ' + mainTimer.getProgress().toString().substr(0, 4));
-  }
-
-  onGameTimeOver() {
-    // load tryagain screen
+    this.text.setText(
+      'Time: ' + this.mainTimer.getProgress().toString().substr(0, 4)
+    );
   }
 }
