@@ -1,3 +1,4 @@
+import Phaser from 'phaser';
 export default class Lvl1 extends Phaser.Scene {
   text;
   mainTimer;

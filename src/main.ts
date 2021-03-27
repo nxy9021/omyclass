@@ -1,3 +1,5 @@
+import Phaser from 'phaser';
+
 import Preloader from './scene/preloader.js';
 import Lvl1 from './scene/lvl1.js';
 
@@ -8,4 +10,4 @@ const config = {
   scene: [Preloader, Lvl1],
 };
 
-const game = new Phaser.Game(config);
+export default new Phaser.Game(config);
