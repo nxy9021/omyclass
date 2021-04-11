@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import Distraction from '../enimies/distraction';
+import Distraction, { DistractionType } from '../enimies/distraction';
 
 export default class Lvl1 extends Phaser.Scene {
   text: Phaser.GameObjects.Text;
@@ -59,7 +59,10 @@ export default class Lvl1 extends Phaser.Scene {
     // book animation
     // CreateDistractionAnimation(this.anims);
 
-    this.distractionTiles.l1c1 = new Distraction(this, 400, 200);
+    this.distractionTiles.l1c1 = new Distraction(this, 150, 200);
+    this.distractionTiles.l1c2 = new Distraction(this, 400, 200);
+    this.distractionTiles.l1c1.setDistraction(DistractionType.QUESTION);
+
     // this.books
     // = this.add.sprite(400, 200, 'books').setScale(0.95, 0.95);
 

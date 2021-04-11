@@ -1,8 +1,7 @@
 import Phaser from 'phaser';
 import CreateDistractionAnimation from '../anims/CreateDefaultAnims';
 
-// TODO: Move me to a file
-const DistractionType = {
+export const DistractionType = {
   DEFAULT: 0,
   QUESTION: 1,
   WAKEUP: 2,
@@ -10,19 +9,20 @@ const DistractionType = {
   RESOLVE: 4,
 };
 
-const DistractionTextureNames = {
+export const DistractionTextureNames = {
   default: 'default',
   question: 'question',
+  food: 'food',
+  dots: 'dots',
 };
 
 export default class Distraction {
-  distractionType = DistractionType.DEFAULT;
-  sprite: Phaser.GameObjects.Sprite;
-  distractionTextureNames: any;
+  _distractionType = DistractionType.DEFAULT;
+  _sprite: Phaser.GameObjects.Sprite;
+  _distractionTextureNames: any;
 
   constructor(scene: Phaser.Scene, x: number, y: number) {
     //Mando did this
-    this.sprite = scene.add.sprite(x, y, DistractionTextureNames.default);
     Object.keys(DistractionTextureNames).forEach((key) => {
       const spriteName = DistractionTextureNames[key];
       const animationName = `${spriteName}Animation`;
@@ -38,48 +38,33 @@ export default class Distraction {
         });
       CreateDistractionAnimation(scene.anims, animationName, animationFrames);
     });
-    this.sprite.play('defaultAnimation');
+
+    this._sprite = scene.add.sprite(x, y, DistractionTextureNames.default);
+    this._sprite.play('defaultAnimation');
   }
 
-  setDistraction(distractionType: number) {
-    this.distractionType = distractionType;
+  getDistraction = () => this._distractionType;
 
-    switch (this.distractionType) {
+  setDistraction(distractionType: number) {
+    this._distractionType = distractionType;
+
+    switch (this._distractionType) {
       case DistractionType.DEFAULT:
-        this.sprite.setTexture(DistractionTextureNames.default);
+        this._sprite.setTexture(DistractionTextureNames.default);
+        this._sprite.play('defaultAnimation');
         break;
 
       case DistractionType.QUESTION:
-        this.sprite.setTexture(DistractionTextureNames.question);
+        this._sprite.setTexture(DistractionTextureNames.question);
+        this._sprite.play('questionAnimation');
         break;
 
       case DistractionType.WAKEUP:
-        this.sprite.setTexture(DistractionTextureNames.question);
+        this._sprite.setTexture(DistractionTextureNames.question);
         break;
 
       case DistractionType.EAT:
         break;
     }
   }
-
-  // preUpdate(t: number, dt: number) {
-  //   super.preUpdate(t, dt);
-
-  //   switch (this.distractionType) {
-  //     case DistractionType.DEFAULT:
-  //       this.sprite.setTexture(DistractionTextureNames.default);
-  //       break;
-
-  //     case DistractionType.QUESTION:
-  //       this.sprite.setTexture(DistractionTextureNames.question);
-  //       break;
-
-  //     case DistractionType.WAKEUP:
-  //       this.sprite.setTexture(DistractionTextureNames.question);
-  //       break;
-
-  //     case DistractionType.EAT:
-  //       break;
-  //   }
-  // }
 }
