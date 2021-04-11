@@ -1,0 +1,502 @@
+{
+	"textures": [
+		{
+			"image": "food.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 960,
+				"h": 748
+			},
+			"scale": 0.625,
+			"frames": [
+				{
+					"filename": "01_hungry.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 160.625,
+						"h": 138.125
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 10,
+						"w": 160,
+						"h": 106.875
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 160,
+						"h": 106.875
+					}
+				},
+				{
+					"filename": "02_hungry.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 160.625,
+						"h": 137.5
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 10,
+						"w": 160,
+						"h": 106.875
+					},
+					"frame": {
+						"x": 0,
+						"y": 106.875,
+						"w": 160,
+						"h": 106.875
+					}
+				},
+				{
+					"filename": "03_hungry.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 160.625,
+						"h": 138.125
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 10,
+						"w": 160,
+						"h": 106.875
+					},
+					"frame": {
+						"x": 160,
+						"y": 0,
+						"w": 160,
+						"h": 106.875
+					}
+				},
+				{
+					"filename": "04_hungry.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 160.625,
+						"h": 138.125
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 10,
+						"w": 160,
+						"h": 106.875
+					},
+					"frame": {
+						"x": 0,
+						"y": 213.75,
+						"w": 160,
+						"h": 106.875
+					}
+				},
+				{
+					"filename": "08_hungry.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 160.625,
+						"h": 138.125
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 10,
+						"w": 160,
+						"h": 106.875
+					},
+					"frame": {
+						"x": 160,
+						"y": 106.875,
+						"w": 160,
+						"h": 106.875
+					}
+				},
+				{
+					"filename": "09_hungry.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 160.625,
+						"h": 137.5
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 10,
+						"w": 160,
+						"h": 106.875
+					},
+					"frame": {
+						"x": 320,
+						"y": 0,
+						"w": 160,
+						"h": 106.875
+					}
+				},
+				{
+					"filename": "05_hungry.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 160.625,
+						"h": 138.125
+					},
+					"spriteSourceSize": {
+						"x": 6.25,
+						"y": 10,
+						"w": 153.75,
+						"h": 106.875
+					},
+					"frame": {
+						"x": 0,
+						"y": 320.625,
+						"w": 153.75,
+						"h": 106.875
+					}
+				},
+				{
+					"filename": "06_hungry.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 160.625,
+						"h": 137.5
+					},
+					"spriteSourceSize": {
+						"x": 4.375,
+						"y": 10,
+						"w": 155.625,
+						"h": 106.875
+					},
+					"frame": {
+						"x": 160,
+						"y": 213.75,
+						"w": 155.625,
+						"h": 106.875
+					}
+				},
+				{
+					"filename": "10_hungry.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 160.625,
+						"h": 138.125
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 10,
+						"w": 160,
+						"h": 106.875
+					},
+					"frame": {
+						"x": 320,
+						"y": 106.875,
+						"w": 160,
+						"h": 106.875
+					}
+				},
+				{
+					"filename": "11_hungry.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 160.625,
+						"h": 138.125
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 10,
+						"w": 160,
+						"h": 106.875
+					},
+					"frame": {
+						"x": 480,
+						"y": 0,
+						"w": 160,
+						"h": 106.875
+					}
+				},
+				{
+					"filename": "07_hungry.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 160.625,
+						"h": 138.125
+					},
+					"spriteSourceSize": {
+						"x": 1.875,
+						"y": 10,
+						"w": 158.125,
+						"h": 106.875
+					},
+					"frame": {
+						"x": 0,
+						"y": 427.5,
+						"w": 158.125,
+						"h": 106.875
+					}
+				},
+				{
+					"filename": "12_hungry.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 160.625,
+						"h": 137.5
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 10,
+						"w": 160,
+						"h": 106.875
+					},
+					"frame": {
+						"x": 315.625,
+						"y": 213.75,
+						"w": 160,
+						"h": 106.875
+					}
+				},
+				{
+					"filename": "13_hungry.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 160.625,
+						"h": 138.125
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 10,
+						"w": 160,
+						"h": 106.875
+					},
+					"frame": {
+						"x": 480,
+						"y": 106.875,
+						"w": 160,
+						"h": 106.875
+					}
+				},
+				{
+					"filename": "14_hungry.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 160.625,
+						"h": 138.125
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 10,
+						"w": 160,
+						"h": 106.875
+					},
+					"frame": {
+						"x": 640,
+						"y": 0,
+						"w": 160,
+						"h": 106.875
+					}
+				},
+				{
+					"filename": "15_hungry.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 160.625,
+						"h": 138.125
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 10,
+						"w": 160,
+						"h": 106.875
+					},
+					"frame": {
+						"x": 0,
+						"y": 534.375,
+						"w": 160,
+						"h": 106.875
+					}
+				},
+				{
+					"filename": "16_hungry.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 160.625,
+						"h": 137.5
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 10,
+						"w": 160,
+						"h": 106.875
+					},
+					"frame": {
+						"x": 153.75,
+						"y": 320.625,
+						"w": 160,
+						"h": 106.875
+					}
+				},
+				{
+					"filename": "17_hungry.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 160.625,
+						"h": 138.125
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 10,
+						"w": 160,
+						"h": 106.875
+					},
+					"frame": {
+						"x": 475.625,
+						"y": 213.75,
+						"w": 160,
+						"h": 106.875
+					}
+				},
+				{
+					"filename": "22_hungry.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 160.625,
+						"h": 137.5
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 10,
+						"w": 160,
+						"h": 106.875
+					},
+					"frame": {
+						"x": 640,
+						"y": 106.875,
+						"w": 160,
+						"h": 106.875
+					}
+				},
+				{
+					"filename": "23_hungry.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 160.625,
+						"h": 138.125
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 10,
+						"w": 160,
+						"h": 106.875
+					},
+					"frame": {
+						"x": 800,
+						"y": 0,
+						"w": 160,
+						"h": 106.875
+					}
+				},
+				{
+					"filename": "18_hungry.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 160.625,
+						"h": 138.125
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 10,
+						"w": 159.375,
+						"h": 106.875
+					},
+					"frame": {
+						"x": 0,
+						"y": 641.25,
+						"w": 159.375,
+						"h": 106.875
+					}
+				},
+				{
+					"filename": "19_hungry.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 160.625,
+						"h": 137.5
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 10,
+						"w": 156.875,
+						"h": 106.875
+					},
+					"frame": {
+						"x": 158.125,
+						"y": 427.5,
+						"w": 156.875,
+						"h": 106.875
+					}
+				},
+				{
+					"filename": "20_hungry.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 160.625,
+						"h": 138.125
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 10,
+						"w": 155,
+						"h": 106.875
+					},
+					"frame": {
+						"x": 635.625,
+						"y": 213.75,
+						"w": 155,
+						"h": 106.875
+					}
+				},
+				{
+					"filename": "21_hungry.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 160.625,
+						"h": 138.125
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 10,
+						"w": 153.125,
+						"h": 106.875
+					},
+					"frame": {
+						"x": 800,
+						"y": 106.875,
+						"w": 153.125,
+						"h": 106.875
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "http://free-tex-packer.com",
+		"version": "0.6.6"
+	}
+}

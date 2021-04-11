@@ -5,6 +5,7 @@ export default class Preloader extends Phaser.Scene {
   }
 
   preload() {
+
     // background reference
     this.load.image('ref', 'assets/img/lvl1layout.png');
 
@@ -16,16 +17,32 @@ export default class Preloader extends Phaser.Scene {
     this.load.image('bgYellow', 'assets/img/solidbg/bg_yellow.png');
 
     // animation background
-    // frame naming in json is messed up because I'm stupid and it won't work, don't forget to change other json file frame names from 1_book.png to 01_book.png
-    // and don't forget to sort those frames by name
 
-    this.load.animation('booksData', 'assets/img/books/books.json');
+    //default
+    this.load.animation(
+      'default',
+      'assets/img/distractions/default.json',
+    );
 
     this.load.atlas(
-      'books',
-      'assets/img/books/books.png',
-      'assets/img/books/books.json'
+      'default',
+      'assets/img/distractions/default.png',
+      'assets/img/distractions/default.json'
     );
+
+    //question
+    this.load.animation(
+      'question',
+      'assets/img/distractions/question.json',
+    );
+
+    this.load.atlas(
+      'question',
+      'assets/img/distractions/question.png',
+      'assets/img/distractions/question.json'
+    );
+
+
 
     // charactors
     this.load.image('boy1', 'assets/img/charactors/boy1.png');

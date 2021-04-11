@@ -1,10 +1,23 @@
 import Phaser from 'phaser';
+import Distraction from '../enimies/distraction';
+
 export default class Lvl1 extends Phaser.Scene {
   text: Phaser.GameObjects.Text;
   mainTimer: Phaser.Time.TimerEvent;
   heatGaugeBg: Phaser.GameObjects.Graphics;
   heatGaugeBgLightBorder: Phaser.GameObjects.Graphics;
-  books: Phaser.GameObjects.Sprite;
+  distractionTiles: any = {
+    l1c1: Phaser.GameObjects.Sprite,
+    l1c2: Phaser.GameObjects.Sprite,
+    l1c3: Phaser.GameObjects.Sprite,
+    l2c1: Phaser.GameObjects.Sprite,
+    l2c2: Phaser.GameObjects.Sprite,
+    l2c3: Phaser.GameObjects.Sprite,
+  };
+  countDownText;
+  countDownBar;
+  countDownColor;
+  barTimerEvents = [];
 
   constructor() {
     super('lvl1');
@@ -43,39 +56,43 @@ export default class Lvl1 extends Phaser.Scene {
     // let l2c3 =
     this.add.image(650, 400, 'bgBeige').setScale(0.6, 0.6);
 
-    // book background for animation
-    this.books = this.add.sprite(400, 200, 'books').setScale(0.95, 0.95);
+    // book animation
+    // CreateDistractionAnimation(this.anims);
 
-    // sort framenames in order
-    let framenames = this.textures.get('books').getFrameNames().sort();
+    this.distractionTiles.l1c1 = new Distraction(this, 400, 200);
+    // this.books
+    // = this.add.sprite(400, 200, 'books').setScale(0.95, 0.95);
 
-    // see if frames are sorted in order
-    // console.log(framenames);
+    // // sort framenames in order
+    // let framenames = this.textures.get('books').getFrameNames().sort();
 
-    // For each framename, map it into animationFrame
-    // phaser 3 example wants to repeatly write the following 4 lines for each animation but this is lazier
-    // {
-    //  "key": "books",
-    //  "frame": "01_books",
-    //  "duration": 0,
-    //  "visible": false
-    // }
+    // // see if frames are sorted in order
+    // // console.log(framenames);
 
-    let animationFrames = framenames.map((framename) => {
-      return {
-        key: 'books',
-        frame: framename,
-      };
-    });
+    // // For each framename, map it into animationFrame
+    // // phaser 3 example wants to repeatly write the following 4 lines for each animation but this is lazier
+    // // {
+    // //  "key": "books",
+    // //  "frame": "01_books",
+    // //  "duration": 0,
+    // //  "visible": false
+    // // }
 
-    this.anims.create({
-      key: 'booksAnimation',
-      frames: animationFrames,
-      frameRate: 24,
-      repeat: -1,
-    });
+    // let animationFrames = framenames.map((framename) => {
+    //   return {
+    //     key: 'books',
+    //     frame: framename,
+    //   };
+    // });
 
-    this.books.play('booksAnimation');
+    // this.anims.create({
+    //   key: 'booksAnimation',
+    //   frames: animationFrames,
+    //   frameRate: 24,
+    //   repeat: -1,
+    // });
+
+    // this.books.play('booksAnimation');
     // display the array of each animationFrame
     // console.log(animationFrames);
 
@@ -134,11 +151,46 @@ export default class Lvl1 extends Phaser.Scene {
       .graphics()
       .lineStyle(2, 0xffffff, 1)
       .strokeRoundedRect(805, 88, 44, 410, 10);
+
+    //countdown bar
+    for (let i = 0; i < 1; i++) {
+      this.barTimerEvents.push(
+        this.time.addEvent({
+          delay: Phaser.Math.Between(1000, 8000),
+        })
+      );
+    }
+
+    this.countDownBar = this.add
+      .graphics({ x: 240, y: 36 })
+      .fillGradientStyle(0xff0000, 0xff0000, 0xff0000, 0xff0000);
   }
 
   update() {
+    //timer
     this.text.setText(
       'Time: ' + this.mainTimer.getProgress().toString().substr(0, 4)
     );
+
+    //countdown bar
+    let countDownBarOutput = [];
+
+    this.countDownBar.clear();
+
+    for (let i = 0; i < this.barTimerEvents.length; i++) {
+      countDownBarOutput.push(
+        'Event.progress: ' +
+          this.barTimerEvents[i].getProgress().toString().substr(0, 4)
+      );
+
+      this.countDownBar.fillRect(
+        0,
+        i * 8,
+        225 * this.barTimerEvents[i].getProgress(),
+        8
+      );
+    }
+
+    // this.countDownText.setText(countDownBarOutput);
   }
 }
