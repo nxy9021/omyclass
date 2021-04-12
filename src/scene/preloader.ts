@@ -14,6 +14,10 @@ export default class Preloader extends Phaser.Scene {
     // solid background
     this.load.image('bgBeige', 'assets/img/solidbg/bg_beige.png');
 
+    // heatgauge background
+    this.load.image('heatBg', 'assets/img/heatgauge_bg.png');
+
+
     // animation background
     Object.keys(DistractionTextureNames).forEach((key) => {
       const name = DistractionTextureNames[key];
