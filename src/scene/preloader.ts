@@ -13,10 +13,6 @@ export default class Preloader extends Phaser.Scene {
 
     // solid background
     this.load.image('bgBeige', 'assets/img/solidbg/bg_beige.png');
-    this.load.image('bgBlue', 'assets/img/solidbg/bg_blue.png');
-    this.load.image('bgGreen', 'assets/img/solidbg/bg_green.png');
-    this.load.image('bgRed', 'assets/img/solidbg/bg_red.png');
-    this.load.image('bgYellow', 'assets/img/solidbg/bg_yellow.png');
 
     // animation background
     Object.keys(DistractionTextureNames).forEach((key) => {
