@@ -154,7 +154,5 @@ export default class Lvl1 extends Phaser.Scene {
         8
       );
     }
-
-    // this.countDownText.setText(countDownBarOutput);
   }
 }
