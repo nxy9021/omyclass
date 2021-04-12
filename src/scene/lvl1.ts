@@ -68,42 +68,6 @@ export default class Lvl1 extends Phaser.Scene {
     this.distractionTiles.l2c2 = new Distraction(this, 400, 400);
     this.distractionTiles.l2c3 = new Distraction(this, 650, 400);
 
-    // this.books
-    // = this.add.sprite(400, 200, 'books').setScale(0.95, 0.95);
-
-    // // sort framenames in order
-    // let framenames = this.textures.get('books').getFrameNames().sort();
-
-    // // see if frames are sorted in order
-    // // console.log(framenames);
-
-    // // For each framename, map it into animationFrame
-    // // phaser 3 example wants to repeatly write the following 4 lines for each animation but this is lazier
-    // // {
-    // //  "key": "books",
-    // //  "frame": "01_books",
-    // //  "duration": 0,
-    // //  "visible": false
-    // // }
-
-    // let animationFrames = framenames.map((framename) => {
-    //   return {
-    //     key: 'books',
-    //     frame: framename,
-    //   };
-    // });
-
-    // this.anims.create({
-    //   key: 'booksAnimation',
-    //   frames: animationFrames,
-    //   frameRate: 24,
-    //   repeat: -1,
-    // });
-
-    // this.books.play('booksAnimation');
-    // display the array of each animationFrame
-    // console.log(animationFrames);
-
     // charactors
     this.add.image(150, 200, 'boy1').setScale(0.6, 0.6);
     this.add.image(400, 200, 'boy2').setScale(0.6, 0.6);
@@ -123,14 +87,6 @@ export default class Lvl1 extends Phaser.Scene {
       .on('pointerdown', () =>
         this.conversationButtonOnClick(conversationButton)
       );
-
-    // canvas auto was the solution
-    // sprite.on('pointerin', function (event) {
-    //   this.setTint(0xffffff);
-    // });
-    // sprite.on('pointerout', function (event) {
-    //   this.clearTint();
-    // });
 
     //timer
     this.text = this.add
