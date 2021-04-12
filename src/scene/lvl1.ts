@@ -14,14 +14,14 @@ export default class Lvl1 extends Phaser.Scene {
     l2c2: Phaser.GameObjects.Sprite,
     l2c3: Phaser.GameObjects.Sprite,
   };
-  characterTiles: any = {
-    l1c1: Phaser.GameObjects.Sprite,
-    l1c2: Phaser.GameObjects.Sprite,
-    l1c3: Phaser.GameObjects.Sprite,
-    l2c1: Phaser.GameObjects.Sprite,
-    l2c2: Phaser.GameObjects.Sprite,
-    l2c3: Phaser.GameObjects.Sprite,
-  };
+  // characterTiles: any = {
+  //   l1c1: Phaser.GameObjects.Sprite,
+  //   l1c2: Phaser.GameObjects.Sprite,
+  //   l1c3: Phaser.GameObjects.Sprite,
+  //   l2c1: Phaser.GameObjects.Sprite,
+  //   l2c2: Phaser.GameObjects.Sprite,
+  //   l2c3: Phaser.GameObjects.Sprite,
+  // };
   countDownText;
   countDownBar;
   countDownColor;
@@ -43,36 +43,19 @@ export default class Lvl1 extends Phaser.Scene {
     // background reference
     // this.add.image(460, 320, 'ref').setScale(0.6, 0.6);
 
-    // default beige background
-    // lxcx: line (sequence from top) column (sequece from left)
-    // write a function for handling positioning the repeated background later, so that I don't have to manually calculate it each time
-    // let l1c1 =
-    // this.add.image(150, 186, 'bgBeige').setScale(0.6, 0.6);
-
-    // // let l1c2 =
-    // this.add.image(400, 186, 'bgBeige').setScale(0.6, 0.6);
-
-    // // let l1c3 =
-    // this.add.image(650, 186, 'bgBeige').setScale(0.6, 0.6);
-
-    // // let l2c1 =
-    // this.add.image(150, 400, 'bgBeige').setScale(0.6, 0.6);
-
-    // // let l2c2 =
-    // this.add.image(400, 400, 'bgBeige').setScale(0.6, 0.6);
-
-    // // let l2c3 =
-    // this.add.image(650, 400, 'bgBeige').setScale(0.6, 0.6);
-
     // distraction animation
     this.distractionTiles.l1c1 = new Distraction(this, 150, 196);
-    this.distractionTiles.l1c1.setDistraction(DistractionType.QUESTION);
+    this.distractionTiles.l1c1.setDistraction(DistractionType.DOTS);
     this.distractionTiles.l1c2 = new Distraction(this, 400, 196);
     this.distractionTiles.l1c3 = new Distraction(this, 650, 196);
     this.distractionTiles.l2c1 = new Distraction(this, 150, 410);
-    this.distractionTiles.l2c1.setDistraction(DistractionType.QUESTION);
     this.distractionTiles.l2c2 = new Distraction(this, 400, 410);
     this.distractionTiles.l2c3 = new Distraction(this, 650, 410);
+    this.distractionTiles.l2c3.setDistraction(DistractionType.DOTS);
+    this.distractionTiles.l1c1.startTimer(10000);
+    this.distractionTiles.l1c2.startTimer(5000);
+    this.distractionTiles.l1c3.startTimer(2500);
+
 
     // charactors
     // this.characterTiles.l1c1 = new (this, 150, 200);
@@ -124,17 +107,17 @@ export default class Lvl1 extends Phaser.Scene {
       .strokeRoundedRect(805, 88, 44, 410, 10);
 
     //countdown bar
-    for (let i = 0; i < 1; i++) {
-      this.barTimerEvents.push(
-        this.time.addEvent({
-          delay: Phaser.Math.Between(1000, 8000),
-        })
-      );
-    }
+    // for (let i = 0; i < 1; i++) {
+    //   this.barTimerEvents.push(
+    //     this.time.addEvent({
+    //       delay: Phaser.Math.Between(1000, 8000),
+    //     })
+    //   );
+    // }
 
-    this.countDownBar = this.add
-      .graphics({ x: 240, y: 36 })
-      .fillGradientStyle(0xff0000, 0xff0000, 0xff0000, 0xff0000);
+    // this.countDownBar = this.add
+    //   .graphics({ x: 240, y: 36 })
+    //   .fillGradientStyle(0xff0000, 0xff0000, 0xff0000, 0xff0000);
   }
 
   update() {
@@ -142,24 +125,27 @@ export default class Lvl1 extends Phaser.Scene {
     this.text.setText(
       'Time: ' + this.mainTimer.getProgress().toString().substr(0, 4)
     );
+    this.distractionTiles.l1c1.updateTimer(0x0000ff);
+    this.distractionTiles.l1c2.updateTimer(0xff0000);
+    this.distractionTiles.l1c3.updateTimer(0xffff00);
 
     //countdown bar
-    let countDownBarOutput = [];
+    // let countDownBarOutput = [];
 
-    this.countDownBar.clear();
+    // this.countDownBar.clear();
 
-    for (let i = 0; i < this.barTimerEvents.length; i++) {
-      countDownBarOutput.push(
-        'Event.progress: ' +
-          this.barTimerEvents[i].getProgress().toString().substr(0, 4)
-      );
+    // for (let i = 0; i < this.barTimerEvents.length; i++) {
+    //   countDownBarOutput.push(
+    //     'Event.progress: ' +
+    //       this.barTimerEvents[i].getProgress().toString().substr(0, 4)
+    //   );
 
-      this.countDownBar.fillRect(
-        0,
-        i * 8,
-        225 * this.barTimerEvents[i].getProgress(),
-        8
-      );
-    }
+    //   this.countDownBar.fillRect(
+    //     0,
+    //     i * 8,
+    //     225 * this.barTimerEvents[i].getProgress(),
+    //     8
+    //   );
+    // }
   }
 }
