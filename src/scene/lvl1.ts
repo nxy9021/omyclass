@@ -106,18 +106,7 @@ export default class Lvl1 extends Phaser.Scene {
       .lineStyle(2, 0xffffff, 1)
       .strokeRoundedRect(805, 88, 44, 410, 10);
 
-    //countdown bar
-    // for (let i = 0; i < 1; i++) {
-    //   this.barTimerEvents.push(
-    //     this.time.addEvent({
-    //       delay: Phaser.Math.Between(1000, 8000),
-    //     })
-    //   );
-    // }
 
-    // this.countDownBar = this.add
-    //   .graphics({ x: 240, y: 36 })
-    //   .fillGradientStyle(0xff0000, 0xff0000, 0xff0000, 0xff0000);
   }
 
   update() {
@@ -129,23 +118,6 @@ export default class Lvl1 extends Phaser.Scene {
     this.distractionTiles.l1c2.updateTimer(0xff0000);
     this.distractionTiles.l1c3.updateTimer(0xffff00);
 
-    //countdown bar
-    // let countDownBarOutput = [];
 
-    // this.countDownBar.clear();
-
-    // for (let i = 0; i < this.barTimerEvents.length; i++) {
-    //   countDownBarOutput.push(
-    //     'Event.progress: ' +
-    //       this.barTimerEvents[i].getProgress().toString().substr(0, 4)
-    //   );
-
-    //   this.countDownBar.fillRect(
-    //     0,
-    //     i * 8,
-    //     225 * this.barTimerEvents[i].getProgress(),
-    //     8
-    //   );
-    // }
   }
 }
