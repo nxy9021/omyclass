@@ -4,8 +4,8 @@
   "description": "",
   "main": "src/game.ts",
   "scripts": {
-    "start": "parcel src/index.html -p 8000",
-    "build": "parcel build src/index.html --no-source-maps --out-dir dist --public-url ./",
+    "start": "rm -rf dist && parcel serve src/index.html -p 8000",
+    "build": "rm -rf dist && parcel build src/index.html --no-source-maps --out-dir dist --public-url ./",
     "lint": "eslint \"src/**/*.ts\"",
     "lint:fix": "npm run lint -- --fix",
     "test": "npm run lint"
