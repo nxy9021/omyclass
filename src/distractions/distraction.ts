@@ -16,13 +16,6 @@ export const DistractionTextureNames = {
   dots: 'dots',
 };
 
-export const TimerTypes = {
-  defaultTimer: 'defaultTimer',
-  questionTimer:'questionTimer',
-  foodTimer: 'foodTimer',
-  dotsTimer: 'dotsTimer',
-};
-
 export default class Distraction {
   private distractionType = DistractionType.DEFAULT;
   private sprite: Phaser.GameObjects.Sprite;
@@ -34,7 +27,6 @@ export default class Distraction {
   private topRight: any;
   private width: number;
   private backgroundVerticalOffset: number = 10;
-  // private countDownBar: Phaser.GameObjects.Graphics;
 
   constructor(scene: Phaser.Scene, x: number, y: number) {
     this.scene = scene;
@@ -58,48 +50,53 @@ export default class Distraction {
     this.topLeft = this.background.getTopLeft();
     this.topRight = this.background.getTopRight();
     this.width = this.topRight.x - this.topLeft.x;
-    this.countDownBar = this.scene.add.rectangle(this.topLeft.x, this.topLeft.y + 6, 0, 12);
-
-    this.sprite.play('defaultAnimation');
+    this.countDownBar = this.scene.add.rectangle(this.topLeft.x, this.topLeft.y + 6, 0, 12, 0x0063ff);
+    this.updateDistractionVisuals();
   }
 
-  startTimer(timeIntervalInMs: number) {
-    this.countdown = this.scene.time.addEvent({
-       delay: timeIntervalInMs,
-    });
-  }
+  public update() {
 
-  updateTimer(color: number) {
+
     if (this.countdown != null){
       let countdownProgress = this.countdown.getProgress();
-      //TODO user test to see which option is better
-
-      //countup progress bar
-
-      // if (countdownProgress == 1){
-      //   this.countDownBar.isFilled = false;
-      // } else{
-      //   this.countDownBar.width = this.width * countdownProgress;
-      //   this.countDownBar.fillColor = color;
-      //   this.countDownBar.isFilled = true;
-      // }
 
       //countdown progress bar
-      {
-        this.countDownBar.width = this.width - this.width * countdownProgress;
-        this.countDownBar.fillColor = color;
-        this.countDownBar.isFilled = true;
+      this.countDownBar.width = this.width - this.width * countdownProgress;
+      this.countDownBar.isFilled = true;
+
+      if (countdownProgress == 1){
+        this.reset();
       }
     }
   }
 
-  getDistraction = () => this.distractionType;
+  public getDistraction = () => this.distractionType;
 
-  setDistraction(distractionType: number) {
+  public setDistraction(distractionType: number, timeIntervalInMs: number) {
     this.distractionType = distractionType;
+    this.startTimer(timeIntervalInMs);
+    this.updateDistractionVisuals();
+  }
 
+  public reset(){
+    this.distractionType = DistractionType.DEFAULT;
+    this.countdown = null;
+    this.updateDistractionVisuals();
+  }
+
+  private startTimer(timeIntervalInMs: number) {
+    this.countdown = this.scene.time.addEvent(
+    {
+       delay: timeIntervalInMs,
+    }
+    );
+  }
+
+
+  private updateDistractionVisuals(){
     switch (this.distractionType) {
       case DistractionType.DEFAULT:
+        this.background.clearTint();
         this.sprite.setTexture(DistractionTextureNames.default);
         this.sprite.play(`${DistractionTextureNames.default}Animation`);
         break;
@@ -124,7 +121,6 @@ export default class Distraction {
 
       case DistractionType.WAKEUP:
         break;
-
     }
   }
 }
