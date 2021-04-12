@@ -54,7 +54,7 @@ export default class Distraction {
     this._updateDistractionVisuals();
   }
 
-  public update() {
+   update() {
 
 
     if (this._countdown != null){
@@ -70,15 +70,15 @@ export default class Distraction {
     }
   }
 
-  public getDistraction = () => this._distractionType;
+   getDistraction = () => this._distractionType;
 
-  public setDistraction(distractionType: number, timeIntervalInMs: number) {
+   setDistraction(distractionType: number, timeIntervalInMs: number) {
     this._distractionType = distractionType;
     this._startTimer(timeIntervalInMs);
     this._updateDistractionVisuals();
   }
 
-  public reset(){
+   reset(){
     this._distractionType = DistractionType.DEFAULT;
     this._countdown = null;
     this._updateDistractionVisuals();
