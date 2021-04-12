@@ -60,8 +60,13 @@ export default class Lvl1 extends Phaser.Scene {
     // CreateDistractionAnimation(this.anims);
 
     this.distractionTiles.l1c1 = new Distraction(this, 150, 200);
-    this.distractionTiles.l1c2 = new Distraction(this, 400, 200);
     this.distractionTiles.l1c1.setDistraction(DistractionType.QUESTION);
+    this.distractionTiles.l1c2 = new Distraction(this, 400, 200);
+    this.distractionTiles.l1c3 = new Distraction(this, 650, 200);
+    this.distractionTiles.l2c1 = new Distraction(this, 150, 400);
+    this.distractionTiles.l2c1.setDistraction(DistractionType.QUESTION);
+    this.distractionTiles.l2c2 = new Distraction(this, 400, 400);
+    this.distractionTiles.l2c3 = new Distraction(this, 650, 400);
 
     // this.books
     // = this.add.sprite(400, 200, 'books').setScale(0.95, 0.95);

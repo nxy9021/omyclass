@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import CreateDistractionAnimation from '../anims/CreateDefaultAnims';
+import CreateDistractionAnimation from '../anims/CreateBgAnims';
 
 export const DistractionType = {
   DEFAULT: 0,
@@ -22,7 +22,6 @@ export default class Distraction {
   _distractionTextureNames: any;
 
   constructor(scene: Phaser.Scene, x: number, y: number) {
-    //Mando did this
     Object.keys(DistractionTextureNames).forEach((key) => {
       const spriteName = DistractionTextureNames[key];
       const animationName = `${spriteName}Animation`;
