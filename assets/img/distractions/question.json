@@ -1,0 +1,502 @@
+{
+	"textures": [
+		{
+			"image": "question.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1604,
+				"h": 1280
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "12_questions.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 203
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 15,
+						"w": 237,
+						"h": 160
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 237,
+						"h": 160
+					}
+				},
+				{
+					"filename": "01_questions.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 203
+					},
+					"spriteSourceSize": {
+						"x": 33,
+						"y": 15,
+						"w": 173,
+						"h": 160
+					},
+					"frame": {
+						"x": 0,
+						"y": 160,
+						"w": 173,
+						"h": 160
+					}
+				},
+				{
+					"filename": "13_questions.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 15,
+						"w": 237,
+						"h": 160
+					},
+					"frame": {
+						"x": 237,
+						"y": 0,
+						"w": 237,
+						"h": 160
+					}
+				},
+				{
+					"filename": "02_questions.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 203
+					},
+					"spriteSourceSize": {
+						"x": 30,
+						"y": 15,
+						"w": 173,
+						"h": 160
+					},
+					"frame": {
+						"x": 0,
+						"y": 320,
+						"w": 173,
+						"h": 160
+					}
+				},
+				{
+					"filename": "14_questions.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 15,
+						"w": 236,
+						"h": 160
+					},
+					"frame": {
+						"x": 173,
+						"y": 160,
+						"w": 236,
+						"h": 160
+					}
+				},
+				{
+					"filename": "11_questions.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 203
+					},
+					"spriteSourceSize": {
+						"x": 3,
+						"y": 15,
+						"w": 234,
+						"h": 160
+					},
+					"frame": {
+						"x": 474,
+						"y": 0,
+						"w": 234,
+						"h": 160
+					}
+				},
+				{
+					"filename": "03_questions.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 27,
+						"y": 15,
+						"w": 210,
+						"h": 160
+					},
+					"frame": {
+						"x": 0,
+						"y": 480,
+						"w": 210,
+						"h": 160
+					}
+				},
+				{
+					"filename": "15_questions.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 15,
+						"w": 233,
+						"h": 160
+					},
+					"frame": {
+						"x": 409,
+						"y": 160,
+						"w": 233,
+						"h": 160
+					}
+				},
+				{
+					"filename": "10_questions.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 6,
+						"y": 15,
+						"w": 231,
+						"h": 160
+					},
+					"frame": {
+						"x": 708,
+						"y": 0,
+						"w": 231,
+						"h": 160
+					}
+				},
+				{
+					"filename": "04_questions.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 24,
+						"y": 15,
+						"w": 213,
+						"h": 160
+					},
+					"frame": {
+						"x": 0,
+						"y": 640,
+						"w": 213,
+						"h": 160
+					}
+				},
+				{
+					"filename": "05_questions.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 21,
+						"y": 15,
+						"w": 216,
+						"h": 160
+					},
+					"frame": {
+						"x": 173,
+						"y": 320,
+						"w": 216,
+						"h": 160
+					}
+				},
+				{
+					"filename": "16_questions.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 203
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 15,
+						"w": 230,
+						"h": 160
+					},
+					"frame": {
+						"x": 642,
+						"y": 160,
+						"w": 230,
+						"h": 160
+					}
+				},
+				{
+					"filename": "09_questions.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 9,
+						"y": 15,
+						"w": 228,
+						"h": 160
+					},
+					"frame": {
+						"x": 939,
+						"y": 0,
+						"w": 228,
+						"h": 160
+					}
+				},
+				{
+					"filename": "06_questions.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 203
+					},
+					"spriteSourceSize": {
+						"x": 18,
+						"y": 15,
+						"w": 219,
+						"h": 160
+					},
+					"frame": {
+						"x": 0,
+						"y": 800,
+						"w": 219,
+						"h": 160
+					}
+				},
+				{
+					"filename": "07_questions.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 203
+					},
+					"spriteSourceSize": {
+						"x": 15,
+						"y": 15,
+						"w": 222,
+						"h": 160
+					},
+					"frame": {
+						"x": 210,
+						"y": 480,
+						"w": 222,
+						"h": 160
+					}
+				},
+				{
+					"filename": "17_questions.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 203
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 15,
+						"w": 227,
+						"h": 160
+					},
+					"frame": {
+						"x": 872,
+						"y": 160,
+						"w": 227,
+						"h": 160
+					}
+				},
+				{
+					"filename": "08_questions.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 12,
+						"y": 15,
+						"w": 225,
+						"h": 160
+					},
+					"frame": {
+						"x": 1167,
+						"y": 0,
+						"w": 225,
+						"h": 160
+					}
+				},
+				{
+					"filename": "18_questions.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 15,
+						"w": 224,
+						"h": 160
+					},
+					"frame": {
+						"x": 0,
+						"y": 960,
+						"w": 224,
+						"h": 160
+					}
+				},
+				{
+					"filename": "19_questions.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 15,
+						"w": 221,
+						"h": 160
+					},
+					"frame": {
+						"x": 389,
+						"y": 320,
+						"w": 221,
+						"h": 160
+					}
+				},
+				{
+					"filename": "20_questions.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 15,
+						"w": 218,
+						"h": 160
+					},
+					"frame": {
+						"x": 213,
+						"y": 640,
+						"w": 218,
+						"h": 160
+					}
+				},
+				{
+					"filename": "21_questions.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 203
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 15,
+						"w": 215,
+						"h": 160
+					},
+					"frame": {
+						"x": 1099,
+						"y": 160,
+						"w": 215,
+						"h": 160
+					}
+				},
+				{
+					"filename": "22_questions.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 203
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 15,
+						"w": 212,
+						"h": 160
+					},
+					"frame": {
+						"x": 1392,
+						"y": 0,
+						"w": 212,
+						"h": 160
+					}
+				},
+				{
+					"filename": "23_questions.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 15,
+						"w": 209,
+						"h": 160
+					},
+					"frame": {
+						"x": 0,
+						"y": 1120,
+						"w": 209,
+						"h": 160
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "http://free-tex-packer.com",
+		"version": "0.6.6"
+	}
+}

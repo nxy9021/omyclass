@@ -1,0 +1,502 @@
+{
+	"textures": [
+		{
+			"image": "default.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1422,
+				"h": 1120
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "01_book.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 203
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 15,
+						"w": 237,
+						"h": 160
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 237,
+						"h": 160
+					}
+				},
+				{
+					"filename": "02_book.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 203
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 15,
+						"w": 237,
+						"h": 160
+					},
+					"frame": {
+						"x": 0,
+						"y": 160,
+						"w": 237,
+						"h": 160
+					}
+				},
+				{
+					"filename": "03_book.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 15,
+						"w": 237,
+						"h": 160
+					},
+					"frame": {
+						"x": 237,
+						"y": 0,
+						"w": 237,
+						"h": 160
+					}
+				},
+				{
+					"filename": "04_book.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 15,
+						"w": 237,
+						"h": 160
+					},
+					"frame": {
+						"x": 0,
+						"y": 320,
+						"w": 237,
+						"h": 160
+					}
+				},
+				{
+					"filename": "08_book.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 15,
+						"w": 237,
+						"h": 160
+					},
+					"frame": {
+						"x": 237,
+						"y": 160,
+						"w": 237,
+						"h": 160
+					}
+				},
+				{
+					"filename": "09_book.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 15,
+						"w": 237,
+						"h": 160
+					},
+					"frame": {
+						"x": 474,
+						"y": 0,
+						"w": 237,
+						"h": 160
+					}
+				},
+				{
+					"filename": "05_book.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 9,
+						"y": 15,
+						"w": 228,
+						"h": 160
+					},
+					"frame": {
+						"x": 0,
+						"y": 480,
+						"w": 228,
+						"h": 160
+					}
+				},
+				{
+					"filename": "06_book.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 203
+					},
+					"spriteSourceSize": {
+						"x": 6,
+						"y": 15,
+						"w": 231,
+						"h": 160
+					},
+					"frame": {
+						"x": 237,
+						"y": 320,
+						"w": 231,
+						"h": 160
+					}
+				},
+				{
+					"filename": "10_book.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 15,
+						"w": 237,
+						"h": 160
+					},
+					"frame": {
+						"x": 474,
+						"y": 160,
+						"w": 237,
+						"h": 160
+					}
+				},
+				{
+					"filename": "11_book.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 203
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 15,
+						"w": 237,
+						"h": 160
+					},
+					"frame": {
+						"x": 711,
+						"y": 0,
+						"w": 237,
+						"h": 160
+					}
+				},
+				{
+					"filename": "07_book.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 203
+					},
+					"spriteSourceSize": {
+						"x": 3,
+						"y": 15,
+						"w": 234,
+						"h": 160
+					},
+					"frame": {
+						"x": 0,
+						"y": 640,
+						"w": 234,
+						"h": 160
+					}
+				},
+				{
+					"filename": "12_book.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 203
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 15,
+						"w": 237,
+						"h": 160
+					},
+					"frame": {
+						"x": 468,
+						"y": 320,
+						"w": 237,
+						"h": 160
+					}
+				},
+				{
+					"filename": "13_book.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 15,
+						"w": 237,
+						"h": 160
+					},
+					"frame": {
+						"x": 711,
+						"y": 160,
+						"w": 237,
+						"h": 160
+					}
+				},
+				{
+					"filename": "14_book.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 15,
+						"w": 237,
+						"h": 160
+					},
+					"frame": {
+						"x": 948,
+						"y": 0,
+						"w": 237,
+						"h": 160
+					}
+				},
+				{
+					"filename": "15_book.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 15,
+						"w": 237,
+						"h": 160
+					},
+					"frame": {
+						"x": 0,
+						"y": 800,
+						"w": 237,
+						"h": 160
+					}
+				},
+				{
+					"filename": "16_book.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 203
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 15,
+						"w": 237,
+						"h": 160
+					},
+					"frame": {
+						"x": 228,
+						"y": 480,
+						"w": 237,
+						"h": 160
+					}
+				},
+				{
+					"filename": "17_book.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 203
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 15,
+						"w": 237,
+						"h": 160
+					},
+					"frame": {
+						"x": 705,
+						"y": 320,
+						"w": 237,
+						"h": 160
+					}
+				},
+				{
+					"filename": "22_book.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 203
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 15,
+						"w": 237,
+						"h": 160
+					},
+					"frame": {
+						"x": 948,
+						"y": 160,
+						"w": 237,
+						"h": 160
+					}
+				},
+				{
+					"filename": "23_book.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 15,
+						"w": 237,
+						"h": 160
+					},
+					"frame": {
+						"x": 1185,
+						"y": 0,
+						"w": 237,
+						"h": 160
+					}
+				},
+				{
+					"filename": "18_book.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 15,
+						"w": 235,
+						"h": 160
+					},
+					"frame": {
+						"x": 0,
+						"y": 960,
+						"w": 235,
+						"h": 160
+					}
+				},
+				{
+					"filename": "19_book.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 15,
+						"w": 232,
+						"h": 160
+					},
+					"frame": {
+						"x": 234,
+						"y": 640,
+						"w": 232,
+						"h": 160
+					}
+				},
+				{
+					"filename": "20_book.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 15,
+						"w": 229,
+						"h": 160
+					},
+					"frame": {
+						"x": 942,
+						"y": 320,
+						"w": 229,
+						"h": 160
+					}
+				},
+				{
+					"filename": "21_book.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 203
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 15,
+						"w": 226,
+						"h": 160
+					},
+					"frame": {
+						"x": 1185,
+						"y": 160,
+						"w": 226,
+						"h": 160
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "http://free-tex-packer.com",
+		"version": "0.6.6"
+	}
+}

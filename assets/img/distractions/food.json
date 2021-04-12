@@ -1,0 +1,502 @@
+{
+	"textures": [
+		{
+			"image": "food.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1422,
+				"h": 1106
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "01_hungry.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 203
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 15,
+						"w": 237,
+						"h": 158
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 237,
+						"h": 158
+					}
+				},
+				{
+					"filename": "02_hungry.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 203
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 15,
+						"w": 237,
+						"h": 158
+					},
+					"frame": {
+						"x": 0,
+						"y": 158,
+						"w": 237,
+						"h": 158
+					}
+				},
+				{
+					"filename": "03_hungry.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 15,
+						"w": 237,
+						"h": 158
+					},
+					"frame": {
+						"x": 237,
+						"y": 0,
+						"w": 237,
+						"h": 158
+					}
+				},
+				{
+					"filename": "04_hungry.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 15,
+						"w": 237,
+						"h": 158
+					},
+					"frame": {
+						"x": 0,
+						"y": 316,
+						"w": 237,
+						"h": 158
+					}
+				},
+				{
+					"filename": "08_hungry.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 15,
+						"w": 237,
+						"h": 158
+					},
+					"frame": {
+						"x": 237,
+						"y": 158,
+						"w": 237,
+						"h": 158
+					}
+				},
+				{
+					"filename": "09_hungry.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 15,
+						"w": 237,
+						"h": 158
+					},
+					"frame": {
+						"x": 474,
+						"y": 0,
+						"w": 237,
+						"h": 158
+					}
+				},
+				{
+					"filename": "05_hungry.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 9,
+						"y": 15,
+						"w": 228,
+						"h": 158
+					},
+					"frame": {
+						"x": 0,
+						"y": 474,
+						"w": 228,
+						"h": 158
+					}
+				},
+				{
+					"filename": "06_hungry.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 203
+					},
+					"spriteSourceSize": {
+						"x": 6,
+						"y": 15,
+						"w": 231,
+						"h": 158
+					},
+					"frame": {
+						"x": 237,
+						"y": 316,
+						"w": 231,
+						"h": 158
+					}
+				},
+				{
+					"filename": "10_hungry.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 15,
+						"w": 237,
+						"h": 158
+					},
+					"frame": {
+						"x": 474,
+						"y": 158,
+						"w": 237,
+						"h": 158
+					}
+				},
+				{
+					"filename": "11_hungry.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 203
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 15,
+						"w": 237,
+						"h": 158
+					},
+					"frame": {
+						"x": 711,
+						"y": 0,
+						"w": 237,
+						"h": 158
+					}
+				},
+				{
+					"filename": "07_hungry.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 203
+					},
+					"spriteSourceSize": {
+						"x": 3,
+						"y": 15,
+						"w": 234,
+						"h": 158
+					},
+					"frame": {
+						"x": 0,
+						"y": 632,
+						"w": 234,
+						"h": 158
+					}
+				},
+				{
+					"filename": "12_hungry.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 203
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 15,
+						"w": 237,
+						"h": 158
+					},
+					"frame": {
+						"x": 468,
+						"y": 316,
+						"w": 237,
+						"h": 158
+					}
+				},
+				{
+					"filename": "13_hungry.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 15,
+						"w": 237,
+						"h": 158
+					},
+					"frame": {
+						"x": 711,
+						"y": 158,
+						"w": 237,
+						"h": 158
+					}
+				},
+				{
+					"filename": "14_hungry.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 15,
+						"w": 237,
+						"h": 158
+					},
+					"frame": {
+						"x": 948,
+						"y": 0,
+						"w": 237,
+						"h": 158
+					}
+				},
+				{
+					"filename": "15_hungry.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 15,
+						"w": 237,
+						"h": 158
+					},
+					"frame": {
+						"x": 0,
+						"y": 790,
+						"w": 237,
+						"h": 158
+					}
+				},
+				{
+					"filename": "16_hungry.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 203
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 15,
+						"w": 237,
+						"h": 158
+					},
+					"frame": {
+						"x": 228,
+						"y": 474,
+						"w": 237,
+						"h": 158
+					}
+				},
+				{
+					"filename": "17_hungry.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 203
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 15,
+						"w": 237,
+						"h": 158
+					},
+					"frame": {
+						"x": 705,
+						"y": 316,
+						"w": 237,
+						"h": 158
+					}
+				},
+				{
+					"filename": "22_hungry.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 203
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 15,
+						"w": 237,
+						"h": 158
+					},
+					"frame": {
+						"x": 948,
+						"y": 158,
+						"w": 237,
+						"h": 158
+					}
+				},
+				{
+					"filename": "23_hungry.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 15,
+						"w": 237,
+						"h": 158
+					},
+					"frame": {
+						"x": 1185,
+						"y": 0,
+						"w": 237,
+						"h": 158
+					}
+				},
+				{
+					"filename": "18_hungry.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 15,
+						"w": 235,
+						"h": 158
+					},
+					"frame": {
+						"x": 0,
+						"y": 948,
+						"w": 235,
+						"h": 158
+					}
+				},
+				{
+					"filename": "19_hungry.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 15,
+						"w": 232,
+						"h": 158
+					},
+					"frame": {
+						"x": 234,
+						"y": 632,
+						"w": 232,
+						"h": 158
+					}
+				},
+				{
+					"filename": "20_hungry.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 15,
+						"w": 229,
+						"h": 158
+					},
+					"frame": {
+						"x": 942,
+						"y": 316,
+						"w": 229,
+						"h": 158
+					}
+				},
+				{
+					"filename": "21_hungry.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 203
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 15,
+						"w": 226,
+						"h": 158
+					},
+					"frame": {
+						"x": 1185,
+						"y": 158,
+						"w": 226,
+						"h": 158
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "http://free-tex-packer.com",
+		"version": "0.6.6"
+	}
+}
