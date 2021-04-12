@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import Distraction, { DistractionType } from '../enimies/distraction';
+import Distraction, { DistractionType } from '../distractions/distraction';
 
 export default class Lvl1 extends Phaser.Scene {
   text: Phaser.GameObjects.Text;

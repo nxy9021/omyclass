@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
-import { CharactorTextureNames } from '../charactors/charactors';
-import { DistractionTextureNames } from '../enimies/distraction';
+import { CharacterTextureNames } from '../characters/characters';
+import { DistractionTextureNames } from '../distractions/distraction';
+
 export default class Preloader extends Phaser.Scene {
   constructor() {
     super('preloader');
@@ -30,8 +31,8 @@ export default class Preloader extends Phaser.Scene {
     });
 
     // charactors
-    Object.keys(CharactorTextureNames).forEach((key) => {
-      const name = CharactorTextureNames[key];
+    Object.keys(CharacterTextureNames).forEach((key) => {
+      const name = CharacterTextureNames[key];
       this.load.image(name, `assets/img/charactors/${name}.png`);
     });
 
