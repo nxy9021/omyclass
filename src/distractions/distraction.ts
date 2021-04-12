@@ -17,7 +17,7 @@ export const DistractionTextureNames = {
 };
 
 export default class Distraction {
-  private distractionType = DistractionType.DEFAULT;
+  _distractionType = DistractionType.DEFAULT;
   private sprite: Phaser.GameObjects.Sprite;
   private background: Phaser.GameObjects.Image;
   private scene: Phaser.Scene;
@@ -70,16 +70,16 @@ export default class Distraction {
     }
   }
 
-  public getDistraction = () => this.distractionType;
+  public getDistraction = () => this._distractionType;
 
   public setDistraction(distractionType: number, timeIntervalInMs: number) {
-    this.distractionType = distractionType;
+    this._distractionType = distractionType;
     this.startTimer(timeIntervalInMs);
     this.updateDistractionVisuals();
   }
 
   public reset(){
-    this.distractionType = DistractionType.DEFAULT;
+    this._distractionType = DistractionType.DEFAULT;
     this.countdown = null;
     this.updateDistractionVisuals();
   }
@@ -94,7 +94,7 @@ export default class Distraction {
 
 
   private updateDistractionVisuals(){
-    switch (this.distractionType) {
+    switch (this._distractionType) {
       case DistractionType.DEFAULT:
         this.background.clearTint();
         this.sprite.setTexture(DistractionTextureNames.default);
