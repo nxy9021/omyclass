@@ -94,22 +94,6 @@ export default class Lvl1 extends Phaser.Scene {
       this
     );
 
-    //Heat Gauge bg, locationsize, linestyle, rect and fill style of heat gauge bg
-    // this does not work, the color fucks with other progress bars
-    // this.heatGaugeBg = this.add
-    //   .graphics()
-    //   .fillRect(810, 95, 34, 397)
-    //   .lineStyle(8, 0x000000, 1)
-    //   .strokeRoundedRect(810, 95, 34, 397, 8)
-    //   .fillGradientStyle(0xff0000, 0xff0000, 0xffff00, 0xffff00, 0.3);
-
-    //Heat Gauge bg light border
-    // this.heatGaugeBgLightBorder = this.add
-    //   .graphics()
-    //   .lineStyle(2, 0xffffff, 1)
-    //   .strokeRoundedRect(805, 88, 44, 410, 10);
-
-
   }
 
   update() {
@@ -117,9 +101,9 @@ export default class Lvl1 extends Phaser.Scene {
     this.text.setText(
       'Time: ' + this.mainTimer.getProgress().toString().substr(0, 4)
     );
-    this.distractionTiles.l1c1.updateTimer(0x0000ff);
-    this.distractionTiles.l1c2.updateTimer(0xff0000);
-    this.distractionTiles.l1c3.updateTimer(0xffff00);
+    this.distractionTiles.l1c1.updateTimer(0x0063ff);
+    this.distractionTiles.l1c2.updateTimer(0x0063ff);
+    this.distractionTiles.l1c3.updateTimer(0x0063ff);
 
 
   }
