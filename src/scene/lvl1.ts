@@ -60,6 +60,13 @@ export default class Lvl1 extends Phaser.Scene {
     this.distractionTiles.l2c2.setDistraction(DistractionType.DOTS, 4000);
     this.distractionTiles.l2c1.setDistraction(DistractionType.DOTS, 5000);
 
+     //  Make distractions  input enabled
+    // this.distractionTiles.setInteractive();
+
+    //  The tiles will dispatch a 'clicked' event when they are clicked on
+    // this.distractionTiles.on('clicked', this.clickHandler, this);
+
+
     // charactors
     // this.characterTiles.l1c1 = new (this, 150, 200);
       this.add.image(150, 200, 'boy1').setScale(0.6, 0.6);
@@ -96,6 +103,8 @@ export default class Lvl1 extends Phaser.Scene {
     );
 
   }
+
+
 
   update() {
     //timer
