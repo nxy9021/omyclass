@@ -1,12 +1,12 @@
 import Phaser from 'phaser';
 import CreateDistractionAnimation from '../anims/CreateBgAnims';
 
-export const DistractionType = {
-  DEFAULT: 0,
-  QUESTION: 1,
-  FOOD: 2,
-  DOTS: 3,
-  WAKEUP: 4,
+export enum DistractionType  {
+  DEFAULT,
+  QUESTION,
+  FOOD,
+  DOTS,
+  WAKEUP,
 };
 
 export const DistractionTextureNames = {
