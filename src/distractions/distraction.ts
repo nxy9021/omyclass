@@ -5,7 +5,6 @@ import { DistractionCursorData, DistractionTextureNames } from './constant';
 import { DistractionClickEvent } from './DistractionClickEvent';
 
 export default class Distraction {
-  [x: string]: any;
   _distractionType = DistractionType.DEFAULT;
   _sprite: Phaser.GameObjects.Sprite;
   _background: Phaser.GameObjects.Image;
@@ -43,7 +42,6 @@ export default class Distraction {
     this._topRight = this._background.getTopRight();
     this._width = this._topRight.x - this._topLeft.x;
     this._countDownBar = this._scene.add.rectangle(this._topLeft.x, this._topLeft.y + 6, 0, 12, 0x0063ff);
-    this._emitter = new Phaser.Events.EventEmitter();
     this._updateDistractionVisuals();
 
     //  Make distractions  input enabled
