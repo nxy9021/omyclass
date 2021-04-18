@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
-import { CharacterTextureNames } from '../characters/characters';
-import { DistractionTextureNames } from '../distractions/distraction';
+import { CharacterTextureNames } from '../characters/character';
+import { DistractionCursorData, DistractionTextureNames } from '../distractions/distraction';
 
 export default class Preloader extends Phaser.Scene {
   constructor() {
@@ -35,17 +35,16 @@ export default class Preloader extends Phaser.Scene {
       );
     });
 
-    // charactors
+    // characters
     Object.keys(CharacterTextureNames).forEach((key) => {
       const name = CharacterTextureNames[key];
       this.load.image(name, `assets/img/charactors/${name}.png`);
     });
 
     // attention bubbles
-    this.load.image('conversationButton', 'assets/img/bubbles/bblue.png');
-
-    // cursor
-    this.load.image('cursorDefault', 'assets/img/cursors/cdefault.png');
+    Object.keys(DistractionTextureNames).forEach((key) => {
+      this.load.image(`${DistractionTextureNames[key]}Button`, DistractionCursorData[key].button);
+    })
   }
 
   create() {

@@ -1,11 +1,9 @@
 import Phaser from 'phaser';
-import Distraction, { DistractionType } from '../distractions/distraction';
-
+import { CharacterTextureNames } from '../characters/character';
+import Distraction, { DistractionClickEvent, DistractionCursorData, DistractionTextureNames, DistractionType } from '../distractions/distraction';
 export default class Lvl1 extends Phaser.Scene {
   text: Phaser.GameObjects.Text;
   mainTimer: Phaser.Time.TimerEvent;
-  heatGaugeBg: Phaser.GameObjects.Graphics;
-  heatGaugeBgLightBorder: Phaser.GameObjects.Graphics;
   distractionTiles: any = {
     l1c1: Phaser.GameObjects.Sprite,
     l1c2: Phaser.GameObjects.Sprite,
@@ -14,25 +12,34 @@ export default class Lvl1 extends Phaser.Scene {
     l2c2: Phaser.GameObjects.Sprite,
     l2c3: Phaser.GameObjects.Sprite,
   };
-  // characterTiles: any = {
-  //   l1c1: Phaser.GameObjects.Sprite,
-  //   l1c2: Phaser.GameObjects.Sprite,
-  //   l1c3: Phaser.GameObjects.Sprite,
-  //   l2c1: Phaser.GameObjects.Sprite,
-  //   l2c2: Phaser.GameObjects.Sprite,
-  //   l2c3: Phaser.GameObjects.Sprite,
-  // };
-  countDownText;
-  countDownBar;
-  countDownColor;
+
+  countDownText: Text;
+  countDownBar: Phaser.GameObjects.Graphics;
   barTimerEvents = [];
+  currentClickedDistraction: DistractionType = DistractionType.DEFAULT;
 
   constructor() {
     super('lvl1');
   }
 
-  conversationButtonOnClick(pointer) {
-    pointer.setTint(0xfff000);
+  // distractionButtonOnClickHandler(pointer: Phaser.GameObjects.Sprite, color: number) {
+  //   pointer.setTint(color);
+  //   this.input.setDefaultCursor(`url(${data.cursor}), pointer`)
+  // }
+
+  setupDistractionButton = (distractionType: DistractionType, x: number, y: number): Phaser.GameObjects.Sprite => {
+    let buttonNameString = DistractionType[distractionType].toString().toLowerCase();
+    let data = DistractionCursorData[buttonNameString];
+    let button = this.add
+      .sprite(x, y, `${DistractionTextureNames[buttonNameString]}Button`)
+      .setInteractive({ cursor: `url(${data.cursor}), pointer` })
+      .on('pointerdown', () => {
+        button.setTint(data.color);
+        this.input.setDefaultCursor(`url(${data.cursor}), pointer`);
+        this.currentClickedDistraction = distractionType;
+      }
+      );
+      return button;
   }
 
   onGameTimeOver() {
@@ -46,47 +53,31 @@ export default class Lvl1 extends Phaser.Scene {
 
 
     // distraction animation
-    this.distractionTiles.l1c1 = new Distraction(this, 150, 196);
-    this.distractionTiles.l1c2 = new Distraction(this, 400, 196);
-    this.distractionTiles.l1c3 = new Distraction(this, 650, 196);
-    this.distractionTiles.l2c1 = new Distraction(this, 150, 410);
-    this.distractionTiles.l2c2 = new Distraction(this, 400, 410);
-    this.distractionTiles.l2c3 = new Distraction(this, 650, 410);
+    this.distractionTiles.l1c1 = new Distraction(this, 150, 196, 'l1c1', CharacterTextureNames.boy1);
+    this.distractionTiles.l1c2 = new Distraction(this, 400, 196, 'l1c2', CharacterTextureNames.boy2);
+    this.distractionTiles.l1c3 = new Distraction(this, 650, 196, 'l1c3', CharacterTextureNames.girl1);
+    this.distractionTiles.l2c1 = new Distraction(this, 150, 410, 'l2c1', CharacterTextureNames.girl2);
+    this.distractionTiles.l2c2 = new Distraction(this, 400, 410, 'l2c2', CharacterTextureNames.girl3);
+    this.distractionTiles.l2c3 = new Distraction(this, 650, 410, 'l2c3', CharacterTextureNames.girl4);
+
+    let dotsInteraction = this.setupDistractionButton(DistractionType.DOTS, 150, 570);
 
     //for demo purpose, will be moved to update later
     this.distractionTiles.l1c1.setDistraction(DistractionType.DOTS, 1000);
-    this.distractionTiles.l1c2.setDistraction(DistractionType.DOTS, 3000);
-    this.distractionTiles.l2c3.setDistraction(DistractionType.DOTS, 2000);
-    this.distractionTiles.l2c2.setDistraction(DistractionType.DOTS, 4000);
+    this.distractionTiles.l1c2.setDistraction(DistractionType.QUESTION, 3000);
+    this.distractionTiles.l2c3.setDistraction(DistractionType.FOOD, 2000);
+    this.distractionTiles.l2c2.setDistraction(DistractionType.WAKEUP, 4000);
     this.distractionTiles.l2c1.setDistraction(DistractionType.DOTS, 5000);
 
-     //  Make distractions  input enabled
-    // this.distractionTiles.setInteractive();
-
-    //  The tiles will dispatch a 'clicked' event when they are clicked on
-    // this.distractionTiles.on('clicked', this.clickHandler, this);
-
-
-    // charactors
-    // this.characterTiles.l1c1 = new (this, 150, 200);
-      this.add.image(150, 200, 'boy1').setScale(0.6, 0.6);
-      this.add.image(400, 200, 'boy2').setScale(0.6, 0.6);
-      this.add.image(650, 200, 'girl1').setScale(0.6, 0.6);
-      this.add.image(150, 413, 'girl2').setScale(0.6, 0.6);
-      this.add.image(400, 413, 'girl3').setScale(0.6, 0.6);
-      this.add.image(650, 413, 'girl4').setScale(0.6, 0.6);
+    //Event listener
+    // this.events.on('distractionClick', (event: DistractionClickEvent) => console.log(event.name));
+    // this.events.on('distractionClick', (event: DistractionClickEvent) => console.log(event.distractionType));
+    this.events.on('distractionClick', () => this.input.setDefaultCursor(`url(${DistractionCursorData.default.cursor}), pointer`));
 
     //cursor
     this.input.setDefaultCursor(
       'url(assets/img/cursors/cdefault.png), pointer'
     );
-
-    let conversationButton = this.add
-      .sprite(150, 570, 'conversationButton')
-      .setInteractive({ cursor: 'url(assets/img/cursors/cblue.png), pointer' })
-      .on('pointerdown', () =>
-        this.conversationButtonOnClick(conversationButton)
-      );
 
     //timer
     this.text = this.add
@@ -111,12 +102,6 @@ export default class Lvl1 extends Phaser.Scene {
     this.text.setText(
       'Time: ' + this.mainTimer.getProgress().toString().substr(0, 4)
     );
-    //   if (this.delayCountdown != null){
-    //   let countdownProgress = this.delayCountdown.getProgress();
-    // };
-    //  private delayCountdown: any;
-    //    this.delayTimer(delayTimeIntervalInMs);
-
 
     //Updates the state of all distraction tiles every tick/frame
     Object.keys(this.distractionTiles).forEach(key => this.distractionTiles[key].update());

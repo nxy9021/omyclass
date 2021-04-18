@@ -1,7 +1,6 @@
 import Phaser from 'phaser';
 import CreateDistractionAnimation from '../anims/CreateBgAnims';
 
-
 export enum DistractionType {
   DEFAULT,
   QUESTION,
@@ -10,28 +9,45 @@ export enum DistractionType {
   WAKEUP,
 };
 
+export const DistractionCursorData: any = {
+  default: {cursor: 'assets/img/cursors/cdefault.png', button: 'assets/img/bubbles/bdefault.png', color: null},
+  question: {cursor: 'assets/img/cursors/cyellow.png', button: 'assets/img/bubbles/byellow.png', color: 0xf7fc00},
+  food: {cursor: 'assets/img/cursors/cred.png', button: 'assets/img/bubbles/bred.png', color: 0xff5a5a},
+  dots: {cursor: 'assets/img/cursors/cblue.png', button: 'assets/img/bubbles/bblue.png', color: 0x00c2ff},
+  wakeup: {cursor: 'assets/img/cursors/cgreen.png', button: 'assets/img/bubbles/bgreen.png', color: 0x00ea88},
+}
+
 export const DistractionTextureNames = {
   default: 'default',
   question: 'question',
   food: 'food',
   dots: 'dots',
+  wakeup: 'wakeup'
 };
 
+export interface DistractionClickEvent {
+  name: string;
+  distractionType: DistractionType;
+}
 
 export default class Distraction {
-  #distractionType = DistractionType.DEFAULT;
-  #sprite: Phaser.GameObjects.Sprite;
-  #background: Phaser.GameObjects.Image;
-  #scene: Phaser.Scene;
-  #countdown: any;
-  #countDownBar: Phaser.GameObjects.Rectangle = null;
-  #topLeft: any;
-  #topRight: any;
-  #width: number;
-  #backgroundVerticalOffset: number = 10;
+  [x: string]: any;
+  _distractionType = DistractionType.DEFAULT;
+  _sprite: Phaser.GameObjects.Sprite;
+  _background: Phaser.GameObjects.Image;
+  _scene: Phaser.Scene;
+  _countdown: Phaser.Time.TimerEvent;
+  _countDownBar: Phaser.GameObjects.Rectangle = null;
+  _topLeft: Phaser.Math.Vector2;
+  _topRight: Phaser.Math.Vector2;
+  _width: number;
+  _name: string;
+  _character: Phaser.GameObjects.Image;
+  _backgroundVerticalOffset: number = 10;
 
-  constructor(scene: Phaser.Scene, x: number, y: number) {
-    this.#scene = scene;
+  constructor(scene: Phaser.Scene, x: number, y: number, name: string, character: string) {
+    this._scene = scene;
+    this._name = name;
     Object.keys(DistractionTextureNames).forEach((key) => {
       const spriteName = DistractionTextureNames[key];
       const animationName = `${spriteName}Animation`;
@@ -47,24 +63,27 @@ export default class Distraction {
         });
       CreateDistractionAnimation(scene.anims, animationName, animationFrames);
     });
-    this.#background = scene.add.image(x, y - this.#backgroundVerticalOffset, 'bgBeige').setScale(0.6, 0.6);
-    this.#sprite = scene.add.sprite(x, y, DistractionTextureNames.default);
-    this.#topLeft = this.#background.getTopLeft();
-    this.#topRight = this.#background.getTopRight();
-    this.#width = this.#topRight.x - this.#topLeft.x;
-    this.#countDownBar = this.#scene.add.rectangle(this.#topLeft.x, this.#topLeft.y + 6, 0, 12, 0x0063ff);
+    this._background = this._scene.add.image(x, y - this._backgroundVerticalOffset, 'bgBeige').setScale(0.6, 0.6);
+    this._sprite = scene.add.sprite(x, y, DistractionTextureNames.default);
+    this._topLeft = this._background.getTopLeft();
+    this._topRight = this._background.getTopRight();
+    this._width = this._topRight.x - this._topLeft.x;
+    this._countDownBar = this._scene.add.rectangle(this._topLeft.x, this._topLeft.y + 6, 0, 12, 0x0063ff);
+    this._emitter = new Phaser.Events.EventEmitter();
     this._updateDistractionVisuals();
+
+    //  Make distractions  input enabled
+    this._background.setInteractive().on('pointerdown', this.clickHandler, this._scene);
+    this._character = this._scene.add.image(x, y + 3.5, character).setScale(0.6, 0.6);
   }
 
-   update() {
-
-
-    if (this.#countdown != null){
-      let countdownProgress = this.#countdown.getProgress();
+  update() {
+    if (this._countdown != null){
+      let countdownProgress = this._countdown.getProgress();
 
       //countdown progress bar
-      this.#countDownBar.width = this.#width - this.#width * countdownProgress;
-      this.#countDownBar.isFilled = true;
+      this._countDownBar.width = this._width - this._width * countdownProgress;
+      this._countDownBar.isFilled = true;
 
       if (countdownProgress == 1){
         this.reset();
@@ -72,56 +91,64 @@ export default class Distraction {
     }
   }
 
-   getDistraction = () => this.#distractionType;
+//clickhandler that emits distraction on click event
+  clickHandler = () => {
+    this._scene.events.emit(
+      'distractionClick',
+      { name: this._name, distractionType: this._distractionType } as DistractionClickEvent
+    );
+  }
 
-   setDistraction(distractionType: number, timeIntervalInMs: number) {
-    this.#distractionType = distractionType;
+  setDistraction(distractionType: number, timeIntervalInMs: number) {
+    this._distractionType = distractionType;
     this.startTimer(timeIntervalInMs);
     this._updateDistractionVisuals();
   }
 
-   reset(){
-    this.#distractionType = DistractionType.DEFAULT;
-    this.#countdown = null;
+  reset(){
+    this._distractionType = DistractionType.DEFAULT;
+    this._countdown = null;
     this._updateDistractionVisuals();
   }
 
   startTimer(timeIntervalInMs: number) {
-    this.#countdown = this.#scene.time.addEvent(
+    this._countdown = this._scene.time.addEvent(
     {
        delay: timeIntervalInMs,
     }
     );
   }
 
-
   _updateDistractionVisuals(){
-    switch (this.#distractionType) {
+    switch (this._distractionType) {
       case DistractionType.DEFAULT:
-        this.#background.clearTint();
-        this.#sprite.setTexture(DistractionTextureNames.default);
-        this.#sprite.play(`${DistractionTextureNames.default}Animation`);
+        this._background.clearTint();
+        this._sprite.setTexture(DistractionTextureNames.default);
+        this._sprite.play(`${DistractionTextureNames.default}Animation`);
         break;
 
       case DistractionType.QUESTION:
-        this.#sprite.setTexture(DistractionTextureNames.question);
-        this.#background.setTint(0xf7fc00);
-        this.#sprite.play(`${DistractionTextureNames.question}Animation`);
+        this._sprite.setTexture(DistractionTextureNames.question);
+        this._background.setTint(DistractionCursorData.question.color);
+        this._sprite.play(`${DistractionTextureNames.question}Animation`);
         break;
 
       case DistractionType.FOOD:
-        this.#sprite.setTexture(DistractionTextureNames.food);
-        this.#background.setTint(0xff5a5a);
-        this.#sprite.play(`${DistractionTextureNames.food}Animation`);
+        this._sprite.setTexture(DistractionTextureNames.food);
+        this._background.setTint(DistractionCursorData.food.color);
+        this._sprite.play(`${DistractionTextureNames.food}Animation`);
         break;
 
       case DistractionType.DOTS:
-        this.#sprite.setTexture(DistractionTextureNames.dots);
-        this.#background.setTint(0x00c2ff);
-        this.#sprite.play(`${DistractionTextureNames.dots}Animation`);
+        this._sprite.setTexture(DistractionTextureNames.dots);
+        this._background.setTint(DistractionCursorData.dots.color);
+        this._sprite.play(`${DistractionTextureNames.dots}Animation`);
         break;
 
       case DistractionType.WAKEUP:
+        this._sprite.setTexture(DistractionTextureNames.wakeup);
+        this._background.setTint(DistractionCursorData.wakeup.color);
+        this._sprite.play(`${DistractionTextureNames.wakeup}Animation`);
         break;
     }
   }
