@@ -67,7 +67,7 @@ export default class Distraction {
   clickHandler = () => {
     this._scene.events.emit(
       'distractionClick',
-      { name: this._name, distractionType: this._distractionType } as DistractionClickEvent
+      { name: this._name, distractionType: this._distractionType } as DistractionClickEvent,
     );
   }
 
