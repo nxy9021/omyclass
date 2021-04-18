@@ -1,13 +1,8 @@
 import Phaser from 'phaser';
 import CreateDistractionAnimation from '../anims/CreateBgAnims';
 import { DistractionType } from './DistractionType';
-import { DistractionCursorData } from './constant';
-import { DistractionTextureNames } from './constant';
-
-export interface DistractionClickEvent {
-  name: string;
-  distractionType: DistractionType;
-}
+import { DistractionCursorData, DistractionTextureNames } from './constant';
+import { DistractionClickEvent } from './DistractionClickEvent';
 
 export default class Distraction {
   [x: string]: any;
