@@ -1,0 +1,502 @@
+{
+	"textures": [
+		{
+			"image": "wakeup.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1646,
+				"h": 1120
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "01_wakeup.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 203
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 27,
+						"w": 237,
+						"h": 140
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 237,
+						"h": 140
+					}
+				},
+				{
+					"filename": "02_wakeup.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 203
+					},
+					"spriteSourceSize": {
+						"x": 18,
+						"y": 27,
+						"w": 219,
+						"h": 140
+					},
+					"frame": {
+						"x": 0,
+						"y": 140,
+						"w": 219,
+						"h": 140
+					}
+				},
+				{
+					"filename": "10_wakeup.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 27,
+						"w": 237,
+						"h": 140
+					},
+					"frame": {
+						"x": 237,
+						"y": 0,
+						"w": 237,
+						"h": 140
+					}
+				},
+				{
+					"filename": "03_wakeup.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 15,
+						"y": 27,
+						"w": 222,
+						"h": 140
+					},
+					"frame": {
+						"x": 0,
+						"y": 280,
+						"w": 222,
+						"h": 140
+					}
+				},
+				{
+					"filename": "11_wakeup.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 203
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 27,
+						"w": 237,
+						"h": 140
+					},
+					"frame": {
+						"x": 474,
+						"y": 0,
+						"w": 237,
+						"h": 140
+					}
+				},
+				{
+					"filename": "04_wakeup.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 12,
+						"y": 27,
+						"w": 225,
+						"h": 140
+					},
+					"frame": {
+						"x": 0,
+						"y": 420,
+						"w": 225,
+						"h": 140
+					}
+				},
+				{
+					"filename": "05_wakeup.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 9,
+						"y": 27,
+						"w": 228,
+						"h": 140
+					},
+					"frame": {
+						"x": 219,
+						"y": 140,
+						"w": 228,
+						"h": 140
+					}
+				},
+				{
+					"filename": "12_wakeup.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 203
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 27,
+						"w": 237,
+						"h": 140
+					},
+					"frame": {
+						"x": 711,
+						"y": 0,
+						"w": 237,
+						"h": 140
+					}
+				},
+				{
+					"filename": "06_wakeup.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 203
+					},
+					"spriteSourceSize": {
+						"x": 6,
+						"y": 27,
+						"w": 231,
+						"h": 140
+					},
+					"frame": {
+						"x": 0,
+						"y": 560,
+						"w": 231,
+						"h": 140
+					}
+				},
+				{
+					"filename": "07_wakeup.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 203
+					},
+					"spriteSourceSize": {
+						"x": 3,
+						"y": 27,
+						"w": 231,
+						"h": 140
+					},
+					"frame": {
+						"x": 222,
+						"y": 280,
+						"w": 231,
+						"h": 140
+					}
+				},
+				{
+					"filename": "13_wakeup.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 27,
+						"w": 237,
+						"h": 140
+					},
+					"frame": {
+						"x": 948,
+						"y": 0,
+						"w": 237,
+						"h": 140
+					}
+				},
+				{
+					"filename": "08_wakeup.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 27,
+						"w": 231,
+						"h": 140
+					},
+					"frame": {
+						"x": 0,
+						"y": 700,
+						"w": 231,
+						"h": 140
+					}
+				},
+				{
+					"filename": "09_wakeup.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 27,
+						"w": 228,
+						"h": 140
+					},
+					"frame": {
+						"x": 447,
+						"y": 140,
+						"w": 228,
+						"h": 140
+					}
+				},
+				{
+					"filename": "14_wakeup.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 27,
+						"w": 237,
+						"h": 140
+					},
+					"frame": {
+						"x": 225,
+						"y": 420,
+						"w": 237,
+						"h": 140
+					}
+				},
+				{
+					"filename": "22_wakeup.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 203
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 27,
+						"w": 237,
+						"h": 140
+					},
+					"frame": {
+						"x": 1185,
+						"y": 0,
+						"w": 237,
+						"h": 140
+					}
+				},
+				{
+					"filename": "15_wakeup.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 27,
+						"w": 236,
+						"h": 140
+					},
+					"frame": {
+						"x": 0,
+						"y": 840,
+						"w": 236,
+						"h": 140
+					}
+				},
+				{
+					"filename": "23_wakeup.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 27,
+						"w": 237,
+						"h": 140
+					},
+					"frame": {
+						"x": 675,
+						"y": 140,
+						"w": 237,
+						"h": 140
+					}
+				},
+				{
+					"filename": "16_wakeup.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 203
+					},
+					"spriteSourceSize": {
+						"x": 9,
+						"y": 27,
+						"w": 224,
+						"h": 140
+					},
+					"frame": {
+						"x": 453,
+						"y": 280,
+						"w": 224,
+						"h": 140
+					}
+				},
+				{
+					"filename": "17_wakeup.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 203
+					},
+					"spriteSourceSize": {
+						"x": 6,
+						"y": 27,
+						"w": 224,
+						"h": 140
+					},
+					"frame": {
+						"x": 1422,
+						"y": 0,
+						"w": 224,
+						"h": 140
+					}
+				},
+				{
+					"filename": "18_wakeup.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 3,
+						"y": 27,
+						"w": 224,
+						"h": 140
+					},
+					"frame": {
+						"x": 0,
+						"y": 980,
+						"w": 224,
+						"h": 140
+					}
+				},
+				{
+					"filename": "19_wakeup.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 27,
+						"w": 224,
+						"h": 140
+					},
+					"frame": {
+						"x": 231,
+						"y": 560,
+						"w": 224,
+						"h": 140
+					}
+				},
+				{
+					"filename": "20_wakeup.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 204
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 27,
+						"w": 221,
+						"h": 140
+					},
+					"frame": {
+						"x": 912,
+						"y": 140,
+						"w": 221,
+						"h": 140
+					}
+				},
+				{
+					"filename": "21_wakeup.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 237,
+						"h": 203
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 27,
+						"w": 218,
+						"h": 140
+					},
+					"frame": {
+						"x": 462,
+						"y": 420,
+						"w": 218,
+						"h": 140
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "http://free-tex-packer.com",
+		"version": "0.6.6"
+	}
+}
