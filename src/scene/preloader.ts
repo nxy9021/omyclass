@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
-import { CharacterTextureNames } from '../characters/character';
-import { DistractionCursorData, DistractionTextureNames } from '../distractions/distraction';
+import { CharacterTextureNames } from '../characters/characters';
+import { DistractionCursorData, DistractionTextureNames } from '../distractions/constant';
 
 export default class Preloader extends Phaser.Scene {
   constructor() {
@@ -19,8 +19,6 @@ export default class Preloader extends Phaser.Scene {
 
     // heatgauge forground
     this.load.image('heatImg', 'assets/img/heatgauge.png');
-
-
 
 
     // animation background
