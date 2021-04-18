@@ -2,7 +2,6 @@ import Phaser from 'phaser';
 import CreateDistractionAnimation from '../anims/CreateBgAnims';
 import { DistractionType } from './DistractionType';
 import { DistractionCursorData, DistractionTextureNames } from './constant';
-import { DistractionClickEvent } from './DistractionClickEvent';
 
 export default class Distraction {
   _distractionType = DistractionType.DEFAULT;
@@ -67,7 +66,7 @@ export default class Distraction {
   clickHandler = () => {
     this._scene.events.emit(
       'distractionClick',
-      { name: this._name, distractionType: this._distractionType } as DistractionClickEvent,
+      { name: this._name, distractionType: this._distractionType },
     );
   }
 

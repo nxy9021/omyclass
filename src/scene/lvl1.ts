@@ -1,7 +1,6 @@
 import Phaser from 'phaser';
 import { CharacterTextureNames } from '../characters/characters';
 import Distraction from '../distractions/distraction';
-import { DistractionClickEvent } from "../distractions/DistractionClickEvent";
 import { DistractionCursorData, DistractionTextureNames } from '../distractions/constant';
 import { DistractionType } from "../distractions/DistractionType";
 export default class Lvl1 extends Phaser.Scene {
@@ -63,7 +62,7 @@ export default class Lvl1 extends Phaser.Scene {
     this.distractionTiles.l2c2 = new Distraction(this, 400, 410, 'l2c2', CharacterTextureNames.girl3);
     this.distractionTiles.l2c3 = new Distraction(this, 650, 410, 'l2c3', CharacterTextureNames.girl4);
 
-    let dotsInteraction = this.setupDistractionButton(DistractionType.DOTS, 150, 570);
+    this.setupDistractionButton(DistractionType.DOTS, 150, 570);
 
     //for demo purpose, will be moved to update later
     this.distractionTiles.l1c1.setDistraction(DistractionType.DOTS, 1000);
