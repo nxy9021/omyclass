@@ -79,15 +79,15 @@ export default class Distraction {
 
   reset(){
     this._distractionType = DistractionTypes.default;
-    this._countdown = null;
+    this.startTimer(0);
     this._updateDistractionVisuals();
   }
 
   startTimer(timeIntervalInMs: number) {
     this._countdown = this._scene.time.addEvent(
-    {
-       delay: timeIntervalInMs,
-    }
+      {
+        delay: timeIntervalInMs,
+      }
     );
   }
 

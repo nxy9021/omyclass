@@ -20,6 +20,9 @@ export default class Lvl1 extends Phaser.Scene {
   countDownBar: Phaser.GameObjects.Graphics;
   barTimerEvents = [];
   currentClickedDistraction: DistractionTypes = DistractionTypes.default;
+  comboCount: number = 0;
+  gpaText: Phaser.GameObjects.Text;
+  gpaPoints: number = 0.00;
 
   constructor() {
     super('lvl1');
@@ -27,11 +30,24 @@ export default class Lvl1 extends Phaser.Scene {
 
   //clickhandler
   distractionButtonOnClickHandler(event: DistractionClickEvent) {
+    if (
+      this.currentClickedDistraction !== DistractionTypes.default
+      && event.distractionType == this.currentClickedDistraction
+    ) {
+      this.comboCount++;
+      this.distractionTiles[event.name].reset();
+    } else {
+      this.comboCount = 0;
+    }
 
-    this.input.setDefaultCursor(
-      `url(${DistractionCursorData.default.cursor}), pointer`
-    )
+    this.currentClickedDistraction = DistractionTypes.default
+    this.input.setDefaultCursor(`url(${DistractionCursorData.default.cursor}), pointer`);
   }
+
+  // TODO: Calculate points
+  // incrementGPA (){
+
+  // }
 
   setupDistractionButton = (distractionType: DistractionTypes, x: number, y: number): Phaser.GameObjects.Sprite =>
   {
@@ -69,6 +85,8 @@ export default class Lvl1 extends Phaser.Scene {
     this.distractionTiles.l2c3 = new Distraction(this, 650, 410, 'l2c3', CharacterTextureNames.girl4);
 
     this.setupDistractionButton(DistractionTypes.dots, 150, 570);
+    this.setupDistractionButton(DistractionTypes.question, 300, 570);
+
 
     //for demo purpose, will be moved to update later
     this.distractionTiles.l1c1.setDistraction(DistractionTypes.dots, 1000);
@@ -103,6 +121,15 @@ export default class Lvl1 extends Phaser.Scene {
       [],
       this
     );
+
+    //gpa
+    this.gpaText = this.add
+    .text(40, 100, '', {
+        fontFamily: 'Roboto',
+      })
+      .setFontSize(20);
+
+    // this.gpaPoints = this.add()
 
   }
 
