@@ -1,8 +1,9 @@
 import Phaser from 'phaser';
 import { CharacterTextureNames } from '../characters/characters';
 import Distraction from '../distractions/distraction';
-import { DistractionCursorData, DistractionTextureNames } from '../distractions/constant';
-import { DistractionType } from "../distractions/DistractionType";
+import { DistractionCursorData } from '../distractions/constant';
+import { DistractionTypes } from "../distractions/DistractionType";
+import DistractionClickEvent from '../distractions/DistractionClickEvent';
 export default class Lvl1 extends Phaser.Scene {
   text: Phaser.GameObjects.Text;
   mainTimer: Phaser.Time.TimerEvent;
@@ -18,28 +19,33 @@ export default class Lvl1 extends Phaser.Scene {
   countDownText: Text;
   countDownBar: Phaser.GameObjects.Graphics;
   barTimerEvents = [];
-  currentClickedDistraction: DistractionType = DistractionType.DEFAULT;
+  currentClickedDistraction: DistractionTypes = DistractionTypes.default;
 
   constructor() {
     super('lvl1');
   }
 
-  // distractionButtonOnClickHandler(pointer: Phaser.GameObjects.Sprite, color: number) {
-  //   pointer.setTint(color);
-  //   this.input.setDefaultCursor(`url(${data.cursor}), pointer`)
-  // }
+  //clickhandler
+  distractionButtonOnClickHandler(event: DistractionClickEvent) {
 
-  setupDistractionButton = (distractionType: DistractionType, x: number, y: number): Phaser.GameObjects.Sprite => {
-    let buttonNameString = DistractionType[distractionType].toString().toLowerCase();
-    let data = DistractionCursorData[buttonNameString];
+    this.input.setDefaultCursor(
+      `url(${DistractionCursorData.default.cursor}), pointer`
+    )
+  }
+
+  setupDistractionButton = (distractionType: DistractionTypes, x: number, y: number): Phaser.GameObjects.Sprite =>
+  {
+    let data = DistractionCursorData[distractionType];
     let button = this.add
-      .sprite(x, y, `${DistractionTextureNames[buttonNameString]}Button`)
+      .sprite(x, y, `${distractionType}Button`)
       .setInteractive({ cursor: `url(${data.cursor}), pointer` })
-      .on('pointerdown', () => {
-        button.setTint(data.color);
-        this.input.setDefaultCursor(`url(${data.cursor}), pointer`);
-        this.currentClickedDistraction = distractionType;
-      }
+      .on
+      ('pointerdown', () =>
+        {
+          button.setTint(data.color);
+          this.input.setDefaultCursor(`url(${data.cursor}), pointer`);
+          this.currentClickedDistraction = distractionType;
+        }
       );
       return button;
   }
@@ -62,19 +68,22 @@ export default class Lvl1 extends Phaser.Scene {
     this.distractionTiles.l2c2 = new Distraction(this, 400, 410, 'l2c2', CharacterTextureNames.girl3);
     this.distractionTiles.l2c3 = new Distraction(this, 650, 410, 'l2c3', CharacterTextureNames.girl4);
 
-    this.setupDistractionButton(DistractionType.DOTS, 150, 570);
+    this.setupDistractionButton(DistractionTypes.dots, 150, 570);
 
     //for demo purpose, will be moved to update later
-    this.distractionTiles.l1c1.setDistraction(DistractionType.DOTS, 1000);
-    this.distractionTiles.l1c2.setDistraction(DistractionType.QUESTION, 3000);
-    this.distractionTiles.l2c3.setDistraction(DistractionType.FOOD, 2000);
-    this.distractionTiles.l2c2.setDistraction(DistractionType.WAKEUP, 4000);
-    this.distractionTiles.l2c1.setDistraction(DistractionType.DOTS, 5000);
+    this.distractionTiles.l1c1.setDistraction(DistractionTypes.dots, 1000);
+    this.distractionTiles.l1c2.setDistraction(DistractionTypes.question, 3000);
+    this.distractionTiles.l2c3.setDistraction(DistractionTypes.food, 2000);
+    this.distractionTiles.l2c2.setDistraction(DistractionTypes.wakeup, 4000);
+    this.distractionTiles.l2c1.setDistraction(DistractionTypes.dots, 5000);
 
     //Event listener
     // this.events.on('distractionClick', (event: DistractionClickEvent) => console.log(event.name));
     // this.events.on('distractionClick', (event: DistractionClickEvent) => console.log(event.distractionType));
-    this.events.on('distractionClick', () => this.input.setDefaultCursor(`url(${DistractionCursorData.default.cursor}), pointer`));
+    this.events.on(
+      'distractionClick',
+      (event: DistractionClickEvent) => this.distractionButtonOnClickHandler(event)
+    );
 
     //cursor
     this.input.setDefaultCursor(

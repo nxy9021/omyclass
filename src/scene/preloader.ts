@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import { CharacterTextureNames } from '../characters/characters';
-import { DistractionCursorData, DistractionTextureNames } from '../distractions/constant';
+import { DistractionCursorData } from '../distractions/constant';
+import { DistractionTypes } from "../distractions/DistractionType";
 
 export default class Preloader extends Phaser.Scene {
   constructor() {
@@ -22,8 +23,8 @@ export default class Preloader extends Phaser.Scene {
 
 
     // animation background
-    Object.keys(DistractionTextureNames).forEach((key) => {
-      const name = DistractionTextureNames[key];
+    Object.keys(DistractionTypes).forEach((key) => {
+      const name = DistractionTypes[key];
       this.load.animation(name, `assets/img/distractions/${name}.json`);
 
       this.load.atlas(
@@ -40,9 +41,9 @@ export default class Preloader extends Phaser.Scene {
     });
 
     // attention bubbles
-    Object.keys(DistractionTextureNames).forEach((key) => {
-      this.load.image(`${DistractionTextureNames[key]}Button`, DistractionCursorData[key].button);
-    })
+    for (const value in DistractionTypes) {
+      this.load.image(value + 'Button', DistractionCursorData[value].button);
+    }
   }
 
   create() {
