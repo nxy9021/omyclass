@@ -1,7 +1,6 @@
-import Phaser from 'phaser';
 import { CharacterTextureNames } from '../characters/characters';
 import { DistractionCursorData } from '../distractions/constant';
-import { DistractionTypes } from "../distractions/DistractionTypes";
+import { DistractionTypes } from '../distractions/DistractionTypes';
 
 export default class Preloader extends Phaser.Scene {
   constructor() {
@@ -20,7 +19,6 @@ export default class Preloader extends Phaser.Scene {
 
     // heatgauge forground
     this.load.image('heatImg', 'assets/img/heatgauge.png');
-
 
     // animation background
     for (const key in DistractionTypes) {
@@ -42,7 +40,10 @@ export default class Preloader extends Phaser.Scene {
 
     // attention bubbles
     for (const value in DistractionTypes) {
-      this.load.image(DistractionTypes[value] + 'Button', DistractionCursorData[DistractionTypes[value]].button);
+      this.load.image(
+        `${DistractionTypes[value]}Button`,
+        DistractionCursorData[DistractionTypes[value]].button
+      );
     }
   }
 

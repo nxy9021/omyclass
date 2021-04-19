@@ -1,5 +1,3 @@
-import Phaser from 'phaser';
-
 export const CharacterTextureNames = {
   boy1: 'boy1',
   boy2: 'boy2',
@@ -22,6 +20,4 @@ export const CharacterType = {
 export default class Characters {
   _sprite: Phaser.GameObjects.Sprite;
   _charactorTextureNames: any;
-
-
-  }
+}
