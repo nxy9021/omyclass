@@ -1,5 +1,3 @@
-import Phaser from 'phaser';
-
 export default function CreateDistractionAnimation(
   anims: Phaser.Animations.AnimationManager,
   animationName: string,

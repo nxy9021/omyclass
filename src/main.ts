@@ -1,4 +1,4 @@
-import Phaser from 'phaser';
+import 'phaser';
 
 import Preloader from './scene/preloader';
 import Lvl1 from './scene/lvl1';

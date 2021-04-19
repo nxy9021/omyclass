@@ -1,4 +1,3 @@
-import Phaser from 'phaser';
 import { CharacterTextureNames } from '../characters/characters';
 import { DistractionCursorData } from '../distractions/constant';
 import { DistractionTypes } from '../distractions/DistractionTypes';

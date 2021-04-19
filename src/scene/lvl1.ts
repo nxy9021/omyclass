@@ -1,9 +1,9 @@
-import Phaser from 'phaser';
 import { CharacterTextureNames } from '../characters/characters';
 import Distraction from '../distractions/distraction';
 import { DistractionCursorData } from '../distractions/constant';
 import { DistractionTypes } from '../distractions/DistractionTypes';
 import { DistractionClickEvent } from '../distractions/DistractionClickEvent';
+
 export default class Lvl1 extends Phaser.Scene {
   text: Phaser.GameObjects.Text;
   mainTimer: Phaser.Time.TimerEvent;
@@ -168,9 +168,8 @@ export default class Lvl1 extends Phaser.Scene {
   }
 
   update() {
-    const time = this.mainTimer.getProgress().toString().substr(0, 4);
-
     //timer
+    const time = this.mainTimer.getProgress().toString().substr(0, 4);
     this.text.setText(`Time: ${time}`);
 
     //Updates the state of all distraction tiles every tick/frame

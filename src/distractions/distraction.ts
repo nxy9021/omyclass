@@ -1,4 +1,3 @@
-import Phaser from 'phaser';
 import CreateDistractionAnimation from '../anims/CreateBgAnims';
 import { DistractionCursorData } from './constant';
 import { DistractionTypes } from './DistractionTypes';

@@ -1,5 +1,3 @@
-import Phaser from 'phaser';
-
 export const CharacterTextureNames = {
   boy1: 'boy1',
   boy2: 'boy2',
