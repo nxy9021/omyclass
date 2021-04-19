@@ -3,5 +3,5 @@ export enum DistractionTypes {
   Question = 'question',
   Food = 'food',
   Dots = 'dots',
-  Wakeup = 'wakeup'
+  Wakeup = 'wakeup',
 }

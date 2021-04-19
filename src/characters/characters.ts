@@ -22,6 +22,4 @@ export const CharacterType = {
 export default class Characters {
   _sprite: Phaser.GameObjects.Sprite;
   _charactorTextureNames: any;
-
-
-  }
+}
