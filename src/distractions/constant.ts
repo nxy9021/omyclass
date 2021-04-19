@@ -6,12 +6,4 @@ export const DistractionCursorData = {
   wakeup: {cursor: 'assets/img/cursors/cgreen.png', button: 'assets/img/bubbles/bgreen.png', color: 0x00EA88},
 }
 
-// export const DistractionTextureNames = {
-//   default: 'default',
-//   question: 'question',
-//   food: 'food',
-//   dots: 'dots',
-//   wakeup: 'wakeup'
-// };
-
 

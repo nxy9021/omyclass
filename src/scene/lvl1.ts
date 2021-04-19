@@ -2,8 +2,8 @@ import Phaser from 'phaser';
 import { CharacterTextureNames } from '../characters/characters';
 import Distraction from '../distractions/distraction';
 import { DistractionCursorData } from '../distractions/constant';
-import { DistractionTypes } from "../distractions/DistractionType";
-import DistractionClickEvent from '../distractions/DistractionClickEvent';
+import { DistractionTypes } from "../distractions/DistractionTypes";
+import { DistractionClickEvent } from '../distractions/DistractionClickEvent';
 export default class Lvl1 extends Phaser.Scene {
   text: Phaser.GameObjects.Text;
   mainTimer: Phaser.Time.TimerEvent;
@@ -19,7 +19,7 @@ export default class Lvl1 extends Phaser.Scene {
   countDownText: Text;
   countDownBar: Phaser.GameObjects.Graphics;
   barTimerEvents = [];
-  currentClickedDistraction: DistractionTypes = DistractionTypes.default;
+  currentClickedDistraction: DistractionTypes = DistractionTypes.Default;
   comboCount: number = 0;
   gpaText: Phaser.GameObjects.Text;
   gpaPoints: number = 0.00;
@@ -31,7 +31,7 @@ export default class Lvl1 extends Phaser.Scene {
   //clickhandler
   distractionButtonOnClickHandler(event: DistractionClickEvent) {
     if (
-      this.currentClickedDistraction !== DistractionTypes.default
+      this.currentClickedDistraction !== DistractionTypes.Default
       && event.distractionType == this.currentClickedDistraction
     ) {
       this.comboCount++;
@@ -40,7 +40,7 @@ export default class Lvl1 extends Phaser.Scene {
       this.comboCount = 0;
     }
 
-    this.currentClickedDistraction = DistractionTypes.default
+    this.currentClickedDistraction = DistractionTypes.Default
     this.input.setDefaultCursor(`url(${DistractionCursorData.default.cursor}), pointer`);
   }
 
@@ -55,8 +55,7 @@ export default class Lvl1 extends Phaser.Scene {
     let button = this.add
       .sprite(x, y, `${distractionType}Button`)
       .setInteractive({ cursor: `url(${data.cursor}), pointer` })
-      .on
-      ('pointerdown', () =>
+      .on('pointerdown', () =>
         {
           button.setTint(data.color);
           this.input.setDefaultCursor(`url(${data.cursor}), pointer`);
@@ -84,16 +83,16 @@ export default class Lvl1 extends Phaser.Scene {
     this.distractionTiles.l2c2 = new Distraction(this, 400, 410, 'l2c2', CharacterTextureNames.girl3);
     this.distractionTiles.l2c3 = new Distraction(this, 650, 410, 'l2c3', CharacterTextureNames.girl4);
 
-    this.setupDistractionButton(DistractionTypes.dots, 150, 570);
-    this.setupDistractionButton(DistractionTypes.question, 300, 570);
+    this.setupDistractionButton(DistractionTypes.Dots, 150, 570);
+    this.setupDistractionButton(DistractionTypes.Question, 300, 570);
 
 
     //for demo purpose, will be moved to update later
-    this.distractionTiles.l1c1.setDistraction(DistractionTypes.dots, 1000);
-    this.distractionTiles.l1c2.setDistraction(DistractionTypes.question, 3000);
-    this.distractionTiles.l2c3.setDistraction(DistractionTypes.food, 2000);
-    this.distractionTiles.l2c2.setDistraction(DistractionTypes.wakeup, 4000);
-    this.distractionTiles.l2c1.setDistraction(DistractionTypes.dots, 5000);
+    this.distractionTiles.l1c1.setDistraction(DistractionTypes.Dots, 1000);
+    this.distractionTiles.l1c2.setDistraction(DistractionTypes.Question, 3000);
+    this.distractionTiles.l2c3.setDistraction(DistractionTypes.Food, 2000);
+    this.distractionTiles.l2c2.setDistraction(DistractionTypes.Wakeup, 4000);
+    this.distractionTiles.l2c1.setDistraction(DistractionTypes.Dots, 5000);
 
     //Event listener
     // this.events.on('distractionClick', (event: DistractionClickEvent) => console.log(event.name));

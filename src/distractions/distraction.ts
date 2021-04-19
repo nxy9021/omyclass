@@ -1,10 +1,10 @@
 import Phaser from 'phaser';
 import CreateDistractionAnimation from '../anims/CreateBgAnims';
 import { DistractionCursorData } from './constant';
-import { DistractionTypes } from './DistractionType';
+import { DistractionTypes } from './DistractionTypes';
 
 export default class Distraction {
-  _distractionType = DistractionTypes.default;
+  _distractionType = DistractionTypes.Default;
   _sprite: Phaser.GameObjects.Sprite;
   _background: Phaser.GameObjects.Image;
   _scene: Phaser.Scene;
@@ -21,21 +21,21 @@ export default class Distraction {
     this._scene = scene;
     this._name = name;
     for (const key in DistractionTypes) {
-      const animationName = `${key}Animation`;
+      const animationName = `${DistractionTypes[key]}Animation`;
       const animationFrames = scene.textures
-        .get(key)
+        .get(DistractionTypes[key])
         .getFrameNames()
         .sort()
         .map((framename) => {
           return {
-            key: key,
+            key: DistractionTypes[key],
             frame: framename,
           };
         });
       CreateDistractionAnimation(scene.anims, animationName, animationFrames);
     }
     this._background = this._scene.add.image(x, y - this._backgroundVerticalOffset, 'bgBeige').setScale(0.6, 0.6);
-    this._sprite = scene.add.sprite(x, y, DistractionTypes.default);
+    this._sprite = scene.add.sprite(x, y, DistractionTypes.Default);
     this._topLeft = this._background.getTopLeft();
     this._topRight = this._background.getTopRight();
     this._width = this._topRight.x - this._topLeft.x;
@@ -78,7 +78,7 @@ export default class Distraction {
   }
 
   reset(){
-    this._distractionType = DistractionTypes.default;
+    this._distractionType = DistractionTypes.Default;
     this.startTimer(0);
     this._updateDistractionVisuals();
   }
@@ -92,36 +92,12 @@ export default class Distraction {
   }
 
   _updateDistractionVisuals(){
-    switch (this._distractionType) {
-      case DistractionTypes.default:
+    this._sprite.setTexture(this._distractionType);
+    this._sprite.play(`${this._distractionType}Animation`);
+    if (this._distractionType == DistractionTypes.Default){
         this._background.clearTint();
-        this._sprite.setTexture(DistractionTypes.default);
-        this._sprite.play(`${DistractionTypes.default}Animation`);
-        break;
-
-      case DistractionTypes.question:
-        this._sprite.setTexture(DistractionTypes.question);
-        this._background.setTint(DistractionCursorData[DistractionTypes.question].color);
-        this._sprite.play(`${DistractionTypes.question}Animation`);
-        break;
-
-      case DistractionTypes.food:
-        this._sprite.setTexture(DistractionTypes.food);
-        this._background.setTint(DistractionCursorData[DistractionTypes.food].color);
-        this._sprite.play(`${DistractionTypes.food}Animation`);
-        break;
-
-      case DistractionTypes.dots:
-        this._sprite.setTexture(DistractionTypes.dots);
-        this._background.setTint(DistractionCursorData[DistractionTypes.dots].color);
-        this._sprite.play(`${DistractionTypes.dots}Animation`);
-        break;
-
-      case DistractionTypes.wakeup:
-        this._sprite.setTexture(DistractionTypes.wakeup);
-        this._background.setTint(DistractionCursorData[DistractionTypes.wakeup].color);
-        this._sprite.play(`${DistractionTypes.wakeup}Animation`);
-        break;
+    } else {
+        this._background.setTint(DistractionCursorData[this._distractionType].color);
     }
   }
 }

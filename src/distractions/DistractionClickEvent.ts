@@ -1,7 +1,7 @@
-import { DistractionTypes } from './DistractionType';
+import { DistractionTypes } from './DistractionTypes';
 
 
-export default interface DistractionClickEvent {
+export interface DistractionClickEvent {
   name: string;
   distractionType: DistractionTypes;
 }
