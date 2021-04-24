@@ -1,5 +1,5 @@
 import CreateDistractionAnimation from '../anims/CreateBgAnims';
-import { DistractionCursorData } from './constant';
+import { DistractionDataContainer } from './distractionDataContainer';
 import { DistractionTypes } from './DistractionTypes';
 
 export default class Distraction {
@@ -8,7 +8,7 @@ export default class Distraction {
   _background: Phaser.GameObjects.Image;
   _scene: Phaser.Scene;
   _countdown: Phaser.Time.TimerEvent;
-  _countDownBar: Phaser.GameObjects.Rectangle = null;
+  _countDownBar: Phaser.GameObjects.Rectangle;
   _topLeft: Phaser.Math.Vector2;
   _topRight: Phaser.Math.Vector2;
   _width: number;
@@ -25,15 +25,15 @@ export default class Distraction {
   ) {
     this._scene = scene;
     this._name = name;
-    for (const key in DistractionTypes) {
-      const animationName = `${DistractionTypes[key]}Animation`;
+    for (const [, distractionData] of Object.entries(DistractionDataContainer)) {
+      const animationName = `${distractionData.name}Animation`;
       const animationFrames = scene.textures
-        .get(DistractionTypes[key])
+        .get(distractionData.name)
         .getFrameNames()
         .sort()
         .map((framename) => {
           return {
-            key: DistractionTypes[key],
+            key: distractionData.name,
             frame: framename,
           };
         });
@@ -111,7 +111,7 @@ export default class Distraction {
       this._background.clearTint();
     } else {
       this._background.setTint(
-        DistractionCursorData[this._distractionType].color
+        DistractionDataContainer[this._distractionType].color
       );
     }
   }

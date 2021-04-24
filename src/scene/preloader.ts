@@ -1,6 +1,5 @@
 import { CharacterTextureNames } from '../characters/characters';
-import { DistractionCursorData } from '../distractions/constant';
-import { DistractionTypes } from '../distractions/DistractionTypes';
+import { DistractionDataContainer } from '../distractions/distractionDataContainer';
 
 export default class Preloader extends Phaser.Scene {
   constructor() {
@@ -21,8 +20,8 @@ export default class Preloader extends Phaser.Scene {
     this.load.image('heatImg', 'assets/img/heatgauge.png');
 
     // animation background
-    for (const key in DistractionTypes) {
-      const name = DistractionTypes[key].toLowerCase();
+    for (const [, distractionData] of Object.entries(DistractionDataContainer)) {
+      const name = distractionData.name.toLowerCase();
       this.load.animation(name, `assets/img/distractions/${name}.json`);
 
       this.load.atlas(
@@ -33,17 +32,18 @@ export default class Preloader extends Phaser.Scene {
     }
 
     // characters
-    Object.keys(CharacterTextureNames).forEach((key) => {
-      const name = CharacterTextureNames[key];
-      this.load.image(name, `assets/img/charactors/${name}.png`);
-    });
+    for (const [, textureName] of Object.entries(CharacterTextureNames)) {
+      this.load.image(textureName, `assets/img/charactors/${textureName}.png`);
+    };
 
     // attention bubbles
-    for (const value in DistractionTypes) {
-      this.load.image(
-        `${DistractionTypes[value]}Button`,
-        DistractionCursorData[DistractionTypes[value]].button
-      );
+    for (const [, distractionData] of Object.entries(DistractionDataContainer)) {
+      if (distractionData.name !== 'default') {
+        this.load.image(
+          `${distractionData.name}Button`,
+          distractionData.button
+        );
+      }
     }
   }
 

@@ -1,6 +1,6 @@
 import { CharacterTextureNames } from '../characters/characters';
 import Distraction from '../distractions/distraction';
-import { DistractionCursorData } from '../distractions/constant';
+import { DistractionDataContainer } from '../distractions/distractionDataContainer';
 import { DistractionTypes } from '../distractions/DistractionTypes';
 import { DistractionClickEvent } from '../distractions/DistractionClickEvent';
 
@@ -42,7 +42,7 @@ export default class Lvl1 extends Phaser.Scene {
 
     this.currentClickedDistraction = DistractionTypes.Default;
     this.input.setDefaultCursor(
-      `url(${DistractionCursorData.default.cursor}), pointer`
+      `url(${DistractionDataContainer.default.cursor}), pointer`
     );
   }
 
@@ -56,7 +56,7 @@ export default class Lvl1 extends Phaser.Scene {
     x: number,
     y: number
   ): void => {
-    let data = DistractionCursorData[distractionType];
+    let data = DistractionDataContainer[distractionType];
     let button = this.add.sprite(x, y, `${distractionType}Button`);
 
     button.setInteractive({ cursor: `url(${data.cursor}), pointer` });
