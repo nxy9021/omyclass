@@ -132,8 +132,8 @@ export default class Lvl1 extends Phaser.Scene {
       this.getNonDistractedTileNames();
     const distractedTileCount: number =
       Object.keys(this.distractionTiles).length - nonDistractedTileNames.length;
-    const totalTimeRemaining = this.mainTimer.getRemaining();
-    const shouldDistractionsRender = totalTimeRemaining > this.countdownInterval;
+    const totalTimeRemaining: number = this.mainTimer.getRemaining();
+    const shouldDistractionsRender: boolean = totalTimeRemaining > this.countdownInterval;
 
     //things will not spawn on the last couple of seconds
     if (distractedTileCount < this.maximumActiveDistractions && shouldDistractionsRender) {
@@ -301,6 +301,8 @@ export default class Lvl1 extends Phaser.Scene {
         fontFamily: 'Roboto',
       })
       .setFontSize(20);
+
+    //TODO: load music
   }
 
   update() {
@@ -312,5 +314,7 @@ export default class Lvl1 extends Phaser.Scene {
 
     //Updates the state of all distraction tiles every tick/frame
     this.updateTiles()
+
+    //TODO: update combogauge
   }
 }

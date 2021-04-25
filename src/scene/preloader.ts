@@ -45,6 +45,8 @@ export default class Preloader extends Phaser.Scene {
         );
       }
     }
+
+    //TODO: load music file
   }
 
   create() {
