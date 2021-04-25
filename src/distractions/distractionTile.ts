@@ -2,7 +2,7 @@ import CreateDistractionAnimation from '../anims/CreateBgAnims';
 import { DistractionDataContainer } from './distractionDataContainer';
 import { DistractionTypes } from './DistractionTypes';
 
-export default class Distraction {
+export default class DistractionTile {
   _distractionType = DistractionTypes.Default;
   _sprite: Phaser.GameObjects.Sprite;
   _background: Phaser.GameObjects.Image;
@@ -78,6 +78,10 @@ export default class Distraction {
     }
   }
 
+  isDistracted = () => {
+    return this._distractionType !== DistractionTypes.Default;
+  }
+
   //clickhandler that emits distraction on click event
   clickHandler = () => {
     this._scene.events.emit('distractionClick', {
@@ -86,25 +90,25 @@ export default class Distraction {
     });
   };
 
-  setDistraction(distractionType: DistractionTypes, timeIntervalInMs: number) {
+  setDistraction = (distractionType: DistractionTypes, timeIntervalInMs: number) => {
     this._distractionType = distractionType;
     this.startTimer(timeIntervalInMs);
     this._updateDistractionVisuals();
   }
 
-  reset() {
+  reset = () => {
     this._distractionType = DistractionTypes.Default;
     this.startTimer(0);
     this._updateDistractionVisuals();
   }
 
-  startTimer(timeIntervalInMs: number) {
+  startTimer = (timeIntervalInMs: number) => {
     this._countdown = this._scene.time.addEvent({
       delay: timeIntervalInMs,
     });
   }
 
-  _updateDistractionVisuals() {
+  _updateDistractionVisuals = () => {
     this._sprite.setTexture(this._distractionType);
     this._sprite.play(`${this._distractionType}Animation`);
     if (this._distractionType == DistractionTypes.Default) {
