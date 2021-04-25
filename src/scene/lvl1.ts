@@ -22,9 +22,12 @@ export default class Lvl1 extends Phaser.Scene {
   currentClickedDistraction: DistractionTypes = DistractionTypes.Default;
   comboCount: number = 0;
   gpaText: Phaser.GameObjects.Text;
-  gpaPoints: number = 0;
+  gpa: string = '0.00';
+  earnedPoints: number = 0;
   successCount: number = 0;
   heatLevel: number = 0;
+  totalSpawnedDistractions: number = 0;
+  totalPossibleScore: number = 0;
   allowedDistractionTypes: DistractionTypes[] = [];
   maximumActiveDistractions: number;
   countdownInterval: number;
@@ -38,10 +41,18 @@ export default class Lvl1 extends Phaser.Scene {
     this.spawnIntervalRange = { minimum: 500, maximum: 2000 };
   }
 
+  updateGpa = () => {
+    if (this.earnedPoints === 0) {
+      this.gpa = '0.00';
+    } else {
+      this.gpa = (this.earnedPoints / this.totalPossibleScore * 4.0).toFixed(2);
+    }
+    this.gpaText.setText(`GPA: ${this.gpa}`);
+  }
+
+  //set heat level for points calculation
   setHeatLevel = () => {
-    if (this.comboCount <= 0) {
-      this.heatLevel = 0
-    } else if (this.comboCount <= 2) {
+    if (this.comboCount <= 2) {
       this.heatLevel = 1
     } else if (this.comboCount <= 5) {
       this.heatLevel = 2
@@ -54,21 +65,41 @@ export default class Lvl1 extends Phaser.Scene {
     }
   }
 
-  //clickhandler
+  incrementTotalPossibleScore = () => {
+    if (this.totalSpawnedDistractions <= 2) {
+      this.totalPossibleScore++
+    } else if (this.totalSpawnedDistractions <= 5) {
+      this.totalPossibleScore += 2
+    } else if (this.totalSpawnedDistractions <= 8) {
+      this.totalPossibleScore += 3
+    } else if (this.totalSpawnedDistractions <= 10) {
+      this.totalPossibleScore += 4
+    } else {
+      this.totalPossibleScore += 5
+    }
+  }
+
   handleDistractionButtonOnClick(event: DistractionClickEvent) {
     if (
       this.currentClickedDistraction !== DistractionTypes.Default &&
       event.distractionType == this.currentClickedDistraction
     ) {
+
+      //calculate points
       this.comboCount++;
       this.setHeatLevel();
       this.successCount++;
-      this.gpaPoints = this.successCount * 0.5 + this.heatLevel * this.successCount;
+      this.earnedPoints += this.heatLevel;
+
+      //clear out the distraction tile once clicked
       this.distractionTiles[event.name].reset();
+
     } else {
+      //reset combo if done wrong
       this.comboCount = 0;
     }
 
+    //reset cursor from current distraction to default
     this.currentClickedDistraction = DistractionTypes.Default;
     this.input.setDefaultCursor(
       `url(${DistractionDataContainer.default.cursor}), pointer`
@@ -78,6 +109,7 @@ export default class Lvl1 extends Phaser.Scene {
   getNonDistractedTileNames = () => {
     const nonDistractedTileNames: string[] = [];
 
+    //push all none-distracted tile names into the array and return it
     for (const key of Object.keys(this.distractionTiles)) {
       if (!this.distractionTiles[key].isDistracted()) {
         nonDistractedTileNames.push(key);
@@ -95,14 +127,16 @@ export default class Lvl1 extends Phaser.Scene {
     return this.allowedDistractionTypes[allowedDistractionTypesIndex];
   }
 
-  //distraction spawning
   handleDistractionSpawning = () => {
     const nonDistractedTileNames: string[] =
       this.getNonDistractedTileNames();
     const distractedTileCount: number =
       Object.keys(this.distractionTiles).length - nonDistractedTileNames.length;
+    const totalTimeRemaining = this.mainTimer.getRemaining();
+    const shouldDistractionsRender = totalTimeRemaining > this.countdownInterval;
 
-    if (distractedTileCount < this.maximumActiveDistractions) {
+    //things will not spawn on the last couple of seconds
+    if (distractedTileCount < this.maximumActiveDistractions && shouldDistractionsRender) {
       //generate a random number according to the length of the array of the non distracted tiles
       const nonDistractedTileNameIndex: number =
         Phaser.Math.Between(0, nonDistractedTileNames.length - 1);
@@ -113,13 +147,20 @@ export default class Lvl1 extends Phaser.Scene {
 
       this.distractionTiles[tileNameToDistract]
         .setDistraction(this.getRandomAllowedDistractionType(), this.countdownInterval);
+      this.totalSpawnedDistractions++;
+      this.incrementTotalPossibleScore();
     }
 
+    //every time spawning a distraction, this count goes up to keep up with the total distraction spawned
+
     //time inbetween spawns
-    const newSpawnInterval = Phaser.Math.Between(this.spawnIntervalRange.minimum, this.spawnIntervalRange.maximum);
-    this.setSpawnTimer(newSpawnInterval);
+    if (shouldDistractionsRender) {
+      const newSpawnInterval = Phaser.Math.Between(this.spawnIntervalRange.minimum, this.spawnIntervalRange.maximum);
+      this.setSpawnTimer(newSpawnInterval);
+    }
   }
 
+  // sets a timer that calls the distraction spawning handler function when the timer's up
   setSpawnTimer = (interval: number) => {
     this.spawnTimer = this.time.delayedCall(
       interval,
@@ -129,10 +170,7 @@ export default class Lvl1 extends Phaser.Scene {
     );
   }
 
-  // TODO: Calculate points
-
-
-
+  // create distration button and cursor that could be used to clear distractions
   setupDistractionButton = (
     distractionType: DistractionTypes,
     x: number,
@@ -150,13 +188,40 @@ export default class Lvl1 extends Phaser.Scene {
     });
   };
 
+  generateDistractionButtons = () => {
+    //iterate through distraction data container, if the distraction name is in the allowed distraction types in this level, grab the button's data and generate the button
+    for (const [, distractionData] of Object.entries(DistractionDataContainer)) {
+      if (this.allowedDistractionTypes.includes(distractionData.name)) {
+        this.setupDistractionButton(distractionData.name, distractionData.x, distractionData.y);
+      }
+    }
+  }
+
+  updateRemainingTime = () => {
+    //timer
+    const remainingTime = this.mainTimer.getRemainingSeconds().toFixed(2);
+    const indexOfDecimalPlace = remainingTime.indexOf('.');
+
+    const remainingHundredths = remainingTime.substring(indexOfDecimalPlace + 1);
+    let remainingSeconds = remainingTime.substring(0, indexOfDecimalPlace);
+    if (remainingSeconds.length < 2) {
+      remainingSeconds = `0${remainingSeconds}`;
+    }
+    this.text.setText(`Time: ${remainingSeconds}:${remainingHundredths}`);
+  }
+
   onGameTimeOver() {
     // TODO: load try again screen
   }
 
+  updateTiles = () => {
+    Object.keys(this.distractionTiles).forEach((key) =>
+      this.distractionTiles[key].update()
+    );
+  }
+
   create() {
-    // background reference
-    // this.add.image(460, 320, 'ref').setScale(0.6, 0.6);
+    // heatguage background
     this.add.image(460, 320, 'heatBg');
 
     // distraction animation
@@ -203,7 +268,7 @@ export default class Lvl1 extends Phaser.Scene {
       CharacterTextureNames.girl4
     );
 
-    this.setupDistractionButton(DistractionTypes.Dots, 150, 570);
+    this.generateDistractionButtons();
     this.setSpawnTimer(3000);
 
     //Event listener
@@ -224,7 +289,7 @@ export default class Lvl1 extends Phaser.Scene {
       .setFontSize(20);
 
     this.mainTimer = this.time.delayedCall(
-      60000,
+      45000,
       this.onGameTimeOver,
       [],
       this
@@ -236,24 +301,16 @@ export default class Lvl1 extends Phaser.Scene {
         fontFamily: 'Roboto',
       })
       .setFontSize(20);
-
-    //heatlevel
-    this.heatLevel;
-
   }
 
   update() {
     //timer
-    const time = this.mainTimer.getProgress().toString().substr(0, 4);
-    this.text.setText(`Time: ${time}`);
+    this.updateRemainingTime();
 
     //gpa
-    const gpaPoints = this.gpaPoints;
-    this.gpaText.setText(`GPA: ${gpaPoints}`);
+    this.updateGpa();
 
     //Updates the state of all distraction tiles every tick/frame
-    Object.keys(this.distractionTiles).forEach((key) =>
-      this.distractionTiles[key].update()
-    );
+    this.updateTiles()
   }
 }
