@@ -19,6 +19,11 @@ export default class Preloader extends Phaser.Scene {
     // heatgauge forground
     this.load.image('heatImg', 'assets/img/heatgauge.png');
 
+    // game audio
+    this.load.audio('tadara', 'assets/audio/tadara.wav');
+    this.load.audio('correct', 'assets/audio/correct.wav');
+    this.load.audio('incorrect', 'assets/audio/wrong.wav');
+
     // animation background
     for (const [, distractionData] of Object.entries(DistractionDataContainer)) {
       const name = distractionData.name.toLowerCase();

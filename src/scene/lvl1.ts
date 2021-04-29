@@ -33,6 +33,9 @@ export default class Lvl1 extends Phaser.Scene {
   countdownInterval: number;
   spawnIntervalRange: { minimum: number, maximum: number };
   heatGauge: Phaser.GameObjects.Sprite;
+  gameSound: any;
+  correctClickSound: any;
+  incorrectClickSound: any;
 
   constructor() {
     super('lvl1');
@@ -87,7 +90,6 @@ export default class Lvl1 extends Phaser.Scene {
       this.currentClickedDistraction !== DistractionTypes.Default &&
       event.distractionType == this.currentClickedDistraction
     ) {
-
       //calculate points
       this.comboCount++;
       this.setHeatLevel();
@@ -97,9 +99,11 @@ export default class Lvl1 extends Phaser.Scene {
       //clear out the distraction tile once clicked
       this.distractionTiles[event.name].reset();
 
+      this.correctClickSound.play();
     } else {
       //reset combo if done wrong
       this.comboCount = 0;
+      this.incorrectClickSound.play();
     }
 
     //reset cursor from current distraction to default
@@ -213,10 +217,6 @@ export default class Lvl1 extends Phaser.Scene {
     this.text.setText(`Time: ${remainingSeconds}:${remainingHundredths}`);
   }
 
-  onGameTimeOver() {
-    // TODO: load try again screen
-  }
-
   updateTiles = () => {
     Object.keys(this.distractionTiles).forEach((key) =>
       this.distractionTiles[key].update()
@@ -235,6 +235,25 @@ export default class Lvl1 extends Phaser.Scene {
 
     // update screen
     this.heatGauge.frame.updateUVs();
+  }
+
+  handleGameSound() {
+    let soundRate = this.gameSound.rate;
+
+    if (!this.gameSound.loop && soundRate < 1.5) {
+      soundRate += .051;
+      this.gameSound.setRate(soundRate);
+      this.gameSound.play();
+      this.gameSound.once('complete', () => this.handleGameSound());
+    } else {
+      this.gameSound.setLoop(true);
+      this.gameSound.play();
+    }
+  }
+
+  onGameTimeOver() {
+    this.gameSound.stop();
+    // TODO: load try again screen
   }
 
   create() {
@@ -295,9 +314,10 @@ export default class Lvl1 extends Phaser.Scene {
     );
 
     //Event listener for expired distraction
-    this.events.on('expiredDistraction', () =>
-      this.comboCount = 0
-    );
+    this.events.on('expiredDistraction', () => {
+      this.comboCount = 0;
+      this.incorrectClickSound.play();
+    });
 
     //cursor
     this.input.setDefaultCursor(
@@ -325,7 +345,13 @@ export default class Lvl1 extends Phaser.Scene {
       })
       .setFontSize(20);
 
-    //TODO: load music
+    //click sound
+    this.correctClickSound = this.sound.add('correct');
+    this.incorrectClickSound = this.sound.add('incorrect');
+    
+    //music
+    this.gameSound = this.sound.add('tadara');
+    this.handleGameSound();
   }
 
   update() {
