@@ -46,6 +46,9 @@ export default class Preloader extends Phaser.Scene {
       }
     }
 
+    // heat gauge
+    this.load.image('heat_gauge', 'assets/img/heat_gauge.png');
+
     //TODO: load music file
   }
 

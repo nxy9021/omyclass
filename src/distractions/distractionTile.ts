@@ -58,7 +58,7 @@ export default class DistractionTile {
     //  Make distractions  input enabled
     this._background
       .setInteractive()
-      .on('pointerdown', this.clickHandler, this._scene);
+      .on('pointerdown', this.emitClickEvent, this._scene);
     this._character = this._scene.add
       .image(x, y + 3.5, character)
       .setScale(0.6, 0.6);
@@ -73,6 +73,7 @@ export default class DistractionTile {
       this._countDownBar.isFilled = true;
 
       if (countdownProgress == 1) {
+        this.emitExpiredDistractionEvent();
         this.reset();
       }
     }
@@ -83,12 +84,17 @@ export default class DistractionTile {
   }
 
   //clickhandler that emits distraction on click event
-  clickHandler = () => {
+  emitClickEvent = () => {
     this._scene.events.emit('distractionClick', {
       name: this._name,
       distractionType: this._distractionType,
     });
   };
+
+  // emits expiredDistraction event when timer runs out
+  emitExpiredDistractionEvent = () => {
+    this._scene.events.emit('expiredDistraction');
+  }
 
   setDistraction = (distractionType: DistractionTypes, timeIntervalInMs: number) => {
     this._distractionType = distractionType;

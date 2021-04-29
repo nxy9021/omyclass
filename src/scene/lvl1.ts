@@ -32,6 +32,7 @@ export default class Lvl1 extends Phaser.Scene {
   maximumActiveDistractions: number;
   countdownInterval: number;
   spawnIntervalRange: { minimum: number, maximum: number };
+  heatGauge: Phaser.GameObjects.Sprite;
 
   constructor() {
     super('lvl1');
@@ -79,7 +80,9 @@ export default class Lvl1 extends Phaser.Scene {
     }
   }
 
+  //interaction logic is conducted by this function
   handleDistractionButtonOnClick(event: DistractionClickEvent) {
+    //check if the click distraction matches the cursor's distraction
     if (
       this.currentClickedDistraction !== DistractionTypes.Default &&
       event.distractionType == this.currentClickedDistraction
@@ -220,9 +223,24 @@ export default class Lvl1 extends Phaser.Scene {
     );
   }
 
+  updateHeatGauge(value: number) {
+    const h = Math.floor(this.heatGauge.height * value);
+
+    // set heights of sprite
+    this.heatGauge.frame.height = (h <= 0 ? 1 : h);
+    this.heatGauge.frame.cutHeight = h;
+
+    // It goes the wrong way if I don't do this
+    this.heatGauge.flipY = true;
+
+    // update screen
+    this.heatGauge.frame.updateUVs();
+  }
+
   create() {
+    this.heatGauge = this.add.sprite(826, 294, 'heat_gauge');
     // heatguage background
-    this.add.image(460, 320, 'heatBg');
+    this.add.image(460, 322, 'heatBg');
 
     // distraction animation
     this.distractionTiles.l1c1 = new DistractionTile(
@@ -271,9 +289,14 @@ export default class Lvl1 extends Phaser.Scene {
     this.generateDistractionButtons();
     this.setSpawnTimer(3000);
 
-    //Event listener
+    //Event listener for click
     this.events.on('distractionClick', (event: DistractionClickEvent) =>
       this.handleDistractionButtonOnClick(event)
+    );
+
+    //Event listener for expired distraction
+    this.events.on('expiredDistraction', () =>
+      this.comboCount = 0
     );
 
     //cursor
@@ -315,6 +338,6 @@ export default class Lvl1 extends Phaser.Scene {
     //Updates the state of all distraction tiles every tick/frame
     this.updateTiles()
 
-    //TODO: update combogauge
+    this.updateHeatGauge(this.comboCount / 11);
   }
 }
