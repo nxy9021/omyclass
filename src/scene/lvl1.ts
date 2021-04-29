@@ -57,29 +57,29 @@ export default class Lvl1 extends Phaser.Scene {
   //set heat level for points calculation
   setHeatLevel = () => {
     if (this.comboCount <= 2) {
-      this.heatLevel = 1
+      this.heatLevel = 1.5
     } else if (this.comboCount <= 5) {
-      this.heatLevel = 2
+      this.heatLevel = 2.25
     } else if (this.comboCount <= 8) {
-      this.heatLevel = 3
+      this.heatLevel = 3.25
     } else if (this.comboCount <= 10) {
-      this.heatLevel = 4
+      this.heatLevel = 3.5
     } else {
-      this.heatLevel = 5
+      this.heatLevel = 3.75
     }
   }
 
   incrementTotalPossibleScore = () => {
     if (this.totalSpawnedDistractions <= 2) {
-      this.totalPossibleScore++
+      this.totalPossibleScore += 1.5
     } else if (this.totalSpawnedDistractions <= 5) {
-      this.totalPossibleScore += 2
+      this.totalPossibleScore += 2.25
     } else if (this.totalSpawnedDistractions <= 8) {
-      this.totalPossibleScore += 3
+      this.totalPossibleScore += 3.25
     } else if (this.totalSpawnedDistractions <= 10) {
-      this.totalPossibleScore += 4
+      this.totalPossibleScore += 3.5
     } else {
-      this.totalPossibleScore += 5
+      this.totalPossibleScore += 3.75
     }
   }
 
@@ -348,7 +348,6 @@ export default class Lvl1 extends Phaser.Scene {
     //click sound
     this.correctClickSound = this.sound.add('correct');
     this.incorrectClickSound = this.sound.add('incorrect');
-    
     //music
     this.gameSound = this.sound.add('tadara');
     this.handleGameSound();
