@@ -31,6 +31,7 @@ export default class Preloader extends Phaser.Scene {
     this.load.audio('correct', 'assets/audio/correct.wav');
     this.load.audio('incorrect', 'assets/audio/wrong.wav');
     this.load.audio('bgm', 'assets/audio/bgm.wav');
+    this.load.audio('cowntdown', 'assets/audio/cowntdown.wav');
 
     // animation background
     for (const [, distractionData] of Object.entries(DistractionDataContainer)) {

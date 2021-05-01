@@ -30,7 +30,7 @@ export default class start extends Phaser.Scene {
 
         // font sizes
         this.startText = this.add
-            .text(this.screenCenterX, 295, 'Start Game', {
+            .text(this.screenCenterX, 335, 'Start Game', {
                 fontFamily: 'Roboto',
                 color: '#888888',
             })
@@ -38,7 +38,7 @@ export default class start extends Phaser.Scene {
             .setFontSize(15);
 
         this.instructionText = this.add
-            .text(this.screenCenterX, 495, 'Instruction', {
+            .text(this.screenCenterX, 495, 'Instructions', {
                 fontFamily: 'Roboto',
                 color: '#888888',
             })
@@ -55,7 +55,7 @@ export default class start extends Phaser.Scene {
 
         // Start button
         this.startButton = this.add
-            .image(this.screenCenterX, 200, 'start')
+            .image(this.screenCenterX, 240, 'start')
             .setOrigin(0.5, 0)
             .setScale(0.6);
 
