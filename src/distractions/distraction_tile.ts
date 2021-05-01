@@ -1,6 +1,6 @@
-import CreateDistractionAnimation from '../anims/CreateBgAnims';
-import { DistractionDataContainer } from './distractionDataContainer';
-import { DistractionTypes } from './DistractionTypes';
+import CreateDistractionAnimation from '../anims/create_bg_anims';
+import { DistractionDataContainer } from './distraction_data_container';
+import { DistractionTypes } from './distraction_types';
 
 export default class DistractionTile {
   _distractionType = DistractionTypes.Default;

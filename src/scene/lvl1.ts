@@ -1,8 +1,8 @@
 import { CharacterTextureNames } from '../characters/characters';
-import DistractionTile from '../distractions/distractionTile';
-import { DistractionDataContainer } from '../distractions/distractionDataContainer';
-import { DistractionTypes } from '../distractions/DistractionTypes';
-import { DistractionClickEvent } from '../distractions/DistractionClickEvent';
+import DistractionTile from '../distractions/distraction_tile';
+import { DistractionDataContainer } from '../distractions/distraction_data_container';
+import { DistractionTypes } from '../distractions/distraction_types';
+import { DistractionClickEvent } from '../distractions/distraction_click_event';
 
 export default class Lvl1 extends Phaser.Scene {
   text: Phaser.GameObjects.Text;

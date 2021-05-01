@@ -1,5 +1,5 @@
 import { CharacterTextureNames } from '../characters/characters';
-import { DistractionDataContainer } from '../distractions/distractionDataContainer';
+import { DistractionDataContainer } from '../distractions/distraction_data_container';
 
 export default class Preloader extends Phaser.Scene {
   constructor() {
@@ -41,6 +41,13 @@ export default class Preloader extends Phaser.Scene {
       this.load.image(textureName, `assets/img/charactors/${textureName}.png`);
     };
 
+    // combo
+    this.load.image('tier1', 'assets/img/cursors/tier1.png');
+    this.load.image('tier2', 'assets/img/cursors/tier2.png');
+    this.load.image('tier3', 'assets/img/cursors/tier3.png');
+    this.load.image('tier4', 'assets/img/cursors/tier4.png');
+    this.load.image('tier5', 'assets/img/cursors/tier5.png');
+
     // attention bubbles
     for (const [, distractionData] of Object.entries(DistractionDataContainer)) {
       if (distractionData.name !== 'default') {
@@ -54,7 +61,8 @@ export default class Preloader extends Phaser.Scene {
     // heat gauge
     this.load.image('heat_gauge', 'assets/img/heat_gauge.png');
 
-    //TODO: load music file
+    // combo
+
   }
 
   create() {
