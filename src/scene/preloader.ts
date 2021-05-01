@@ -10,6 +10,13 @@ export default class Preloader extends Phaser.Scene {
     // background reference
     this.load.image('ref', 'assets/img/lvl1layout.png');
 
+    // game titile
+    this.load.image('title', 'assets/img/title.png');
+
+    // start screen buttons
+    this.load.image('start', 'assets/img/start.png');
+    this.load.image('instruction', 'assets/img/instruction.png');
+
     // solid background
     this.load.image('bgBeige', 'assets/img/solidbg/bg_beige.png');
 
@@ -23,6 +30,7 @@ export default class Preloader extends Phaser.Scene {
     this.load.audio('tadara', 'assets/audio/tadara.wav');
     this.load.audio('correct', 'assets/audio/correct.wav');
     this.load.audio('incorrect', 'assets/audio/wrong.wav');
+    this.load.audio('bgm', 'assets/audio/bgm.wav');
 
     // animation background
     for (const [, distractionData] of Object.entries(DistractionDataContainer)) {
@@ -61,11 +69,10 @@ export default class Preloader extends Phaser.Scene {
     // heat gauge
     this.load.image('heat_gauge', 'assets/img/heat_gauge.png');
 
-    // combo
 
   }
 
   create() {
-    this.scene.start('lvl1');
+    this.scene.start('start');
   }
 }

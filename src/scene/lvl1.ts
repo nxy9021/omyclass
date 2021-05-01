@@ -34,8 +34,8 @@ export default class Lvl1 extends Phaser.Scene {
   spawnIntervalRange: { minimum: number, maximum: number };
   heatGauge: Phaser.GameObjects.Sprite;
   gameSound: any;
-  correctClickSound: any;
-  incorrectClickSound: any;
+  correctClickSound: Phaser.Sound.BaseSound;
+  incorrectClickSound: Phaser.Sound.BaseSound;
 
   constructor() {
     super('lvl1');
