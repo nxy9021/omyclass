@@ -2,7 +2,7 @@ export default class Instructions extends Phaser.Scene {
 
     bgm: any;
     screenCenterX: number;
-    back: Phaser.GameObjects.Image;
+    close: Phaser.GameObjects.Image;
     instructionScreen: Phaser.GameObjects.Image;
     startNowButton: Phaser.GameObjects.Image;
 
@@ -22,20 +22,21 @@ export default class Instructions extends Phaser.Scene {
             'url(assets/img/cursors/cdefault.png), pointer'
         );
 
-        // back button
-        this.back = this.add
-            .image(50, 80, 'back')
+        // close button, back to main screen
+        this.close = this.add
+            .image(70, 80, 'close')
             .setInteractive()
+            .setScale(0.6)
             .on('pointerdown', () => {
                 this.scene.stop('instruction');
                 this.bgm.stop();
                 this.scene.start('start');
             });
 
-        const backButtonBounds = this.back.getBounds();
+        const closeButtonBounds = this.close.getBounds();
 
         this.add
-            .text(backButtonBounds.left - 12, backButtonBounds.bottom + 10, 'Go Back', {
+            .text(closeButtonBounds.left - 3, closeButtonBounds.bottom + 10, 'Go Back', {
                 fontFamily: 'Roboto',
                 resolution: 2.5
             })

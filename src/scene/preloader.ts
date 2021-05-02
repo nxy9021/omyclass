@@ -13,8 +13,8 @@ export default class Preloader extends Phaser.Scene {
     // instructions
     this.load.image('tutorial', 'assets/img/tutorial.png');
 
-    // back button
-    this.load.image('back', 'assets/img/back.png');
+    // close button
+    this.load.image('close', 'assets/img/close.png');
 
     // startnow button
     this.load.image('startnow', 'assets/img/startnow.png');
