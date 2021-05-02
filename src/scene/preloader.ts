@@ -10,6 +10,9 @@ export default class Preloader extends Phaser.Scene {
     // background reference
     this.load.image('ref', 'assets/img/lvl1layout.png');
 
+    // level selection background
+    this.load.image('selectlvlbg', 'assets/img/selectlvlbg.png');
+
     // instructions
     this.load.image('tutorial', 'assets/img/tutorial.png');
 
@@ -31,6 +34,17 @@ export default class Preloader extends Phaser.Scene {
     this.load.image('1star', 'assets/img/stars/1star.png');
     this.load.image('2star', 'assets/img/stars/2star.png');
     this.load.image('3star', 'assets/img/stars/3star.png');
+
+    // level selection screen stars
+    this.load.image('0starlvl', 'assets/img/stars/0starlvl.png');
+    this.load.image('1starlvl', 'assets/img/stars/1starlvl.png');
+    this.load.image('2starlvl', 'assets/img/stars/2starlvl.png');
+    this.load.image('3starlvl', 'assets/img/stars/3starlvl.png');
+
+    //level selection screen each level background
+    this.load.image('selectedlvl', 'assets/img/selectedlvl.png');
+    this.load.image('nonselectedlvl', 'assets/img/nonselectedlvl.png');
+    this.load.image('lockedlvl', 'assets/img/lockedlvl.png');
 
     // solid background
     this.load.image('bgBeige', 'assets/img/solidbg/bg_beige.png');

@@ -13,9 +13,10 @@ export default class Instructions extends Phaser.Scene {
     create() {
         this.screenCenterX = this.cameras.main.worldView.x + this.cameras.main.width / 2;
 
-        this.add
+        // add background image
+        this.instructionScreen = this.add
             .image(0, 0, 'tutorial')
-            .setOrigin(0, 0)
+            .setOrigin(0, 0);
 
         //cursor
         this.input.setDefaultCursor(
@@ -33,15 +34,6 @@ export default class Instructions extends Phaser.Scene {
                 this.scene.start('start');
             });
 
-        const closeButtonBounds = this.close.getBounds();
-
-        this.add
-            .text(closeButtonBounds.left - 3, closeButtonBounds.bottom + 10, 'Go Back', {
-                fontFamily: 'Roboto',
-                resolution: 2.5
-            })
-            .setFontSize(15);
-
         // startnow button
         this.startNowButton = this.add
             .image(this.screenCenterX, 550, 'startnow')
@@ -56,10 +48,9 @@ export default class Instructions extends Phaser.Scene {
         this.startNowButton
             .setInteractive()
             .on('pointerdown', () => {
-                this.scene.stop('start');
+                this.scene.stop('instruction');
                 this.bgm.stop();
-                //TODO: Load level selector
-                this.scene.start('lvl1');
+                this.scene.start('selectlvl');
             });
     }
 }
