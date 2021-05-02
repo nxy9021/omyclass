@@ -7,7 +7,7 @@ export default class start extends Phaser.Scene {
     text: Phaser.GameObjects.Text;
     startText: Phaser.GameObjects.Text;
     instructionText: Phaser.GameObjects.Text;
-    subtitile: Phaser.GameObjects.Text;
+    subtitle: Phaser.GameObjects.Text;
     screenCenterX: number;
 
     constructor() {
@@ -23,7 +23,7 @@ export default class start extends Phaser.Scene {
             'url(assets/img/cursors/cdefault.png), pointer'
         );
 
-        // Titile
+        // Title
         this.title = this.add
             .image(this.screenCenterX, 80, 'title')
             .setOrigin(0.5, 0)
@@ -47,7 +47,7 @@ export default class start extends Phaser.Scene {
             .setOrigin(0.5, 0)
             .setFontSize(15);
 
-        this.subtitile = this.add
+        this.subtitle = this.add
             .text(this.screenCenterX, 140, 'A zoom class inspired game', {
                 fontFamily: 'Roboto',
                 color: '#666666',
@@ -92,14 +92,14 @@ export default class start extends Phaser.Scene {
             this.scene.start('lvl1');
         });
 
-        // Press instruction to go to instruction
+        // Press startnow to go to instruction
         this.instructionButton.setInteractive();
 
-        this.startButton.on('pointerdown', () => {
+        this.instructionButton.on('pointerdown', () => {
             this.correctClickSound = this.sound.add('correct');
             this.scene.stop('start');
             this.bgm.stop();
-            this.scene.start('instruction');
+            this.scene.start('instructions');
         });
 
     }

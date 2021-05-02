@@ -98,6 +98,7 @@ export default class Lvl1 extends Phaser.Scene {
 
   //interaction logic is conducted by this function
   handleDistractionButtonOnClick(event: DistractionClickEvent) {
+    
     //check if the click distraction matches the cursor's distraction
     if (
       this.currentClickedDistraction !== DistractionTypes.Default &&

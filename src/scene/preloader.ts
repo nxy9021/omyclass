@@ -10,6 +10,15 @@ export default class Preloader extends Phaser.Scene {
     // background reference
     this.load.image('ref', 'assets/img/lvl1layout.png');
 
+    // instructions
+    this.load.image('tutorial', 'assets/img/tutorial.png');
+
+    // back button
+    this.load.image('back', 'assets/img/back.png');
+
+    // startnow button
+    this.load.image('startnow', 'assets/img/startnow.png');
+
     // game titile
     this.load.image('title', 'assets/img/title.png');
 
@@ -30,14 +39,14 @@ export default class Preloader extends Phaser.Scene {
     this.load.image('heatBg', 'assets/img/heatgauge_bg.png');
 
     // heatgauge forground
-    this.load.image('heatImg', 'assets/img/heatgauge.png');
+    this.load.image('heatImg', 'assets/img/heat_gauge.png');
 
     // game audio
     this.load.audio('tadara', 'assets/audio/tadara.wav');
     this.load.audio('correct', 'assets/audio/correct.wav');
     this.load.audio('incorrect', 'assets/audio/wrong.wav');
     this.load.audio('bgm', 'assets/audio/bgm.wav');
-    this.load.audio('cowntdown', 'assets/audio/cowntdown.wav');
+    this.load.audio('countdown', 'assets/audio/countdown.wav');
 
     // animation background
     for (const [, distractionData] of Object.entries(DistractionDataContainer)) {
@@ -75,8 +84,6 @@ export default class Preloader extends Phaser.Scene {
 
     // heat gauge
     this.load.image('heat_gauge', 'assets/img/heat_gauge.png');
-
-
   }
 
   create() {
