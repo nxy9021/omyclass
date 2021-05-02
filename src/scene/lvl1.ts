@@ -8,6 +8,26 @@ export default class Lvl1 extends Phaser.Scene {
   text: Phaser.GameObjects.Text;
   mainTimer: Phaser.Time.TimerEvent;
   spawnTimer: Phaser.Time.TimerEvent;
+  gpaText: Phaser.GameObjects.Text;
+  maximumActiveDistractions: number;
+  countdownInterval: number;
+  spawnIntervalRange: { minimum: number, maximum: number };
+  heatGauge: Phaser.GameObjects.Sprite;
+  gameSound: any;
+  graphics: Phaser.GameObjects.Graphics;
+  levelDuration: number;
+  correctClickSound: any;
+  incorrectClickSound: any;
+  isGameOver = false;
+  gpa: string = '0.00';
+  comboCount: number = 0;
+  earnedPoints: number = 0;
+  successCount: number = 0;
+  heatLevel: number = 0;
+  totalSpawnedDistractions: number = 0;
+  totalPossibleScore: number = 0;
+  currentClickedDistraction: DistractionTypes = DistractionTypes.Default;
+  allowedDistractionTypes: DistractionTypes[] = [];
   distractionTiles: any = {
     l1c1: DistractionTile,
     l1c2: DistractionTile,
@@ -16,26 +36,18 @@ export default class Lvl1 extends Phaser.Scene {
     l2c2: DistractionTile,
     l2c3: DistractionTile,
   };
-  countDownText: Text;
-  countDownBar: Phaser.GameObjects.Graphics;
-  barTimerEvents = [];
-  currentClickedDistraction: DistractionTypes = DistractionTypes.Default;
-  comboCount: number = 0;
-  gpaText: Phaser.GameObjects.Text;
-  gpa: string = '0.00';
-  earnedPoints: number = 0;
-  successCount: number = 0;
-  heatLevel: number = 0;
-  totalSpawnedDistractions: number = 0;
-  totalPossibleScore: number = 0;
-  allowedDistractionTypes: DistractionTypes[] = [];
-  maximumActiveDistractions: number;
-  countdownInterval: number;
-  spawnIntervalRange: { minimum: number, maximum: number };
-  heatGauge: Phaser.GameObjects.Sprite;
-  gameSound: any;
-  correctClickSound: Phaser.Sound.BaseSound;
-  incorrectClickSound: Phaser.Sound.BaseSound;
+  gameOverScreenComponents: any = {
+    description: Phaser.GameObjects.Text,
+    title: Phaser.GameObjects.Text,
+    gpa: Phaser.GameObjects.Text,
+    accuracy: Phaser.GameObjects.Text,
+    button: Phaser.GameObjects.Text,
+    retry: Phaser.GameObjects.Text,
+    exit: Phaser.GameObjects.Text,
+    buttonArea: Phaser.Geom.Rectangle,
+    stars: Phaser.GameObjects.Image
+  }
+  screenCenterX: number;
 
   constructor() {
     super('lvl1');
@@ -43,6 +55,7 @@ export default class Lvl1 extends Phaser.Scene {
     this.maximumActiveDistractions = 3;
     this.countdownInterval = 5000;
     this.spawnIntervalRange = { minimum: 500, maximum: 2000 };
+    this.levelDuration = 2000;
   }
 
   updateGpa = () => {
@@ -108,6 +121,10 @@ export default class Lvl1 extends Phaser.Scene {
 
     //reset cursor from current distraction to default
     this.currentClickedDistraction = DistractionTypes.Default;
+    this.resetCursor();
+  }
+
+  resetCursor = () => {
     this.input.setDefaultCursor(
       `url(${DistractionDataContainer.default.cursor}), pointer`
     );
@@ -126,7 +143,7 @@ export default class Lvl1 extends Phaser.Scene {
   }
 
   getRandomAllowedDistractionType = (): DistractionTypes => {
-    //generate a random number according to the length of the array of the distractoin types
+    //generate a random number according to the length of the array of the distraction types
     const allowedDistractionTypesIndex: number =
       Phaser.Math.Between(0, this.allowedDistractionTypes.length - 1);
 
@@ -160,7 +177,7 @@ export default class Lvl1 extends Phaser.Scene {
 
     //every time spawning a distraction, this count goes up to keep up with the total distraction spawned
 
-    //time inbetween spawns
+    //time in-between spawns
     if (shouldDistractionsRender) {
       const newSpawnInterval = Phaser.Math.Between(this.spawnIntervalRange.minimum, this.spawnIntervalRange.maximum);
       this.setSpawnTimer(newSpawnInterval);
@@ -177,7 +194,7 @@ export default class Lvl1 extends Phaser.Scene {
     );
   }
 
-  // create distration button and cursor that could be used to clear distractions
+  // create distraction button and cursor that could be used to clear distractions
   setupDistractionButton = (
     distractionType: DistractionTypes,
     x: number,
@@ -189,9 +206,11 @@ export default class Lvl1 extends Phaser.Scene {
     button.setInteractive({ cursor: `url(${data.cursor}), pointer` });
 
     button.on('pointerdown', () => {
-      button.setTint(data.color);
-      this.input.setDefaultCursor(`url(${data.cursor}), pointer`);
-      this.currentClickedDistraction = distractionType;
+      if (!this.isGameOver) {
+        button.setTint(data.color);
+        this.input.setDefaultCursor(`url(${data.cursor}), pointer`);
+        this.currentClickedDistraction = distractionType;
+      }
     });
   };
 
@@ -251,14 +270,187 @@ export default class Lvl1 extends Phaser.Scene {
     }
   }
 
+  drawGameOverScreen() {
+    let title: string;
+    let description: string;
+    let starTextureNumberToLoad: number;
+    let accuracyPercent = Math.floor((this.successCount / this.totalSpawnedDistractions * 100));
+    const gpaNumber = parseFloat(this.gpa);
+    const gpa = `GPA: ${this.gpa}/4.00`
+
+    if (!accuracyPercent) {
+      accuracyPercent = 0;
+    }
+
+    if (gpaNumber < 2) {
+      starTextureNumberToLoad = 0;
+      description = 'No one is paying attention';
+      title = 'Poor Class';
+    } else if (gpaNumber < 2.6) {
+      starTextureNumberToLoad = 1;
+      description = 'It’s one of those classes, isn’t it';
+      title = 'Average Class';
+    } else if (gpaNumber < 3.6) {
+      starTextureNumberToLoad = 2;
+      description = 'Students are slightly distracted';
+      title = 'Good Class';
+    } else {
+      starTextureNumberToLoad = 3;
+      description = 'Everyone is paying attention';
+      title = 'Excellent Class!';
+    }
+
+    //stars
+    this.gameOverScreenComponents.stars = this.add.image(this.screenCenterX, 250, `${starTextureNumberToLoad}star`);
+
+    //background
+    this.graphics.fillStyle(0xffffff, 1);
+    this.graphics.fillRect(180, 84.5, 540, 417);
+    this.graphics.fillStyle(0xffffff, 1);
+
+    //description
+    this.gameOverScreenComponents.description = this.add
+      .text(this.screenCenterX, 150, description, {
+        fontFamily: 'Roboto',
+        resolution: 2.5
+      })
+      .setFontSize(20)
+      .setOrigin(0.5, 0)
+      .setColor('grey');
+
+    //title
+    this.gameOverScreenComponents.title = this.add
+      .text(this.screenCenterX, 180, title, {
+        fontFamily: 'Roboto',
+        fontStyle: 'bold',
+        resolution: 2.5
+      })
+      .setFontSize(30)
+      .setOrigin(0.5, 0)
+      .setColor('black');
+
+    //gpa
+    this.gameOverScreenComponents.gpa = this.add
+      .text(this.screenCenterX, 290, gpa, {
+        fontFamily: 'Roboto',
+        resolution: 2.5
+      })
+      .setFontSize(20)
+      .setOrigin(0.5, 0)
+      .setColor('grey');
+
+    //accuracy
+    this.gameOverScreenComponents.accuracy = this.add
+      .text(this.screenCenterX, 320, `Accuracy: ${accuracyPercent}%`, {
+        fontFamily: 'Roboto',
+        resolution: 2.5
+      })
+      .setFontSize(20)
+      .setOrigin(0.5, 0)
+      .setColor('grey');
+
+    //button
+    this.gameOverScreenComponents.button = this.add
+      .text(this.screenCenterX, 375, 'Next Class', {
+        fontFamily: 'Roboto',
+        fontStyle: 'bold',
+        resolution: 2.5
+      })
+      .setFontSize(20)
+      .setOrigin(0.5,0)
+      .setColor('white');
+
+    let accuracyTextBounds = this.gameOverScreenComponents.button.getBounds();
+
+    //button rectangle
+    this.graphics.fillStyle(0x0000ff, 1);
+
+    this.graphics.fillRoundedRect(
+      accuracyTextBounds.x - 20,
+      accuracyTextBounds.y - 7.5,
+      accuracyTextBounds.width + 40,
+      accuracyTextBounds.height + 15, 4
+    );
+
+    this.graphics.fillStyle(0x0000ff, 1);
+
+    this.gameOverScreenComponents.buttonArea = this.add.rectangle(
+      accuracyTextBounds.x - 20,
+      accuracyTextBounds.y - 7.5,
+      accuracyTextBounds.width + 40,
+      accuracyTextBounds.height + 15
+      )
+      .setOrigin(0.5, 0);
+
+    this.gameOverScreenComponents.buttonArea
+      .setInteractive()
+      .on('pointerdown', () => this.nextLevel());
+
+    //retry
+    this.gameOverScreenComponents.retry = this.add
+      .text(this.screenCenterX, 430, 'Try Again', {
+        fontFamily: 'Roboto',
+        fontSize: '400',
+        resolution: 3
+      })
+      .setColor('blue')
+      .setFontSize(15)
+      .setInteractive()
+      .setOrigin(0.5,0)
+      .on('pointerdown', () => this.restartLevel());
+
+    let retryTextBounds = this.gameOverScreenComponents.retry.getBounds();
+
+    // underscore
+    this.graphics.fillRect(retryTextBounds.x, retryTextBounds.bottom - 2, retryTextBounds.width, 1);
+
+    // exit
+    this.gameOverScreenComponents.exit = this.add
+      .text(this.screenCenterX, 465, 'Back to home screen', {
+        fontFamily: 'Roboto',
+        fontSize: '400',
+        resolution: 3
+      })
+      .setFontSize(15)
+      .setColor('blue')
+      .setInteractive()
+      .setOrigin(0.5, 0)
+      .on('pointerdown', () => this.returnToLevelSelector());
+
+    let exitTextBounds = this.gameOverScreenComponents.exit.getBounds();
+
+    // underscore
+    this.graphics.fillRect(exitTextBounds.x, exitTextBounds.bottom - 2, exitTextBounds.width, 1);
+  }
+
+  returnToLevelSelector = () => {
+    this.scene.start('start');
+  }
+
+  nextLevel = () => {
+    //TODO: Make this change levels
+    console.log('wow');
+  }
+
+  restartLevel = () => {
+    this.scene.restart();
+  }
+
   onGameTimeOver() {
+    this.isGameOver = true;
+    this.resetCursor();
     this.gameSound.stop();
-    // TODO: load try again screen
+    this.drawGameOverScreen();
   }
 
   create() {
+    // set the center of the screen
+    this.screenCenterX = this.cameras.main.worldView.x + this.cameras.main.width / 2;
+
+    //heat gauge
     this.heatGauge = this.add.sprite(826, 294, 'heat_gauge');
-    // heatguage background
+
+    // heat gauge background
     this.add.image(460, 322, 'heatBg');
 
     // distraction animation
@@ -309,9 +501,11 @@ export default class Lvl1 extends Phaser.Scene {
     this.setSpawnTimer(3000);
 
     //Event listener for click
-    this.events.on('distractionClick', (event: DistractionClickEvent) =>
-      this.handleDistractionButtonOnClick(event)
-    );
+    this.events.on('distractionClick', (event: DistractionClickEvent) => {
+      if (!this.isGameOver) {
+        this.handleDistractionButtonOnClick(event)
+      }
+    });
 
     //Event listener for expired distraction
     this.events.on('expiredDistraction', () => {
@@ -320,19 +514,18 @@ export default class Lvl1 extends Phaser.Scene {
     });
 
     //cursor
-    this.input.setDefaultCursor(
-      'url(assets/img/cursors/cdefault.png), pointer'
-    );
+    this.resetCursor();
 
     //timer
     this.text = this.add
       .text(40, 40, '', {
         fontFamily: 'Roboto',
+        resolution: 2.5
       })
       .setFontSize(20);
 
     this.mainTimer = this.time.delayedCall(
-      45000,
+      this.levelDuration,
       this.onGameTimeOver,
       [],
       this
@@ -342,6 +535,7 @@ export default class Lvl1 extends Phaser.Scene {
     this.gpaText = this.add
       .text(640, 40, '', {
         fontFamily: 'Roboto',
+        resolution: 2.5
       })
       .setFontSize(20);
 
@@ -350,7 +544,9 @@ export default class Lvl1 extends Phaser.Scene {
     this.incorrectClickSound = this.sound.add('incorrect');
     //music
     this.gameSound = this.sound.add('tadara');
+    this.gameSound.setVolume(.5);
     this.handleGameSound();
+    this.graphics = this.add.graphics();
   }
 
   update() {

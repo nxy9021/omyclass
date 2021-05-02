@@ -33,6 +33,7 @@ export default class start extends Phaser.Scene {
             .text(this.screenCenterX, 335, 'Start Game', {
                 fontFamily: 'Roboto',
                 color: '#888888',
+                resolution: 2.5
             })
             .setOrigin(0.5, 0)
             .setFontSize(15);
@@ -41,6 +42,7 @@ export default class start extends Phaser.Scene {
             .text(this.screenCenterX, 495, 'Instructions', {
                 fontFamily: 'Roboto',
                 color: '#888888',
+                resolution: 2.5
             })
             .setOrigin(0.5, 0)
             .setFontSize(15);
@@ -49,6 +51,7 @@ export default class start extends Phaser.Scene {
             .text(this.screenCenterX, 140, 'A zoom class inspired game', {
                 fontFamily: 'Roboto',
                 color: '#666666',
+                resolution: 2.5
             })
             .setOrigin(0.5, 0)
             .setFontSize(22);
