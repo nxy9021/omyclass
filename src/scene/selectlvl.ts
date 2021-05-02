@@ -3,7 +3,7 @@ export default class selectlvl extends Phaser.Scene {
     bgm: any;
     screenCenterX: number;
     screenCenterY: number;
-    startButton: Phaser.GameObjects.Image;
+    startNowButton: Phaser.GameObjects.Image;
     selectlvlbg: Phaser.GameObjects.Image;
     close: Phaser.GameObjects.Image;
 
@@ -23,7 +23,7 @@ export default class selectlvl extends Phaser.Scene {
             .setScale(0.6);
 
         // add level backgrounds
-        
+
 
         //background music
         this.bgm = this.sound.add('bgm');
@@ -40,6 +40,20 @@ export default class selectlvl extends Phaser.Scene {
                 this.scene.stop('selectlvl');
                 this.bgm.stop();
                 this.scene.start('start');
+            });
+
+        // startnow button
+        this.startNowButton = this.add
+            .image(this.screenCenterX, 500, 'startnow')
+            .setOrigin(0.5, 0);
+
+        //Press start to start the game now
+        this.startNowButton
+            .setInteractive()
+            .on('pointerdown', () => {
+                this.scene.stop('instruction');
+                this.bgm.stop();
+                this.scene.start('lvl1');
             });
 
     }
