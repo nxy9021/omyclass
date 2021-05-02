@@ -7,8 +7,10 @@ import Instructions from './scene/instructions';
 
 const config = {
   type: Phaser.AUTO,
-  mode: Phaser.Scale.FIT,
-  autoCenter: Phaser.Scale.CENTER_BOTH,
+  scale: {
+    mode: Phaser.Scale.FIT,
+    autoCenter: Phaser.Scale.CENTER_BOTH
+  },
   width: 900,
   height: 640,
   scene: [Preloader, Start, Lvl1, Instructions],
