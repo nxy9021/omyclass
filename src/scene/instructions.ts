@@ -6,7 +6,6 @@ export default class Instructions extends Phaser.Scene {
     instructionScreen: Phaser.GameObjects.Image;
     startNowButton: Phaser.GameObjects.Image;
 
-
     constructor() {
         super('instructions');
     }
@@ -22,7 +21,6 @@ export default class Instructions extends Phaser.Scene {
         this.input.setDefaultCursor(
             'url(assets/img/cursors/cdefault.png), pointer'
         );
-
 
         // back button
         this.back = this.add
