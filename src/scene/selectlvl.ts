@@ -20,16 +20,10 @@ export default class selectlvl extends Phaser.Scene {
             lvl7: { stars: 0, isUnlocked: false, selector: {} as Phaser.GameObjects.Image },
             lvl8: { stars: 0, isUnlocked: false, selector: {} as Phaser.GameObjects.Image },
             lvl9: { stars: 0, isUnlocked: false, selector: {} as Phaser.GameObjects.Image },
-            lvl10: { stars: 0, isUnlocked: false, selector: {} as Phaser.GameObjects.Image },
-            lvl11: { stars: 0, isUnlocked: false, selector: {} as Phaser.GameObjects.Image },
-            lvl12: { stars: 0, isUnlocked: false, selector: {} as Phaser.GameObjects.Image },
-            lvl13: { stars: 0, isUnlocked: false, selector: {} as Phaser.GameObjects.Image },
-            lvl14: { stars: 0, isUnlocked: false, selector: {} as Phaser.GameObjects.Image },
-            lvl15: { stars: 0, isUnlocked: false, selector: {} as Phaser.GameObjects.Image },
         };
 
     renderLevelTiles() {
-        let xPosition = 200;
+        let xPosition = 325;
         let yPosition = 200;
         for (const [levelName, data] of Object.entries(this.levelCompletionData)) {
             let levelNumber: number = parseInt(levelName[levelName.length - 1]);
@@ -52,12 +46,12 @@ export default class selectlvl extends Phaser.Scene {
                         data.selector.setTexture('selectedlvl');
                         this.selectedLevel = levelName;
                     });
-                this.add.text(selectorBounds.centerX, selectorBounds.y - 5, levelNumber.toString(), {
+                this.add.text(selectorBounds.centerX, selectorBounds.y, levelNumber.toString(), {
                     fontFamily: 'Roboto',
                     fontStyle: 'bold',
                     resolution: 3
                 })
-                    .setFontSize(50)
+                    .setFontSize(45)
                     .setOrigin(0.5, 0.5);
                 this.add
                     .image(selectorBounds.centerX, selectorBounds.centerY + 10, `${data.stars}starlvl`)
@@ -67,9 +61,10 @@ export default class selectlvl extends Phaser.Scene {
                 data.selector.setTexture('lockedlvl');
             }
 
-            if (levelNumber % 5 === 0 && levelNumber <= 15) {
+            //repeat level tiles
+            if (levelNumber % 3 === 0 && levelNumber <= 9) {
                 yPosition += 115;
-                xPosition = 200
+                xPosition = 325;
             } else {
                 xPosition += 125;
             }
@@ -110,7 +105,7 @@ export default class selectlvl extends Phaser.Scene {
 
         // startnow button
         this.startNowButton = this.add
-            .image(this.screenCenterX, 500, 'startnow')
+            .image(this.screenCenterX, 520, 'startnow')
             .setOrigin(0.5, 0);
 
         //Press start to start the game now
