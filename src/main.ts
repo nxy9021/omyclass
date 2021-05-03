@@ -2,7 +2,7 @@ import 'phaser';
 
 import Preloader from './scene/preloader';
 import Start from './scene/start';
-import Lvl1 from './scene/lvl1';
+import Lvl from './scene/lvl';
 import Instructions from './scene/instructions';
 import selectlvl from './scene/selectlvl';
 
@@ -14,7 +14,7 @@ const config = {
   },
   width: 900,
   height: 640,
-  scene: [Preloader, Start, selectlvl, Lvl1, Instructions],
+  scene: [Preloader, Start, selectlvl, Lvl, Instructions],
 };
 
 export default new Phaser.Game(config);
