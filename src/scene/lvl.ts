@@ -4,8 +4,11 @@ import { DistractionDataContainer } from '../distractions/distraction_data_conta
 import { DistractionTypes } from '../distractions/distraction_types';
 import { DistractionClickEvent } from '../distractions/distraction_click_event';
 import LevelData from '../levelselections/levelData';
+import { Levels } from "../levelselections/levels";
 
 export default class Lvl extends Phaser.Scene {
+  name: string;
+  previousStars: string | null;
   text: Phaser.GameObjects.Text;
   mainTimer: Phaser.Time.TimerEvent;
   spawnTimer: Phaser.Time.TimerEvent;
@@ -29,6 +32,8 @@ export default class Lvl extends Phaser.Scene {
   totalPossibleScore: number = 0;
   currentClickedDistraction: DistractionTypes = DistractionTypes.Default;
   allowedDistractionTypes: DistractionTypes[] = [];
+  screenCenterX: number;
+  numberOfStars: number;
   distractionTiles: any = {
     l1c1: DistractionTile,
     l1c2: DistractionTile,
@@ -48,18 +53,40 @@ export default class Lvl extends Phaser.Scene {
     buttonArea: Phaser.Geom.Rectangle,
     stars: Phaser.GameObjects.Image
   }
-  screenCenterX: number;
-
   constructor() {
     super('lvl');
   }
 
-  init(data: LevelData) {
+  resetSceneParameters() {
+    this.isGameOver = false;
+    this.gpa = '0.00';
+    this.comboCount = 0;
+    this.earnedPoints = 0;
+    this.successCount = 0;
+    this.heatLevel = 0;
+    this.totalSpawnedDistractions = 0;
+    this.totalPossibleScore = 0;
+    this.currentClickedDistraction = DistractionTypes.Default;
+    this.allowedDistractionTypes = [];
+    this.distractionTiles = {
+      l1c1: DistractionTile,
+      l1c2: DistractionTile,
+      l1c3: DistractionTile,
+      l2c1: DistractionTile,
+      l2c2: DistractionTile,
+      l2c3: DistractionTile,
+    };
+  }
+
+  setSceneData(data: LevelData) {
+    this.resetSceneParameters();
+    this.name = data.name;
     this.allowedDistractionTypes = data.allowedDistractionTypes;
     this.maximumActiveDistractions = data.maximumActiveDistractions;
     this.countdownInterval = data.countdownInterval;
     this.spawnIntervalRange = data.spawnIntervalRange;
     this.levelDuration = data.levelDuration;
+    this.previousStars = localStorage.getItem(this.name);
   }
 
   updateGpa = () => {
@@ -102,7 +129,6 @@ export default class Lvl extends Phaser.Scene {
 
   //interaction logic is conducted by this function
   handleDistractionButtonOnClick(event: DistractionClickEvent) {
-
     //check if the click distraction matches the cursor's distraction
     if (
       this.currentClickedDistraction !== DistractionTypes.Default &&
@@ -247,8 +273,15 @@ export default class Lvl extends Phaser.Scene {
     );
   }
 
-  updateHeatGauge(value: number) {
-    const h = Math.floor(this.heatGauge.height * value);
+  updateHeatGauge() {
+    let heightMultiplier: number;
+    if (this.comboCount >= 11) {
+      heightMultiplier = 1
+    } else {
+      heightMultiplier = this.comboCount / 11;
+    }
+
+    const h = Math.floor(this.heatGauge.height * (heightMultiplier));
 
     // set heights of sprite
     this.heatGauge.frame.height = (h <= 0 ? 1 : h);
@@ -256,9 +289,6 @@ export default class Lvl extends Phaser.Scene {
 
     // It goes the wrong way if I don't do this
     this.heatGauge.flipY = true;
-
-    // update screen
-    this.heatGauge.frame.updateUVs();
   }
 
   handleGameSound() {
@@ -287,22 +317,27 @@ export default class Lvl extends Phaser.Scene {
       accuracyPercent = 0;
     }
 
+    //TODO: Disable next button
     if (gpaNumber < 2) {
       starTextureNumberToLoad = 0;
       description = 'No one is paying attention';
       title = 'Poor Class';
+      this.numberOfStars = 0;
     } else if (gpaNumber < 2.6) {
       starTextureNumberToLoad = 1;
       description = 'It’s one of those classes, isn’t it';
       title = 'Average Class';
+      this.numberOfStars = 1;
     } else if (gpaNumber < 3.6) {
       starTextureNumberToLoad = 2;
       description = 'Students are slightly distracted';
       title = 'Good Class';
+      this.numberOfStars = 2;
     } else {
       starTextureNumberToLoad = 3;
       description = 'Everyone is paying attention';
       title = 'Excellent Class!';
+      this.numberOfStars = 3;
     }
 
     //stars
@@ -368,7 +403,23 @@ export default class Lvl extends Phaser.Scene {
     let accuracyTextBounds = this.gameOverScreenComponents.button.getBounds();
 
     //button rectangle
-    this.graphics.fillStyle(0x0000ff, 1);
+    this.gameOverScreenComponents.buttonArea = this.add.rectangle(
+      accuracyTextBounds.x - 20,
+      accuracyTextBounds.y - 7.5,
+      accuracyTextBounds.width + 40,
+      accuracyTextBounds.height + 15
+    )
+      .setOrigin(0.5, 0);
+
+    if ((!!this.previousStars && parseInt(this.previousStars) >= 1) || this.numberOfStars >= 1) {
+      this.gameOverScreenComponents.buttonArea
+        .setInteractive()
+        .on('pointerdown', () => this.nextLevel());
+
+      this.graphics.fillStyle(0x0000ff, 1);
+    } else {
+      this.graphics.fillStyle(0xc4c4c4, 1);
+    }
 
     this.graphics.fillRoundedRect(
       accuracyTextBounds.x - 20,
@@ -378,18 +429,6 @@ export default class Lvl extends Phaser.Scene {
     );
 
     this.graphics.fillStyle(0x0000ff, 1);
-
-    this.gameOverScreenComponents.buttonArea = this.add.rectangle(
-      accuracyTextBounds.x - 20,
-      accuracyTextBounds.y - 7.5,
-      accuracyTextBounds.width + 40,
-      accuracyTextBounds.height + 15
-    )
-      .setOrigin(0.5, 0);
-
-    this.gameOverScreenComponents.buttonArea
-      .setInteractive()
-      .on('pointerdown', () => this.nextLevel());
 
     //retry
     this.gameOverScreenComponents.retry = this.add
@@ -429,16 +468,38 @@ export default class Lvl extends Phaser.Scene {
   }
 
   returnToLevelSelector = () => {
+    this.turnOffEvents();
+    this.scene.stop('lvl');
     this.scene.start('start');
   }
 
   nextLevel = () => {
-    //TODO: Make this change levels
-    console.log('wow');
+    this.turnOffEvents();
+    const currentLevelNumber = parseInt(this.name[this.name.length - 1]);
+    const nextLevelData = Levels[`lvl${currentLevelNumber + 1}`];
+    this.scene.restart(nextLevelData);
   }
 
   restartLevel = () => {
-    this.scene.restart();
+    this.turnOffEvents();
+    this.scene.restart(Levels[this.name]);
+  }
+
+  // must call this to turn off events or things start firing multiple times
+  turnOffEvents = () => {
+    this.events.off('distractionClick');
+    this.events.off('expiredDistraction');
+    this.events.off('pointerdown');
+  }
+
+  saveLevelStarsToLocalStorage = () => {
+    if (!!this.previousStars) {
+      if (parseInt(this.previousStars) < this.numberOfStars) {
+        localStorage.setItem(this.name, this.numberOfStars.toString());
+      }
+    } else {
+      localStorage.setItem(this.name, this.numberOfStars.toString());
+    }
   }
 
   onGameTimeOver() {
@@ -446,9 +507,11 @@ export default class Lvl extends Phaser.Scene {
     this.resetCursor();
     this.gameSound.stop();
     this.drawGameOverScreen();
+    this.saveLevelStarsToLocalStorage();
   }
 
-  create() {
+  create(data: LevelData) {
+    this.setSceneData(data);
     // set the center of the screen
     this.screenCenterX = this.cameras.main.worldView.x + this.cameras.main.width / 2;
 
@@ -564,6 +627,6 @@ export default class Lvl extends Phaser.Scene {
     //Updates the state of all distraction tiles every tick/frame
     this.updateTiles()
 
-    this.updateHeatGauge(this.comboCount / 11);
+    this.updateHeatGauge();
   }
 }

@@ -5,15 +5,15 @@ export default class selectlvl extends Phaser.Scene {
     screenCenterX: number;
     screenCenterY: number;
     startNowButton: Phaser.GameObjects.Image;
-    selectlvlbg: Phaser.GameObjects.Image;
+    selectLvlBg: Phaser.GameObjects.Image;
     close: Phaser.GameObjects.Image;
     selectedLevel: string;
     levelCompletionData:
         { [key: string]: { stars: number, isUnlocked: boolean, selector: Phaser.GameObjects.Image } }
         = {
             lvl1: { stars: 0, isUnlocked: true, selector: {} as Phaser.GameObjects.Image },
-            lvl2: { stars: 1, isUnlocked: true, selector: {} as Phaser.GameObjects.Image },
-            lvl3: { stars: 3, isUnlocked: true, selector: {} as Phaser.GameObjects.Image },
+            lvl2: { stars: 0, isUnlocked: false, selector: {} as Phaser.GameObjects.Image },
+            lvl3: { stars: 0, isUnlocked: false, selector: {} as Phaser.GameObjects.Image },
             lvl4: { stars: 0, isUnlocked: false, selector: {} as Phaser.GameObjects.Image },
             lvl5: { stars: 0, isUnlocked: false, selector: {} as Phaser.GameObjects.Image },
             lvl6: { stars: 0, isUnlocked: false, selector: {} as Phaser.GameObjects.Image },
@@ -24,6 +24,30 @@ export default class selectlvl extends Phaser.Scene {
 
     constructor() {
         super('selectlvl');
+    }
+
+    getLocalStorageData() {
+        // Get star counts from local storage
+        for (const [levelName, data] of Object.entries(this.levelCompletionData)) {
+            let starCountString = localStorage.getItem(levelName);
+            if (starCountString) {
+                data.stars = parseInt(starCountString);
+            } else {
+                data.stars = 0;
+            }
+        }
+
+        //Figure out level unlocks
+        for (let i = 9; i >= 1; i--) {
+            let currentLevelData = this.levelCompletionData[`lvl${i}`];
+
+            if (i == 1) {
+                currentLevelData.isUnlocked = true;
+            } else {
+                let previousLevelData = this.levelCompletionData[`lvl${i - 1}`];
+                currentLevelData.isUnlocked = previousLevelData.stars >= 1;
+            }
+        }
     }
 
     renderLevelTiles() {
@@ -76,12 +100,13 @@ export default class selectlvl extends Phaser.Scene {
     }
 
     create() {
+        this.getLocalStorageData();
         this.cameras.main.backgroundColor.setTo(188, 188, 188);
         this.screenCenterX = this.cameras.main.worldView.x + this.cameras.main.width / 2;
         this.screenCenterY = this.cameras.main.worldView.y + this.cameras.main.height / 2;
 
         // add background image
-        this.selectlvlbg = this.add
+        this.selectLvlBg = this.add
             .image(this.screenCenterX, this.screenCenterY, 'selectlvlbg')
             .setOrigin(0.5, 0.5)
             .setScale(0.6);
