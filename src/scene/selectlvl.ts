@@ -1,4 +1,3 @@
-import LevelData from "../levelselections/levelData";
 import { Levels } from "../levelselections/levels";
 
 export default class selectlvl extends Phaser.Scene {
