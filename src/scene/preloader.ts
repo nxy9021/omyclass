@@ -30,12 +30,12 @@ export default class Preloader extends Phaser.Scene {
     this.load.image('instruction', 'assets/img/instruction.png');
 
     // end game stars
-    for (let i = 0; i >= 3; i++) {
+    for (let i = 0; i <= 3; i++) {
       this.load.image(`${i}star`, `assets/img/stars/${i}star.png`);
     }
 
     // level selection screen stars
-    for (let i = 0; i >= 3; i++) {
+    for (let i = 0; i <= 3; i++) {
       this.load.image(`${i}starlvl`, `assets/img/stars/${i}starlvl.png`);
     }
 
