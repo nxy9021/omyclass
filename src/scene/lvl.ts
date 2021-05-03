@@ -609,10 +609,12 @@ export default class Lvl extends Phaser.Scene {
 
     //click sound
     this.correctClickSound = this.sound.add('correct');
+    this.correctClickSound.setVolume(.5);;
+
     this.incorrectClickSound = this.sound.add('incorrect');
     //music
     this.gameSound = this.sound.add('tadara');
-    this.gameSound.setVolume(.5);
+    this.gameSound.setVolume(.9);
     this.handleGameSound();
     this.graphics = this.add.graphics();
   }

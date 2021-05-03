@@ -112,7 +112,8 @@ export default class selectlvl extends Phaser.Scene {
             .setScale(0.6);
 
         //background music
-        this.bgm = this.sound.add('bgm');
+        this.bgm = this.sound.add('bgm')
+        this.bgm.setVolume(.7);;
         this.bgm.loop = true;
         this.bgm.play();
 
