@@ -80,7 +80,7 @@ export default class start extends Phaser.Scene {
             this.correctClickSound = this.sound.add('correct');
             this.scene.stop('start');
             this.bgm.stop();
-            this.scene.start('lvl1');
+            this.scene.start('selectlvl');
         });
 
         this.startText.setInteractive(new Phaser.Geom.Rectangle(0, 0, this.startText.width, this.startText.height), Phaser.Geom.Rectangle.Contains);
@@ -89,7 +89,7 @@ export default class start extends Phaser.Scene {
             this.correctClickSound = this.sound.add('correct');
             this.scene.stop('start');
             this.bgm.stop();
-            this.scene.start('lvl1');
+            this.scene.start('selectlvl');
         });
 
         // Press startnow to go to instruction
@@ -101,7 +101,6 @@ export default class start extends Phaser.Scene {
             this.bgm.stop();
             this.scene.start('instructions');
         });
-
     }
 
 }
