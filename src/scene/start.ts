@@ -69,7 +69,7 @@ export default class start extends Phaser.Scene {
             .setScale(0.6);
 
         //background music
-        this.bgm = this.sound.add('bgm', { volume: 0.5 });
+        this.bgm = this.sound.add('bgm');
         this.bgm.loop = true;
         this.bgm.play();
 

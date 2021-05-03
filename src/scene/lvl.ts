@@ -4,7 +4,7 @@ import { DistractionDataContainer } from '../distractions/distraction_data_conta
 import { DistractionTypes } from '../distractions/distraction_types';
 import { DistractionClickEvent } from '../distractions/distraction_click_event';
 import LevelData from '../levelselections/levelData';
-import { Levels } from "../levelselections/levels";
+import {Levels} from "../levelselections/levels";
 
 export default class Lvl extends Phaser.Scene {
   name: string;
@@ -57,7 +57,7 @@ export default class Lvl extends Phaser.Scene {
     super('lvl');
   }
 
-  resetSceneParameters() {
+  resetSceneParameters(){
     this.isGameOver = false;
     this.gpa = '0.00';
     this.comboCount = 0;
@@ -275,9 +275,9 @@ export default class Lvl extends Phaser.Scene {
 
   updateHeatGauge() {
     let heightMultiplier: number;
-    if (this.comboCount >= 11) {
+    if (this.comboCount >= 11){
       heightMultiplier = 1
-    } else {
+    } else{
       heightMultiplier = this.comboCount / 11;
     }
 
@@ -404,20 +404,20 @@ export default class Lvl extends Phaser.Scene {
 
     //button rectangle
     this.gameOverScreenComponents.buttonArea = this.add.rectangle(
-      accuracyTextBounds.x - 20,
-      accuracyTextBounds.y - 7.5,
-      accuracyTextBounds.width + 40,
-      accuracyTextBounds.height + 15
+        accuracyTextBounds.x - 20,
+        accuracyTextBounds.y - 7.5,
+        accuracyTextBounds.width + 40,
+        accuracyTextBounds.height + 15
     )
-      .setOrigin(0.5, 0);
+        .setOrigin(0.5, 0);
 
-    if ((!!this.previousStars && parseInt(this.previousStars) >= 1) || this.numberOfStars >= 1) {
+    if ((!!this.previousStars && parseInt(this.previousStars) >=1 ) || this.numberOfStars >= 1){
       this.gameOverScreenComponents.buttonArea
-        .setInteractive()
-        .on('pointerdown', () => this.nextLevel());
+          .setInteractive()
+          .on('pointerdown', () => this.nextLevel());
 
       this.graphics.fillStyle(0x0000ff, 1);
-    } else {
+    } else{
       this.graphics.fillStyle(0xc4c4c4, 1);
     }
 
@@ -493,8 +493,8 @@ export default class Lvl extends Phaser.Scene {
   }
 
   saveLevelStarsToLocalStorage = () => {
-    if (!!this.previousStars) {
-      if (parseInt(this.previousStars) < this.numberOfStars) {
+    if (!!this.previousStars){
+      if (parseInt(this.previousStars) < this.numberOfStars){
         localStorage.setItem(this.name, this.numberOfStars.toString());
       }
     } else {
@@ -608,10 +608,11 @@ export default class Lvl extends Phaser.Scene {
       .setFontSize(20);
 
     //click sound
-    this.correctClickSound = this.sound.add('correct', { volume: 0.5 });
-    this.incorrectClickSound = this.sound.add('incorrect', { volume: 0.3 });
+    this.correctClickSound = this.sound.add('correct');
+    this.incorrectClickSound = this.sound.add('incorrect');
     //music
-    this.gameSound = this.sound.add('tadara'), { volume: 0.3 };
+    this.gameSound = this.sound.add('tadara');
+    this.gameSound.setVolume(.5);
     this.handleGameSound();
     this.graphics = this.add.graphics();
   }
