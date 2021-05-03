@@ -30,16 +30,14 @@ export default class Preloader extends Phaser.Scene {
     this.load.image('instruction', 'assets/img/instruction.png');
 
     // end game stars
-    this.load.image('0star', 'assets/img/stars/0star.png');
-    this.load.image('1star', 'assets/img/stars/1star.png');
-    this.load.image('2star', 'assets/img/stars/2star.png');
-    this.load.image('3star', 'assets/img/stars/3star.png');
+    for (let i = 0; i >= 3; i++) {
+      this.load.image(`${i}star`, `assets/img/stars/${i}star.png`);
+    }
 
     // level selection screen stars
-    this.load.image('0starlvl', 'assets/img/stars/0starlvl.png');
-    this.load.image('1starlvl', 'assets/img/stars/1starlvl.png');
-    this.load.image('2starlvl', 'assets/img/stars/2starlvl.png');
-    this.load.image('3starlvl', 'assets/img/stars/3starlvl.png');
+    for (let i = 0; i >= 3; i++) {
+      this.load.image(`${i}starlvl`, `assets/img/stars/${i}starlvl.png`);
+    }
 
     //level selection screen each level background
     this.load.image('selectedlvl', 'assets/img/selectedlvl.png');
@@ -80,11 +78,9 @@ export default class Preloader extends Phaser.Scene {
     };
 
     // combo
-    this.load.image('tier1', 'assets/img/cursors/tier1.png');
-    this.load.image('tier2', 'assets/img/cursors/tier2.png');
-    this.load.image('tier3', 'assets/img/cursors/tier3.png');
-    this.load.image('tier4', 'assets/img/cursors/tier4.png');
-    this.load.image('tier5', 'assets/img/cursors/tier5.png');
+    for (let i = 1; i >= 5; i++) {
+      this.load.image(`tier${i}`, `assets/img/cursors/tier${i}.png`);
+    }
 
     // attention bubbles
     for (const [, distractionData] of Object.entries(DistractionDataContainer)) {

@@ -22,6 +22,10 @@ export default class selectlvl extends Phaser.Scene {
             lvl9: { stars: 0, isUnlocked: false, selector: {} as Phaser.GameObjects.Image },
         };
 
+    constructor() {
+        super('selectlvl');
+    }
+
     renderLevelTiles() {
         let xPosition = 325;
         let yPosition = 200;
@@ -69,10 +73,6 @@ export default class selectlvl extends Phaser.Scene {
                 xPosition += 125;
             }
         }
-    }
-
-    constructor() {
-        super('selectlvl');
     }
 
     create() {

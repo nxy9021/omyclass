@@ -52,11 +52,6 @@ export default class Lvl extends Phaser.Scene {
 
   constructor() {
     super('lvl');
-    // this.allowedDistractionTypes.push(DistractionTypes.Dots);
-    // this.maximumActiveDistractions = 3;
-    // this.countdownInterval = 5000;
-    // this.spawnIntervalRange = { minimum: 500, maximum: 2000 };
-    // this.levelDuration = 2000;
   }
 
   init(data: LevelData) {
