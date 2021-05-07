@@ -4,7 +4,7 @@ import { DistractionDataContainer } from '../distractions/distraction_data_conta
 import { DistractionTypes } from '../distractions/distraction_types';
 import { DistractionClickEvent } from '../distractions/distraction_click_event';
 import LevelData from '../levelselections/levelData';
-import {Levels} from "../levelselections/levels";
+import { Levels } from "../levelselections/levels";
 
 export default class Lvl extends Phaser.Scene {
   name: string;
@@ -57,7 +57,7 @@ export default class Lvl extends Phaser.Scene {
     super('lvl');
   }
 
-  resetSceneParameters(){
+  resetSceneParameters() {
     this.isGameOver = false;
     this.gpa = '0.00';
     this.comboCount = 0;
@@ -189,21 +189,29 @@ export default class Lvl extends Phaser.Scene {
       Object.keys(this.distractionTiles).length - nonDistractedTileNames.length;
     const totalTimeRemaining: number = this.mainTimer.getRemaining();
     const shouldDistractionsRender: boolean = totalTimeRemaining > this.countdownInterval;
-
     //things will not spawn on the last couple of seconds
     if (distractedTileCount < this.maximumActiveDistractions && shouldDistractionsRender) {
-      //generate a random number according to the length of the array of the non distracted tiles
-      const nonDistractedTileNameIndex: number =
-        Phaser.Math.Between(0, nonDistractedTileNames.length - 1);
+      // activate a random number of non distracted tiles up to the maximum allowed number of distracted tiles
+      let distractionsCountToRender = Phaser.Math.Between(0, this.maximumActiveDistractions - distractedTileCount);
 
-      //get the name of one none distracted tile, distract it
-      const tileNameToDistract: string =
-        nonDistractedTileNames[nonDistractedTileNameIndex];
+      while (distractionsCountToRender > 0) {
+        //generate a random number according to the length of the array of the non distracted tiles
+        const nonDistractedTileNameIndex: number =
+          Phaser.Math.Between(0, nonDistractedTileNames.length - 1);
 
-      this.distractionTiles[tileNameToDistract]
-        .setDistraction(this.getRandomAllowedDistractionType(), this.countdownInterval);
-      this.totalSpawnedDistractions++;
-      this.incrementTotalPossibleScore();
+        //get the name of one none distracted tile, distract it
+        const tileNameToDistract: string =
+          nonDistractedTileNames[nonDistractedTileNameIndex];
+
+        this.distractionTiles[tileNameToDistract]
+          .setDistraction(this.getRandomAllowedDistractionType(), this.countdownInterval);
+        this.totalSpawnedDistractions++;
+        this.incrementTotalPossibleScore();
+
+        //removes activated distraction tile from non distracted array and decrements distractionsCountToRender
+        nonDistractedTileNames.splice(nonDistractedTileNameIndex, 1);
+        distractionsCountToRender--;
+      }
     }
 
     //every time spawning a distraction, this count goes up to keep up with the total distraction spawned
@@ -275,9 +283,9 @@ export default class Lvl extends Phaser.Scene {
 
   updateHeatGauge() {
     let heightMultiplier: number;
-    if (this.comboCount >= 11){
+    if (this.comboCount >= 11) {
       heightMultiplier = 1
-    } else{
+    } else {
       heightMultiplier = this.comboCount / 11;
     }
 
@@ -312,6 +320,7 @@ export default class Lvl extends Phaser.Scene {
     let accuracyPercent = Math.floor((this.successCount / this.totalSpawnedDistractions * 100));
     const gpaNumber = parseFloat(this.gpa);
     const gpa = `GPA: ${this.gpa}/4.00`
+    const currentLevelNumber = parseInt(this.name[this.name.length - 1]);
 
     if (!accuracyPercent) {
       accuracyPercent = 0;
@@ -404,20 +413,20 @@ export default class Lvl extends Phaser.Scene {
 
     //button rectangle
     this.gameOverScreenComponents.buttonArea = this.add.rectangle(
-        accuracyTextBounds.x - 20,
-        accuracyTextBounds.y - 7.5,
-        accuracyTextBounds.width + 40,
-        accuracyTextBounds.height + 15
+      accuracyTextBounds.x - 20,
+      accuracyTextBounds.y - 7.5,
+      accuracyTextBounds.width + 40,
+      accuracyTextBounds.height + 15
     )
-        .setOrigin(0.5, 0);
+      .setOrigin(0.5, 0);
 
-    if ((!!this.previousStars && parseInt(this.previousStars) >=1 ) || this.numberOfStars >= 1){
+    if ((!!this.previousStars && parseInt(this.previousStars) >= 1) || this.numberOfStars >= 1 && currentLevelNumber < 9) {
       this.gameOverScreenComponents.buttonArea
-          .setInteractive()
-          .on('pointerdown', () => this.nextLevel());
+        .setInteractive()
+        .on('pointerdown', () => this.nextLevel(currentLevelNumber));
 
       this.graphics.fillStyle(0x0000ff, 1);
-    } else{
+    } else {
       this.graphics.fillStyle(0xc4c4c4, 1);
     }
 
@@ -473,9 +482,8 @@ export default class Lvl extends Phaser.Scene {
     this.scene.start('start');
   }
 
-  nextLevel = () => {
+  nextLevel = (currentLevelNumber: number) => {
     this.turnOffEvents();
-    const currentLevelNumber = parseInt(this.name[this.name.length - 1]);
     const nextLevelData = Levels[`lvl${currentLevelNumber + 1}`];
     this.scene.restart(nextLevelData);
   }
@@ -493,8 +501,8 @@ export default class Lvl extends Phaser.Scene {
   }
 
   saveLevelStarsToLocalStorage = () => {
-    if (!!this.previousStars){
-      if (parseInt(this.previousStars) < this.numberOfStars){
+    if (!!this.previousStars) {
+      if (parseInt(this.previousStars) < this.numberOfStars) {
         localStorage.setItem(this.name, this.numberOfStars.toString());
       }
     } else {
