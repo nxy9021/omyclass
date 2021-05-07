@@ -7,7 +7,7 @@ export const Levels: { [key: string]: LevelData } = {
     lvl1: {
         name: 'lvl1',
         allowedDistractionTypes: [DistractionTypes.Dots],
-        maximumActiveDistractions: 3,
+        maximumActiveDistractions: 2,
         countdownInterval: 5000,
         spawnIntervalRange: { minimum: 500, maximum: 2000 },
         levelDuration: 45000
