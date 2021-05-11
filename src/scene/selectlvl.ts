@@ -73,6 +73,19 @@ export default class selectlvl extends Phaser.Scene {
                         }
                         data.selector.setTexture('selectedlvl');
                         this.selectedLevel = levelName;
+
+                        // startnow button
+                        this.startNowButton = this.add
+                            .image(this.screenCenterX, 520, 'startnow')
+                            .setInteractive()
+                            .setOrigin(0.5, 0)
+                            .on('pointerdown', () => {
+                                this.scene.stop('instruction');
+                                this.bgm.stop();
+                                const levelData = Levels[this.selectedLevel];
+                                // .find(data => data.name == this.selectedLevel)
+                                this.scene.start('lvl', levelData);
+                            });
                     });
                 this.add.text(selectorBounds.centerX, selectorBounds.y, levelNumber.toString(), {
                     fontFamily: 'Roboto',
@@ -128,23 +141,6 @@ export default class selectlvl extends Phaser.Scene {
                 this.bgm.stop();
                 this.scene.start('start');
             });
-
-        // startnow button
-        this.startNowButton = this.add
-            .image(this.screenCenterX, 520, 'startnow')
-            .setOrigin(0.5, 0);
-
-        //Press start to start the game now
-        this.startNowButton
-            .setInteractive()
-            .on('pointerdown', () => {
-                this.scene.stop('instruction');
-                this.bgm.stop();
-                const levelData = Levels[this.selectedLevel];
-                // .find(data => data.name == this.selectedLevel)
-                this.scene.start('lvl', levelData);
-            });
-
         this.renderLevelTiles();
     }
 }
